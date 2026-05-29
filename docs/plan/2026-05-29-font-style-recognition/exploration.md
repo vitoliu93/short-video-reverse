@@ -18,3 +18,11 @@
 11. **渲染保真**：`Aa全息黑体.ttf` 经 Pillow `ImageFont.truetype(path, 96)` 渲染，字体的横线纹理风格**完整保留**（不是退化成系统默认）→ 闭集 render-and-compare 的判别信号确实存在（F0 前提验证）。截图 `outputs/font_smoke/preflight_render.png`。
 12. **OCR 选型落地**：`rapidocr-onnxruntime==1.4.4` 装载零障碍（onnxruntime，无 Paddle 依赖地狱），中文读回 8/8。F0/F1 用它。
 13. **字符覆盖查法**：`fontTools.ttLib.TTFont(path).getBestCmap()` 返回 {codepoint: glyphname}；`ord(c) in cmap` 判该字体是否有某字字形 —— 渲染查询字符前先过滤掉该字体缺字的情况。
+
+## [2026-05-29 F1/F2]
+14. **闭集框架白送字体属性**:识别出字体后,字重/粗细是该字体的**固有属性**,直接对干净渲染测(`font_common.intrinsic_weight`),比从退化视频像素量稳得多。先前量退化 crop,bold/regular 都误判 thin;改后 12/12。库内名字带「粗/常规/细」可直接当标定集(bold≈0.115/regular≈0.068/thin≈0.049 笔宽÷字高)。
+15. **RapidOCR char-level**:RapidOCR 只给行级 box+text,不给单字框。CJK 字幕近似全角等宽 → 按 text 长度等分 line crop 当 char crops(POC 口径,标点/拉丁混排会错位)。
+16. **字号要从事件级取**:pop/zoom 动画下逐帧大小变,单帧 size 会被早期小帧带偏 → 取事件内所有 obs 框高 p75(稳定后尺寸)。
+17. **真实视频 plumbing 测**(Lotus 16:9 车广告,英文/logo):管线不崩,但 OCR 在 logo/运动图形上乱读("EMEVA"/"FSTETTETTTTS"),匹配分普遍 <0.4。→ **低分可当「非干净字幕」过滤信号**。但这不是 CJK 字幕视频,非公平测试。
+18. **抖音样本是 F3 硬依赖**:自动下载受抖音登录/反爬限制,agent 无 URL 无法凭空获取。需 vito 给 3–5 个抖音链接或直接给视频文件。F0/F1/F2 都不依赖它(合成+库内字体),已全过。
+19. **ffmpeg make_video 前置**:输出目录必须先存在,否则 libx264 退 254(被 -loglevel error 吞掉报错)。
