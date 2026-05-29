@@ -8,3 +8,14 @@ wheels/
 
 # Virtual environments
 .venv
+.venv-arc
+
+# Secrets
+.env
+
+# Model weights
+models/
+*.safetensors
+assets/
+
+outputs/
