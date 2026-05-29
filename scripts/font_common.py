@@ -124,6 +124,32 @@ def chamfer_sim(a: np.ndarray, b: np.ndarray) -> float:
 METRICS = {"iou": iou, "ncc": ncc, "chamfer": chamfer_sim}
 
 
+# ----------------------------------------------------------------------------- 字重(从匹配到的字体本身测,非退化像素)
+def intrinsic_weight(path: Path, chars: str = "国本黑体永的是") -> tuple[str | None, float | None]:
+    """闭集匹配定到字体后,字重是该字体的固有属性 → 用**干净渲染**测笔宽/字高,绕开视频退化。
+    阈值由库内名字带「粗/常规/细」的字体标定(bold≈0.115 / regular≈0.068 / thin≈0.049)。"""
+    rs = []
+    for ch in chars:
+        img = render_char(path, ch)
+        if img is None:
+            continue
+        m = to_mask(img)
+        if m is None:
+            continue
+        dt = distance_transform_edt(m)
+        ridge = dt[dt > 0.5]
+        if not ridge.size:
+            continue
+        ys = np.where(m.any(axis=1))[0]
+        gh = ys.max() - ys.min() + 1
+        rs.append(2 * float(np.percentile(ridge, 80)) / gh)
+    if not rs:
+        return None, None
+    r = float(np.median(rs))
+    w = "bold" if r > 0.092 else ("thin" if r < 0.058 else "regular")
+    return w, round(r, 3)
+
+
 # ----------------------------------------------------------------------------- 退化(模拟视频)
 def degrade(img: Image.Image, kind: str, rng: np.random.Generator) -> Image.Image:
     """对干净渲染图施加退化,模拟「视频里抠出来的字」。img: RGB 黑字白底。"""
