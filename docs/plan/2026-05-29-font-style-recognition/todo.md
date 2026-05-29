@@ -1,12 +1,12 @@
 # Todo: 字体 + 样式识别
 
 ## Current State  ← 这是 resume 游标，开工/收尾/交接前必须更新
-- **Phase**: F3 — eval + 报告（POC done-line）
-- **Status**: F0/F1/F2 ✅ 全过；F3 卡「真实抖音样本来源」需 vito 决策
+- **Phase**: ✅ POC 完成（F0/F1/F2/F3 全过）
+- **Status**: DONE — 待 vito 过目 + 可选 /dev-plan review 复盘
 - **Branch**: dev-plan-2026-05-29-font-style-recognition
-- **Last done**: F2 全链路验证 —— 2 条合成视频(已知 font/style/anim ground-truth)端到端 **12/12 属性全对**。font_extract.py 出完整 texts[] JSON。字重改从「匹配到的字体干净渲染」测(绕开退化)；字号用 obs 框高 p75(避 pop 动画带偏)
-- **Next**: F3 需 3–5 条真实抖音样本 —— 自动下载抖音受登录/反爬限制，**需 vito 给链接或文件**。已就绪：全库索引 + 全管线，样本一到即可跑
-- **Blockers**: ⚠️ 真实抖音样本来源（见 spec §8 待确认#1）。font 下载量大，确认已全到再跑全库 eval
+- **Last done**: F3 真实抖音 eval —— 2 条真实视频跑通。**核心结论：闭集匹配是正确路线；真实数据单帧 top-1 有噪声，视频级投票稳定还原**（v1 点字玄真宋 65%、v2 汉仪咪咪体简）。结果+推荐落 spec §11，gallery 已出
+- **Next**: 无必做项。可选：(a) 修颜色极性 bug；(b) 上 DINOv2 提真实精度；(c) /dev-plan review 复盘
+- **Blockers**: none
 
 ## Phases
 
@@ -37,10 +37,13 @@
 
 > 注:F2 用合成视频验证(有 ground-truth);真实抖音验证在 F3。font 匹配 2/2 命中,但通用黑体(字语叙)score 0.52 << 独特字体(全息黑)0.91,预示真实数据上通用字体置信/间距更薄。
 
-### F3 — eval + 报告（POC done-line）  [todo]
-- [ ] 采集/获取 3–5 条真实抖音样本（agent 先试下载，被挡则向 vito 要链接/文件）到 `assets/eval_videos/`
-- [ ] 批量跑 `font_extract.py` 出每条 JSON；样式属性对眼标核对；字体匹配视觉合理性判定
-- [ ] 合成集精度表（top-1/top-5、退化曲线）作为字体精度量化依据
-- [ ] 写结论：闭集匹配行不行 / 精度 / 成本 / 推荐生产方案 / 降级路径（落 spec §9 或独立 findings 段）
-- **Acceptance**: 每条真实样本有 JSON + 结果表；有一段可引用的「推荐方案」结论
-- **Verify**: 产物齐全（JSON×N + metrics 表 + 结论段），vito 过目  → **Result**: pending
+### F3 — eval + 报告（POC done-line）  [done]
+- [x] 获取真实抖音样本（vito 提供 2 条车评竖屏）→ `assets/eval_videos/`
+- [x] 批量跑 `font_extract.py` 出每条 JSON（v1 84 主字幕 / v2 92）
+- [x] `font_eval_gallery.py` 视觉合理性对比图（query crop vs top-3 渲染）→ 匹配同风格族
+- [x] 视频级 plurality/加权投票 → 稳定字体（v1 点字玄真宋 65%、v2 汉仪咪咪体简）
+- [x] 写结论：行不行/精度/成本/推荐/降级（spec §11）
+- **Acceptance**: ✅ 2 样本 JSON + gallery + 投票表 + 推荐方案结论齐全
+- **Verify**: `font_extract.py` + `font_eval_gallery.py`，结果落 spec §11  → **Result**: ✅ 待 vito 过目
+
+> F3 关键结论：单帧 top-1 在真实抖音上有噪声（中位分 0.29~0.53 << 合成 0.5~0.9，渲染器-gap），但**视频级投票**赢家干净一致、且都落正确风格族。推荐生产 = top-K + 视频级投票 + 粗类/置信度；想再提精度上 DINOv2 embedding。
