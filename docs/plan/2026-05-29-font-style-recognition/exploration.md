@@ -12,3 +12,9 @@
 7. **creds 现状**：`.env` 只有 `ARC_TOKEN`（ARC-Hunyuan 视频理解 API，见 `scripts/test_arc_api.py`），**不是**通用图像 VLM。要做 VLM 字体粗类得另配 Doubao 视觉 creds。
 8. **OCR 选型**：研究文档点名 PaddleOCR(reading-list #24)，但 PaddlePaddle 安装重。POC 倾向 RapidOCR(onnxruntime)，不行再回退 Paddle。
 9. **git 拓扑**（立项时）：本地 `main` 比 `origin/main` **超前 4 个 commit**，且研究文档+BGM 脚本只在这 4 个本地 commit 里、未推 origin。所以本计划 worktree 从**本地 HEAD** 建（不是默认的 `fresh`=origin/main），否则会缺研究文档。
+
+## [2026-05-29 preflight]
+10. **`uv run --python <venv>` 在本仓是坑**：有 `pyproject.toml` 时 `uv run` 会无视 `--python` 指的现成 venv，另建空 `.venv` 装依赖 → ModuleNotFoundError。**统一 `.venv-font/bin/python scripts/x.py` 直调**（deps 用 `uv pip install --python .venv-font` 装）。
+11. **渲染保真**：`Aa全息黑体.ttf` 经 Pillow `ImageFont.truetype(path, 96)` 渲染，字体的横线纹理风格**完整保留**（不是退化成系统默认）→ 闭集 render-and-compare 的判别信号确实存在（F0 前提验证）。截图 `outputs/font_smoke/preflight_render.png`。
+12. **OCR 选型落地**：`rapidocr-onnxruntime==1.4.4` 装载零障碍（onnxruntime，无 Paddle 依赖地狱），中文读回 8/8。F0/F1 用它。
+13. **字符覆盖查法**：`fontTools.ttLib.TTFont(path).getBestCmap()` 返回 {codepoint: glyphname}；`ord(c) in cmap` 判该字体是否有某字字形 —— 渲染查询字符前先过滤掉该字体缺字的情况。
