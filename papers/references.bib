@@ -1,0 +1,220 @@
+% ===== 短视频结构化拆解 + 评估体系 — 完整参考文献 =====
+% 来源：高质量视频结构化拆解方案调研 & KOX 视频生成质量评估方案 v2
+% 更新：2026-05-28
+
+% ---- 第一梯队：短视频整体理解 ----
+
+@article{arc_hunyuan_video_2025,
+  title        = {ARC-Hunyuan-Video-7B: A Multi-Modal Video Understanding Model for Short Video Platforms},
+  author       = {Tencent ARC Lab},
+  year         = 2025,
+  journal      = {arXiv preprint arXiv:2507.20939},
+  url          = {https://arxiv.org/abs/2507.20939},
+  note         = {Specifically designed for Douyin/WeChat short video understanding, 7B params, 3-modality + timestamp}
+}
+
+@article{eve_2025,
+  title        = {EVE: End-to-End Video Text Extraction via Spatial-Semantic Aggregation and Temporal Query},
+  author       = {Fudan University & ByteDance},
+  year         = 2025,
+  journal      = {arXiv preprint arXiv:2503.04058},
+  url          = {https://arxiv.org/abs/2503.04058},
+  note         = {End-to-end VLM for subtitle text + timestamps, 0.5B/7B versions}
+}
+
+@inproceedings{transnetv2_2020,
+  title        = {TransNetV2: An effective deep network architecture for fast shot transition detection},
+  author       = {Soucek, Tomas and Lokoc, Jakub},
+  booktitle    = {Proceedings of the 28th ACM International Conference on Multimedia},
+  year         = 2020,
+  url          = {https://github.com/soCzech/TransNetV2},
+  note         = {Shot segmentation, 150+ FPS, production-grade}
+}
+
+% ---- BGM / 音频识别 ----
+
+@software{seektune_2025,
+  title        = {SeekTune: Music Recognition Engine},
+  author       = {SeekTune Team},
+  year         = 2025,
+  url          = {https://github.com/SeekTune/SeekTune},
+  note         = {Go implementation of Shazam algorithm, audio fingerprinting}
+}
+
+@inproceedings{neural_music_fp_2025,
+  title        = {neural-music-fp: Neural Audio Fingerprinting for Robust Music Identification},
+  author       = {Spotify Research},
+  booktitle    = {ISMIR 2025},
+  year         = 2025,
+  url          = {https://github.com/spotify/neural-music-fp},
+  note         = {Neural audio fingerprinting, robust to noise and tempo variation}
+}
+
+@software{clap_2023,
+  title        = {CLAP: Contrastive Language-Audio Pretraining},
+  author       = {LAION AI},
+  year         = 2023,
+  url          = {https://github.com/LAION-AI/CLAP},
+  note         = {Text-audio embedding matching}
+}
+
+% ---- 视频评估：第一梯队 ----
+
+@article{editduet_2025,
+  title        = {EditDuet: A Multi-Agent System for Video Non-Linear Editing},
+  author       = {Adobe Research & TTI Chicago & CTU Prague},
+  year         = 2025,
+  journal      = {ACM Transactions on Graphics (SIGGRAPH 2025)},
+  doi          = {10.1145/3721238.3730761},
+  url          = {https://dl.acm.org/doi/10.1145/3721238.3730761},
+  note         = {Editor + Critic dual-agent architecture, evaluates editing timeline not rendered frames}
+}
+
+@article{evalverse_2026,
+  title        = {EvalVerse: Pipeline-Aware and Expert-Calibrated Benchmarking for Professional Cinematic Video Generation},
+  author       = {26 authors},
+  year         = 2026,
+  journal      = {arXiv preprint arXiv:2605.23271},
+  url          = {https://arxiv.org/abs/2605.23271},
+  note         = {Pipeline-aware evaluation, 'rightness to goodness', expert-calibrated CoT}
+}
+
+@article{videogen_eval_2025,
+  title        = {VideoGen-Eval: Agent-based System for Video Generation Evaluation},
+  author       = {USTC & Tencent & SJTU & PKU & BFA},
+  year         = 2025,
+  journal      = {arXiv preprint arXiv:2503.23452},
+  url          = {https://arxiv.org/abs/2503.23452},
+  note         = {Binary VLM judgment (yes/no), checklist-style evaluation prompts}
+}
+
+@article{vista_2025,
+  title        = {VISTA: A Test-Time Self-Improving Agent for Text-to-Video Generation},
+  author       = {Google Cloud AI & ETH Zurich},
+  year         = 2025,
+  journal      = {arXiv preprint arXiv:2510.15831},
+  url          = {https://huggingface.co/papers/2510.15831},
+  note         = {Triple-judge system + closed-loop self-improvement}
+}
+
+% ---- 视频评估：第二梯队 ----
+
+@article{vefx_bench_2026,
+  title        = {VEFX-Bench: A Holistic Benchmark for Generic Video Editing and Visual Effects},
+  author       = {Texas A&M & Visko & Abaka AI},
+  year         = 2026,
+  journal      = {arXiv preprint arXiv:2604.16272},
+  url          = {https://arxiv.org/abs/2604.16272},
+  note         = {3-dimension decoupled evaluation: IF + RQ + EE}
+}
+
+@article{worldjen_2026,
+  title        = {WorldJen: An End-to-End Multi-Dimensional Benchmark for Generative Video Models},
+  author       = {Multiple Authors},
+  year         = 2026,
+  journal      = {arXiv preprint arXiv:2605.03475},
+  url          = {https://arxiv.org/abs/2605.03475},
+  note         = {16-dimension Likert scale, VLM reaches Spearman 1.0 with human}
+}
+
+@inproceedings{videojudge_2026,
+  title        = {VideoJudge: Bootstrapping Enables Scalable Supervision of MLLM-as-a-Judge for Video Understanding},
+  author       = {Multiple Authors},
+  booktitle    = {ICLR 2026},
+  year         = 2026,
+  url          = {https://iclr.cc/virtual/2026/poster/11610085},
+  note         = {Small model bootstrapping as evaluator for large models}
+}
+
+% ---- 视频评估：第三梯队 ----
+
+@inproceedings{etva_2025,
+  title        = {ETVA: Scene Graph to Atomic QA for Text-Video Alignment Evaluation},
+  author       = {Apple & Renmin University},
+  booktitle    = {ICCV 2025},
+  year         = 2025,
+  url          = {https://arxiv.org/abs/2503.16867},
+  note         = {Scene graph -> atomic QA, Spearman 58.47 vs CLIP Score 31.0}
+}
+
+@article{theval_2025,
+  title        = {THEval: Talking Head Evaluation Benchmark},
+  author       = {Inria & Shanghai AI Lab},
+  year         = 2025,
+  journal      = {arXiv preprint arXiv:2511.04520},
+  url          = {https://arxiv.org/abs/2511.04520},
+  note         = {Talking head specific, 8 metrics, 85K videos, Spearman 0.87}
+}
+
+@article{aigve_macs_2025,
+  title        = {AIGVE-MACS: Fine-tuned InternLM for Video Evaluation with Scores and Natural Language Comments},
+  author       = {Multiple Authors},
+  year         = 2025,
+  journal      = {ICCV 2025 Workshop},
+  url          = {https://huggingface.co/papers/2507.01255},
+  note         = {Score + multi-dimension natural language comments}
+}
+
+@article{ivebench_2025,
+  title        = {IVEBench: 12-Indicator Video Evaluation Benchmark},
+  author       = {ZJU & Tencent YouTu & SJTU},
+  year         = 2025,
+  journal      = {arXiv preprint arXiv:2510.11647},
+  url          = {https://arxiv.org/abs/2510.11647},
+  note         = {12 indicators covering quality, instruction compliance, fidelity}
+}
+
+@article{vbench_plus_2026,
+  title        = {VBench++: Comprehensive Benchmark for Video Generation Models},
+  author       = {Multiple Authors},
+  year         = 2026,
+  journal      = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  url          = {https://pubmed.ncbi.nlm.nih.gov/41247905},
+  note         = {16 dimensions + trustworthiness, T2V and I2V support}
+}
+
+@inproceedings{vga_bench_2026,
+  title        = {VGA-Bench: Video Generation Assessment Benchmark},
+  author       = {Multiple Authors},
+  booktitle    = {CVPR 2026},
+  year         = 2026,
+  url          = {https://arxiv.org/abs/2604.10127},
+  note         = {1016 prompts -> 60K+ videos, 3-dim classification}
+}
+
+% ---- 通用方法论 ----
+
+@inproceedings{video_bench_2025,
+  title        = {Video-Bench: A Comprehensive Benchmark and Chain-of-Query Framework for Video Understanding Evaluation},
+  author       = {SJTU & Stanford & CMU},
+  booktitle    = {CVPR 2025},
+  year         = 2025,
+  url          = {https://github.com/Video-Bench/Video-Bench},
+  note         = {Chain-of-Query, MLLM unified evaluation, Spearman 0.735}
+}
+
+@software{hf_eval_guidebook_2025,
+  title        = {Hugging Face Evaluation Guidebook},
+  author       = {Hugging Face},
+  year         = 2025,
+  url          = {https://github.com/huggingface/evaluation-guidebook},
+  note         = {LLM-as-Judge prompt design methodology}
+}
+
+% ---- 工具 ----
+
+@software{paddleocr_2020,
+  title        = {PaddleOCR: Awesome OCR toolkits based on PaddlePaddle},
+  author       = {PaddlePaddle Team},
+  year         = 2020,
+  url          = {https://github.com/PaddlePaddle/PaddleOCR},
+  note         = {Subtitle bounding box detection}
+}
+
+@software{openai_clip_2021,
+  title        = {CLIP: Contrastive Language-Image Pre-training},
+  author       = {OpenAI},
+  year         = 2021,
+  url          = {https://github.com/openai/CLIP},
+  note         = {Text-image embedding similarity}
+}
