@@ -9,6 +9,7 @@ wheels/
 # Virtual environments
 .venv
 .venv-arc
+.venv-bgm
 
 # Secrets
 .env
