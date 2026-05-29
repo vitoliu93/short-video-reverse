@@ -187,6 +187,13 @@ def main():
     print(f"[ref] {N} 款渲染成功")
 
     metrics_used = ["iou", "ncc"]
+    C = len(TEST_CHARS)
+    remb = None
+    if args.embed:
+        import font_embed
+        flat = [m for masks in ref_masks for m in masks]   # [N*C]
+        remb = font_embed.embed_masks(flat).reshape(N, C, -1)   # [N,C,D]
+        print(f"[embed] ref embedded: {remb.shape}")
     results = {}
     gallery_rows = []
 
@@ -201,6 +208,15 @@ def main():
             score_cache[metric] = score
             ranks = ranks_from_scores(score)
             per_metric[metric] = metrics_from_ranks(ranks, N)
+        if args.embed:
+            qflat = [m for masks in q_masks for m in masks]
+            qemb = font_embed.embed_masks(qflat).reshape(N, C, -1)
+            score = np.zeros((N, N))
+            for c in range(C):
+                score += qemb[:, c, :] @ remb[:, c, :].T     # 已 L2 归一化 → 余弦
+            score /= C
+            score_cache["dino"] = score
+            per_metric["dino"] = metrics_from_ranks(ranks_from_scores(score), N)
         if args.chamfer:
             score = chamfer_matrix(q_masks, ref_masks)
             score_cache["chamfer"] = score
