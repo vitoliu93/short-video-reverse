@@ -75,6 +75,16 @@ def embed_file(path: Path, model, processor, device) -> tuple[np.ndarray | None,
     return embed_windows(wins, model, processor, device), dur
 
 
+@torch.no_grad()
+def embed_texts(texts: list[str], model, processor, device) -> np.ndarray:
+    """文字 → 与音频同空间的 L2 归一化向量(零样本打标签用)。返回 [N,D]。"""
+    inputs = processor(text=texts, return_tensors="pt", padding=True)
+    inputs = {k: v.to(device) for k, v in inputs.items()}
+    feats = model.get_text_features(**inputs)
+    feats = feats / feats.norm(dim=-1, keepdim=True)
+    return feats.cpu().numpy()
+
+
 def center(emb: np.ndarray, centroid: np.ndarray) -> np.ndarray:
     """减质心再 L2 归一化。emb 可为 [N,D] 或 [D]。"""
     out = emb - centroid

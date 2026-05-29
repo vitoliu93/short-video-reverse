@@ -2,7 +2,7 @@
 
 > 把 [BGM-反解-技术选型.md](./BGM-反解-技术选型.md) 的决策落成可实现的工程规格。
 > 选型结论(前提):Demucs 分离 → CLAP 标签 + 库内检索 → librosa DSP（术语说明见 [BGM-反解-术语与流水线.md](./BGM-反解-术语与流水线.md)）。
-> 更新:2026-05-29 · 状态:**M1 已完成(见 §8)**——全库索引建成(749 向量)、A/C 模块跑通,进入 M2
+> 更新:2026-05-29 · 状态:**M2 已完成(见 §9)**——`bgm_extract.py` 全链路跑通,单视频出完整 `bgm{}`,进入 M3
 
 ---
 
@@ -16,15 +16,17 @@
   "start": 0.0, "end": 28.4,          // BGM 在视频中的起止(秒)
   "volume_profile": [...],            // 音量包络(下采样后的 RMS 序列 + 采样率)
   "beat": { "tempo": 124.0, "aligned_with_cuts": true },
-  "style_tags": ["upbeat", "electronic", "energetic"],   // CLAP 零样本标签
-  "match": {                          // 库内替换检索结果
+  "style_tags": ["upbeat", "electronic", "energetic"],   // CLAP 零样本标签(辅助,质量弱于 match)
+  "match": {                          // 库内替换检索结果;present=false 时为 null
     "audio_url": "tos://kox-statics/bgm/rhythm_bgm/xxx.mp3",
-    "category": "rhythm_bgm",
+    "categories": ["rhythm_bgm"],       // 软标签列表(一首可多类,见 §3),非单一 category
     "score": 0.72,                      // 去均值后的 cosine(见 §7),非 raw cosine
-    "topk": [ {url, category, score}, ... ]
+    "topk": [ {url, categories, score}, ... ]
   }
 }
 ```
+
+> `present=false`(music stem 包络峰值 < 0.01)时 `match=null`、`style_tags=[]`,不做 B2。
 
 **范围内:** 单视频 BGM 子模块(A/B/C)+ 离线曲库索引。
 **范围外:** 镜头/字幕/转场(由 TransNetV2/EVE/ARC 等其他模块负责);BGM 精确曲名识别(指纹,暂不做);eval 指标的最终定义(由评估方案文档决定,本模块只产数据)。
@@ -112,7 +114,7 @@ short-video-reverse/
 |-|-|-|-|
 | ~~**M0 验证假设**~~ ✅ | `bgm_retrieval_smoke.py` | 83 条样本 leave-one-out + 人耳试听 | **已通过**,见 §7。CLAP 确认,不切 MERT |
 | ~~**M1 地基**~~ ✅ | `bgm_build_index.py` + A(`bgm_separate.py`)+ C(`bgm_dsp.py`) | 全库索引 749 向量(去均值+去重);Lotus 样本视频 A→C 跑通出 volume_profile/start/end/tempo | **已完成**,见 §8 |
-| **M2 全链路** | `bgm_extract.py` | 输入视频 → 完整 bgm{} JSON(schema §1) | 整合 A→C→B2 |
+| ~~**M2 全链路**~~ ✅ | `bgm_extract.py` | 输入视频 → 完整 bgm{} JSON(schema §1) | **已完成**,见 §9 |
 | **M3 接入 eval** | 批量跑精选 gold 视频 | 产出 Gold Case 的 bgm{} 数据集 + 风格/用法统计基准 | 对接评估方案 v2 |
 
 ---
@@ -129,7 +131,8 @@ short-video-reverse/
 | Demucs 分离慢(长视频) | 短视频场景可接受;必要时只对检测到 BGM 的区间分离 |
 | 「卡点对齐」依赖镜头切点模块 | 该模块未就绪时先产 tempo,aligned 置 null,不阻塞 |
 | 多段不同 BGM / BGM 中途切换 | v1 先按「主 BGM」处理;多段切换留 v2(按能量突变分段后逐段检索) |
-| 纯人声/清唱(无伴奏)误判 | A 之后用 music stem 能量阈值判 `present=false` |
+| 纯人声/清唱(无伴奏)误判 | A 之后用 music stem 能量阈值判 `present=false`(已实现,阈值 0.01) |
+| `style_tags` 零样本质量弱(M2 实测偏噪) | 作辅助信号,不作硬指标;后续加阈值/margin 过滤,词表可定制。match(音频→音频)才是主信号 |
 | 版权:match 到的库内曲是否可商用 | 由库本身保证(kox-statics/bgm 即生成时取用源),反解只做映射不引入新版权 |
 
 **待确认:**
@@ -214,3 +217,26 @@ Lotus 15s 样本验证 A→C 跑通:start 0.6 / end 14.7 / 151 点包络。
 ### 8.3 进入 M2
 
 A/C/B2 三块齐备,M2 把它们串成 `bgm_extract.py`:视频 → 抽音 → A → (C ‖ B2 检索) → 完整 `bgm{}` JSON(schema §1)。
+
+---
+
+## 9. M2 验证结果(2026-05-29)
+
+**目的:** 把 A/C/B2 串成 `bgm_extract.py`,单视频产出完整 `bgm{}`。
+
+**链路:** `video → ffmpeg 抽音 → Demucs(A) music stem → [librosa(C) ‖ CLAP(B2)] → bgm{} JSON`。
+模块全部复用 M1 件(`bgm_separate` / `bgm_dsp` / `bgm_common` + `outputs/bgm_index`),无重复实现。
+
+**Lotus 15s 样本输出**(`outputs/bgm/Lotus_*.json`):
+- `present=true`,`start=0.6 / end=14.7`,`tempo=110.0`,`volume_profile` 151 点 @10Hz。
+- `match`:top-1 `rhythm_bgm/动感/野马进行曲.mp3` score 0.6;top-5 全为 rhythm_bgm,
+  含 Chainsmokers/Coldplay、Two Steps From Hell(史诗)——对一支驾驶感汽车广告,**音频→音频检索合理**。
+- `style_tags`:romantic/happy/rock/dark/chill —— **偏噪**,印证 CLAP 零样本打标签是辅助信号。
+
+**工程坑(已绕过):** faiss 与 torch 在 macOS 各链一份 libomp → `OMP Error #15`,
+在 import 前设 `KMP_DUPLICATE_LIB_OK=TRUE`(flat 检索无并行正确性风险),已写进 `bgm_extract.py`/`bgm_build_index.py`。
+
+### 进入 M3
+
+`bgm_extract.py` 可批量跑精选 gold 视频 → 汇总 `bgm{}` 数据集 + 风格/用法统计基准,对接评估方案 v2。
+两个待打磨项(不阻塞 M3):① `style_tags` 加阈值/margin 过滤弱标签(需小标定集);② 多段 BGM 切换(v2,见 §6)。

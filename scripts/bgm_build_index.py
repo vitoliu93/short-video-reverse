@@ -12,6 +12,10 @@
 """
 from __future__ import annotations
 
+import os
+
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")  # faiss+torch libomp 共存(见 bgm_extract.py)
+
 import argparse
 import json
 import re
