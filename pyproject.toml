@@ -1,7 +1,31 @@
 [project]
 name = "short-video-reverse"
 version = "0.1.0"
-description = "Add your description here"
+description = "Short-video reverse-engineering POCs: ARC video understanding, BGM reverse, font/style recognition"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    # ARC API smoke (hosted, HTTP only)
+    "requests",
+    # shared numerics
+    "numpy",
+    "scipy",
+    # BGM: Demucs separate -> CLAP(transformers) + FAISS -> librosa DSP
+    "torch",
+    "torchaudio",
+    "transformers==4.46.3",  # locked: CLAP get_audio_features contract, see scripts/bgm_common.py
+    "faiss-cpu",
+    "demucs",
+    "librosa",
+    "soundfile",
+    # Font/style: OCR -> render-and-compare (NCC) + 4-D style
+    "opencv-python-headless",
+    "pillow",
+    "fonttools",
+    "scikit-image",
+    "rapidocr-onnxruntime",
+]
+
+# This repo is a collection of scripts, not an installable package.
+[tool.uv]
+package = false
