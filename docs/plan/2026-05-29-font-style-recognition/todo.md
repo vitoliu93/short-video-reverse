@@ -1,11 +1,11 @@
 # Todo: 字体 + 样式识别
 
 ## Current State  ← 这是 resume 游标，开工/收尾/交接前必须更新
-- **Phase**: ✅ POC 完成（F0/F1/F2/F3 全过）
-- **Status**: DONE — 待 vito 过目 + 可选 /dev-plan review 复盘
+- **Phase**: ✅ POC 完成（F0/F1/F2/F3 全过）+ 两项收尾实验
+- **Status**: DONE — 待 vito 过目；review.md 复盘 = 最后一步
 - **Branch**: dev-plan-2026-05-29-font-style-recognition
-- **Last done**: F3 真实抖音 eval —— 2 条真实视频跑通。**核心结论：闭集匹配是正确路线；真实数据单帧 top-1 有噪声，视频级投票稳定还原**（v1 点字玄真宋 65%、v2 汉仪咪咪体简）。结果+推荐落 spec §11，gallery 已出
-- **Next**: 无必做项。可选：(a) 修颜色极性 bug；(b) 上 DINOv2 提真实精度；(c) /dev-plan review 复盘
+- **Last done**: 收尾两件事 —— (a) **颜色极性 bug 已修**：fill 改从字形内部(高 dt 距离变换)取主色，不再误锁黑描边；v2 主字幕 #020202→#FFFFFF，合成 12/12 无回归（spec §12）。(b) **DINOv2 embedding 实验已做并证伪**：低分辨率/退化下显著差于 NCC（合成 combo dino t1=0.32 vs ncc 0.76；真实 v1/v2 在噪声内无增益），**不采纳**，保持 NCC + 视频级投票（spec §12，并修正 §11 旧推荐）
+- **Next**: `/dev-plan review` → 写 review.md（本 session 协作复盘）。无其它必做项
 - **Blockers**: none
 
 ## Phases
@@ -46,4 +46,4 @@
 - **Acceptance**: ✅ 2 样本 JSON + gallery + 投票表 + 推荐方案结论齐全
 - **Verify**: `font_extract.py` + `font_eval_gallery.py`，结果落 spec §11  → **Result**: ✅ 待 vito 过目
 
-> F3 关键结论：单帧 top-1 在真实抖音上有噪声（中位分 0.29~0.53 << 合成 0.5~0.9，渲染器-gap），但**视频级投票**赢家干净一致、且都落正确风格族。推荐生产 = top-K + 视频级投票 + 粗类/置信度；想再提精度上 DINOv2 embedding。
+> F3 关键结论：单帧 top-1 在真实抖音上有噪声（中位分 0.29~0.53 << 合成 0.5~0.9，渲染器-gap），但**视频级投票**赢家干净一致、且都落正确风格族。推荐生产 = top-K + 视频级投票 + 粗类/置信度。~~DINOv2~~ 已实验证伪（§12），真正提精度路径 = 字体专训编码器 / 选更高清帧。
