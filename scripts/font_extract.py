@@ -122,8 +122,9 @@ def main():
         texts.append({
             "text": e["text_full"],
             "appear": {"first": round(t0, 2), "last": round(t1, 2), "n_obs": len(obs)},
-            "bbox": [round(x / W, 4), round(y / H, 4), round(w / W, 4), round(h / H, 4)],
-            "position": font_style.position_of(pos_box, W, H),
+            "bbox_px": [x, y, w, h],            # 像素坐标 [左上x, 左上y, 宽, 高]（最清晰帧的 OCR 检测框）
+            "bbox": [round(x / W, 4), round(y / H, 4), round(w / W, 4), round(h / H, 4)],  # 归一化 0~1
+            "position": font_style.position_of(pos_box, W, H),  # 粗标签(从 bbox 推导)
             "font": {"match": top[0]["name"] if top else None,
                      "score": top[0]["score"] if top else None,
                      "topk": top},

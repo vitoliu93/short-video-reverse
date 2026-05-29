@@ -15,8 +15,9 @@
   {
     "text": "字幕内容",
     "appear": { "first": 1.2, "last": 4.8 },     // 出现时间窗(秒)
-    "bbox": [x, y, w, h],                          // 归一化 0~1(相对画面)
-    "position": "bottom-center",                   // 由 bbox 推导
+    "bbox_px": [211, 1312, 661, 56],               // 像素 [左上x, 左上y, 宽, 高](最清晰帧 OCR 检测框)
+    "bbox": [x, y, w, h],                          // 归一化 0~1(相对画面,分辨率无关)
+    "position": "bottom-center",                   // 粗标签(由 bbox 推导, 便于规则)
     "font": {
       "match": "Aa锐甲黑",                          // top-1 库内字体名(文件 stem)
       "score": 0.78,                               // 归一化相似度
