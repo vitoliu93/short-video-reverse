@@ -103,6 +103,7 @@ short-video-reverse/
 - 包管理:`uv`,**专用 venv `.venv-bgm`(Python 3.12)**——系统 3.14 太新,torch/transformers 无 wheel。
 - 依赖(已锁定可用版本):`torch`、**`transformers==4.46.3`**(5.x 把 CLAP `get_audio_features` 重构成返回未投影输出且维度错位,4.46 是文档化稳定 API)、`librosa`、`soundfile`、`numpy`、`faiss-cpu`、`demucs==4.0.1`。**不用 `laion-clap` pip 包**(依赖地狱),CLAP 走 `transformers` 的 `laion/larger_clap_music`。
 - 两个 M1 踩坑(已绕过):① PyPI 版 `demucs` 无 `demucs.api`,改用底层 `pretrained.get_model` + `apply.apply_model`;② `torchaudio 2.11` 的 `save` 走未安装的 `torchcodec`,stem 改用 `soundfile.write` 落盘(避免再引重依赖)。
+- **两个 CLAP checkpoint 各司其职**:`larger_clap_music` 做音频→音频检索,`larger_clap_general` 做零样本打标签(§9.1)。同时驻留约多 ~1.5GB 内存;内存吃紧用 `bgm_extract.py --no-tags` 只跑检索。
 - 拉库统一走 `tos-cli` skill(`.claude/skills/tos-cli/bin/tosutil`),凭证在 `~/.tosutilconfig`。
 - GPU:Demucs / CLAP 推理优先 GPU,可复用 ARC 自托管那台(见 `scripts/setup-arc-hunyuan-gpu.sh`);CPU 也能跑,只是慢。
 
@@ -132,7 +133,7 @@ short-video-reverse/
 | 「卡点对齐」依赖镜头切点模块 | 该模块未就绪时先产 tempo,aligned 置 null,不阻塞 |
 | 多段不同 BGM / BGM 中途切换 | v1 先按「主 BGM」处理;多段切换留 v2(按能量突变分段后逐段检索) |
 | 纯人声/清唱(无伴奏)误判 | A 之后用 music stem 能量阈值判 `present=false`(已实现,阈值 0.01) |
-| `style_tags` 零样本质量弱(M2 实测偏噪) | 作辅助信号,不作硬指标;后续加阈值/margin 过滤,词表可定制。match(音频→音频)才是主信号 |
+| ~~`style_tags` 零样本质量弱~~ | **已解决(§9.1)**:根因是 `larger_clap_music` 文字塔对单词标签失效(spread~0.002)。改用 `larger_clap_general` 打标签(spread~0.28)+ z-score 门限过滤。检索仍用 music 版 |
 | 版权:match 到的库内曲是否可商用 | 由库本身保证(kox-statics/bgm 即生成时取用源),反解只做映射不引入新版权 |
 
 **待确认:**
@@ -231,12 +232,31 @@ A/C/B2 三块齐备,M2 把它们串成 `bgm_extract.py`:视频 → 抽音 → A 
 - `present=true`,`start=0.6 / end=14.7`,`tempo=110.0`,`volume_profile` 151 点 @10Hz。
 - `match`:top-1 `rhythm_bgm/动感/野马进行曲.mp3` score 0.6;top-5 全为 rhythm_bgm,
   含 Chainsmokers/Coldplay、Two Steps From Hell(史诗)——对一支驾驶感汽车广告,**音频→音频检索合理**。
-- `style_tags`:romantic/happy/rock/dark/chill —— **偏噪**,印证 CLAP 零样本打标签是辅助信号。
+- `style_tags`:energetic/electronic/intense(修复后,见 §9.1;修复前用 music 版是 romantic/happy/rock 偏噪)。
 
 **工程坑(已绕过):** faiss 与 torch 在 macOS 各链一份 libomp → `OMP Error #15`,
 在 import 前设 `KMP_DUPLICATE_LIB_OK=TRUE`(flat 检索无并行正确性风险),已写进 `bgm_extract.py`/`bgm_build_index.py`。
 
+### 9.1 style_tags 修复(2026-05-29,人工确认 match 后回头打磨)
+
+**症状:** music 版 CLAP 打标签全是噪声——Lotus 驾驶感广告打出 romantic/happy/rock,且 energetic 排倒数第一。
+
+**诊断(没拍脑袋,逐项验证):**
+- 换 5 种 prompt 模板,music 版 cosine spread 始终 0.002~0.007(噪声地板),排序随机。
+- 库内子目录(动感/运动/卡点…)仅覆盖 16% 曲子且杂(complete/会员热榜),不能当统一风格源。
+- **根因:** `larger_clap_music` 为音乐相似度特化了音频塔,牺牲了文字塔——单词标签对不齐。
+  换 `larger_clap_general`:同一段音频 spread 升到 0.25~0.31,`"This music is {t}."` 模板下
+  top = energetic/electronic/intense/epic/dramatic,**语义正确**。
+
+**方案:两个 checkpoint 各司其职** + z-score 门限(免标定,信号好多给、噪声少给):
+- 检索(audio→audio)继续用 `larger_clap_music`(M0 验证强)。
+- 打标签(text→audio)用 `larger_clap_general` 自己的音频向量 × 文字向量,z≥1.0 过滤,cap 5。
+- Lotus 修复后:`["energetic","electronic","intense"]`。内存吃紧可 `--no-tags` 关掉。
+
+> 教训沉淀:CLAP「一个模型同时打标签 + 检索」的设想(选型 §1.B)在 **music 版上不成立**——
+> 打标签得用 general 版。检索 vs 打标签是两套权重,别指望一个 checkpoint 通吃。
+
 ### 进入 M3
 
 `bgm_extract.py` 可批量跑精选 gold 视频 → 汇总 `bgm{}` 数据集 + 风格/用法统计基准,对接评估方案 v2。
-两个待打磨项(不阻塞 M3):① `style_tags` 加阈值/margin 过滤弱标签(需小标定集);② 多段 BGM 切换(v2,见 §6)。
+待打磨(不阻塞 M3):多段 BGM 切换(v2,见 §6);z 门限阈值可在小标定集上再校准。

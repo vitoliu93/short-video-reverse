@@ -15,7 +15,8 @@ import numpy as np
 import torch
 from transformers import ClapModel, ClapProcessor
 
-MODEL_ID = "laion/larger_clap_music"
+MODEL_ID = "laion/larger_clap_music"        # 音频→音频检索(M0 验证:音乐相似度强)
+TAG_MODEL_ID = "laion/larger_clap_general"  # 零样本文字打标签(music 版文字塔对单词标签几乎失效)
 SR = 48_000
 WIN_SEC = 10
 WIN_POS = (0.25, 0.50, 0.75)
@@ -29,10 +30,10 @@ def pick_device() -> str:
     return "cpu"
 
 
-def load_clap(device: str | None = None):
+def load_clap(device: str | None = None, model_id: str = MODEL_ID):
     device = device or pick_device()
-    model = ClapModel.from_pretrained(MODEL_ID).to(device).eval()
-    processor = ClapProcessor.from_pretrained(MODEL_ID)
+    model = ClapModel.from_pretrained(model_id).to(device).eval()
+    processor = ClapProcessor.from_pretrained(model_id)
     return model, processor, device
 
 
