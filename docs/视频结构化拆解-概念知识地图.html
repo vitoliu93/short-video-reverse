@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>视频结构化拆解 — 概念知识地图</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      fontFamily: 'inherit',
+      themeVariables: {
+        primaryColor:       '#fbeee7',
+        primaryTextColor:   '#141413',
+        primaryBorderColor: '#d97757',
+        lineColor:          '#5e5d59',
+        secondaryColor:     '#f0eee6',
+        tertiaryColor:      '#faf9f5',
+        background:         '#faf9f5',
+        mainBkg:            '#fbeee7',
+        secondBkg:          '#f0eee6',
+      },
+      flowchart: { useMaxWidth: true, htmlLabels: true },
+      mindmap: { useMaxWidth: true },
+    });
+  </script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "Inter", "PingFang SC", ui-sans-serif, system-ui, sans-serif;
+      --font-mono: ui-monospace, "JetBrains Mono", monospace;
+
+      --color-bg:      #faf9f5;
+      --color-surface: #f0eee6;
+      --color-ink:     #141413;
+      --color-muted:   #5e5d59;
+      --color-line:    #e8e6dc;
+
+      --color-primary:      #d97757;
+      --color-primary-deep: #c6613f;
+
+      --color-sys-a: #6a9bcc;   /* 镜头切分 */
+      --color-sys-b: #d97757;   /* OCR/字幕 */
+      --color-sys-c: #788c5d;   /* 音频指纹 */
+      --color-sys-d: #c46686;   /* 多模态 */
+      --color-sys-e: #8b7ec8;   /* 评估 */
+    }
+
+    @layer base {
+      html { color-scheme: light; }
+      body { @apply bg-bg text-ink font-sans antialiased; }
+      h1 { @apply text-3xl font-bold tracking-tight; }
+      h2 { @apply text-xs font-semibold uppercase tracking-widest text-muted; }
+      h3 { @apply text-lg font-semibold; }
+      code { @apply font-mono text-[0.85em] bg-line/60 rounded px-1 py-0.5; }
+    }
+
+    .concept-card {
+      @apply rounded-xl border border-line p-6 transition-shadow hover:shadow-md;
+    }
+    .concept-card h4 {
+      @apply text-base font-semibold mb-2;
+    }
+    .term {
+      @apply inline-block bg-line/50 rounded px-1.5 py-0.5 text-xs font-mono mr-1 mb-1;
+    }
+    .analogy {
+      @apply border-l-3 border-primary/40 pl-3 text-sm text-muted italic my-3;
+    }
+    .layer {
+      @apply mb-2 rounded-lg bg-surface/50 p-3;
+    }
+    .layer-label {
+      @apply text-xs font-semibold uppercase tracking-wider text-muted mb-1;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="mx-auto max-w-7xl px-6 py-10">
+
+    <!-- Header -->
+    <header class="mb-8">
+      <p class="text-xs text-muted uppercase tracking-widest">KOX · 学习知识地图</p>
+      <h1 class="mt-1">高质量视频结构化拆解</h1>
+      <p class="mt-2 max-w-3xl text-muted">
+        从一个短视频 URL 到结构化编辑 JSON 的完整知识链路。每个概念层层拆解到高中生可理解的程度。
+        颜色标记对应管线中的不同子系统。
+      </p>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- HERO: 管线全景图 -->
+    <!-- ============================================================ -->
+    <section class="mb-10 rounded-xl border border-line bg-surface p-6 overflow-x-auto">
+      <h2 class="mb-4">总览 — 从视频像素到结构化 JSON 的完整管线</h2>
+      <svg viewBox="0 0 1100 480" class="w-full h-auto min-w-[700px] text-ink" role="img" aria-label="视频拆解管线全景图">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#141413" />
+          </marker>
+        </defs>
+
+        <!-- Input -->
+        <g transform="translate(30 200)">
+          <rect width="120" height="80" rx="12" fill="#141413" fill-opacity="0.08" stroke="#141413" stroke-width="1.5"/>
+          <text x="60" y="35" text-anchor="middle" font-weight="700" font-size="13">短视频</text>
+          <text x="60" y="55" text-anchor="middle" font-size="11" opacity="0.6">抖音 / 快手 URL</text>
+        </g>
+
+        <!-- ffmpeg -->
+        <g transform="translate(200 200)">
+          <rect width="110" height="80" rx="12" fill="#141413" fill-opacity="0.05" stroke="#141413" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="55" y="35" text-anchor="middle" font-weight="600" font-size="12">ffmpeg</text>
+          <text x="55" y="52" text-anchor="middle" font-size="10" opacity="0.6">抽帧 1fps</text>
+          <text x="55" y="66" text-anchor="middle" font-size="10" opacity="0.6">提取音频</text>
+        </g>
+
+        <!-- Arrow: input → ffmpeg -->
+        <line x1="150" y1="240" x2="200" y2="240" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+        <!-- Branch: frames -->
+        <line x1="310" y1="220" x2="380" y2="120" stroke="#6a9bcc" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="310" y1="230" x2="380" y2="200" stroke="#d97757" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="310" y1="260" x2="380" y2="360" stroke="#788c5d" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="310" y1="240" x2="380" y2="280" stroke="#c46686" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+        <!-- TransNetV2 -->
+        <g transform="translate(380 80)">
+          <rect width="180" height="70" rx="10" fill="var(--color-sys-a)" fill-opacity="0.12" stroke="var(--color-sys-a)" stroke-width="1.5"/>
+          <text x="90" y="28" text-anchor="middle" font-weight="700" font-size="12" fill="var(--color-sys-a)">TransNetV2</text>
+          <text x="90" y="45" text-anchor="middle" font-size="10" opacity="0.7">镜头切分 + 转场分类</text>
+          <text x="90" y="60" text-anchor="middle" font-size="9" opacity="0.5">生产级成熟 · 150+ FPS</text>
+        </g>
+
+        <!-- OCR Pipeline -->
+        <g transform="translate(380 170)">
+          <rect width="180" height="70" rx="10" fill="var(--color-sys-b)" fill-opacity="0.12" stroke="var(--color-sys-b)" stroke-width="1.5"/>
+          <text x="90" y="28" text-anchor="middle" font-weight="700" font-size="12" fill="var(--color-sys-b)">PaddleOCR + EVE</text>
+          <text x="90" y="45" text-anchor="middle" font-size="10" opacity="0.7">字幕文本 + 位置 + 时间戳</text>
+          <text x="90" y="60" text-anchor="middle" font-size="9" opacity="0.5">检测 → 识别 → 时序追踪</text>
+        </g>
+
+        <!-- Multimodal -->
+        <g transform="translate(380 250)">
+          <rect width="180" height="70" rx="10" fill="var(--color-sys-d)" fill-opacity="0.12" stroke="var(--color-sys-d)" stroke-width="1.5"/>
+          <text x="90" y="28" text-anchor="middle" font-weight="700" font-size="12" fill="var(--color-sys-d)">ARC-Hunyuan-Video</text>
+          <text x="90" y="45" text-anchor="middle" font-size="10" opacity="0.7">叙事结构 + 情感 + 意图</text>
+          <text x="90" y="60" text-anchor="middle" font-size="9" opacity="0.5">7B 多模态 · 视觉+音频+文本</text>
+        </g>
+
+        <!-- Audio -->
+        <g transform="translate(380 335)">
+          <rect width="180" height="70" rx="10" fill="var(--color-sys-c)" fill-opacity="0.12" stroke="var(--color-sys-c)" stroke-width="1.5"/>
+          <text x="90" y="28" text-anchor="middle" font-weight="700" font-size="12" fill="var(--color-sys-c)">音频指纹</text>
+          <text x="90" y="45" text-anchor="middle" font-size="10" opacity="0.7">BGM 识别 + 风格匹配</text>
+          <text x="90" y="60" text-anchor="middle" font-size="9" opacity="0.5">Shazam / 神经指纹 / CLAP</text>
+        </g>
+
+        <!-- Converge arrows -->
+        <line x1="560" y1="115" x2="678" y2="228" stroke="#6a9bcc" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="560" y1="205" x2="678" y2="237" stroke="#d97757" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="560" y1="285" x2="678" y2="248" stroke="#c46686" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="560" y1="370" x2="678" y2="258" stroke="#788c5d" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+        <!-- Output JSON -->
+        <g transform="translate(680 200)">
+          <rect width="170" height="90" rx="12" fill="var(--color-primary)" fill-opacity="0.08" stroke="var(--color-primary)" stroke-width="2"/>
+          <text x="85" y="30" text-anchor="middle" font-weight="700" font-size="13" fill="var(--color-primary)">结构化 JSON</text>
+          <text x="85" y="50" text-anchor="middle" font-size="10" opacity="0.7">shots / subtitles / bgm</text>
+          <text x="85" y="65" text-anchor="middle" font-size="10" opacity="0.7">transitions / narrative</text>
+          <text x="85" y="80" text-anchor="middle" font-size="9" opacity="0.5">→ icccut_draft.json</text>
+        </g>
+
+        <!-- Final arrow -->
+        <line x1="850" y1="245" x2="920" y2="245" stroke="#d97757" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- KOX Eval -->
+        <g transform="translate(920 210)">
+          <rect width="140" height="70" rx="12" fill="var(--color-primary)" fill-opacity="0.15" stroke="var(--color-primary)" stroke-width="1.5"/>
+          <text x="70" y="30" text-anchor="middle" font-weight="700" font-size="12">KOX Eval</text>
+          <text x="70" y="48" text-anchor="middle" font-size="10" opacity="0.7">Gold Case</text>
+          <text x="70" y="62" text-anchor="middle" font-size="10" opacity="0.7">评估基准线</text>
+        </g>
+
+        <!-- Labels -->
+        <text x="270" y="195" font-size="9" opacity="0.5">帧序列</text>
+        <text x="270" y="275" font-size="9" opacity="0.5">音频 WAV</text>
+      </svg>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 核心统计数字 -->
+    <!-- ============================================================ -->
+    <section class="mb-10 grid grid-cols-2 gap-4 md:grid-cols-5">
+      <div class="rounded-lg border border-line p-4 text-center">
+        <p class="text-2xl font-bold" style="color:var(--color-sys-a)">5</p>
+        <p class="text-xs uppercase tracking-wider text-muted">核心子系统</p>
+      </div>
+      <div class="rounded-lg border border-line p-4 text-center">
+        <p class="text-2xl font-bold" style="color:var(--color-sys-d)">7B</p>
+        <p class="text-xs uppercase tracking-wider text-muted">主力模型参数</p>
+      </div>
+      <div class="rounded-lg border border-line p-4 text-center">
+        <p class="text-2xl font-bold" style="color:var(--color-sys-a)">150+</p>
+        <p class="text-xs uppercase tracking-wider text-muted">FPS 切分速度</p>
+      </div>
+      <div class="rounded-lg border border-line p-4 text-center">
+        <p class="text-2xl font-bold" style="color:var(--color-sys-c)">5s</p>
+        <p class="text-xs uppercase tracking-wider text-muted">音频识别耗时</p>
+      </div>
+      <div class="rounded-lg border border-line p-4 text-center">
+        <p class="text-2xl font-bold" style="color:var(--color-sys-d)">10s</p>
+        <p class="text-xs uppercase tracking-wider text-muted">1分钟视频推理</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 概念前置：视频的本质 -->
+    <!-- ============================================================ -->
+    <section class="mb-10">
+      <h2 class="mb-4">概念零层 — 视频在计算机里是什么</h2>
+      <div class="rounded-xl border border-line bg-surface/50 p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3>视频 = 帧序列 + 音频</h3>
+            <div class="layer mt-3">
+              <p class="layer-label">第一层拆解</p>
+              <p class="text-sm"><strong>帧 (Frame)</strong> = 一张图片。视频就是快速播放的图片翻页书（30fps = 每秒翻30页）</p>
+            </div>
+            <div class="layer">
+              <p class="layer-label">第二层拆解</p>
+              <p class="text-sm"><strong>图片</strong> = 像素网格。每个像素 = 一个颜色值 (R,G,B)，范围 0-255</p>
+            </div>
+            <div class="layer">
+              <p class="layer-label">第三层拆解</p>
+              <p class="text-sm"><strong>音频</strong> = 一串数字。每个数字代表某一时刻空气振动的幅度。44100Hz = 每秒采样 44100 次</p>
+            </div>
+            <div class="analogy">
+              类比：Canvas 的 <code>getImageData()</code> 拿到的 RGBA 数组 — 一帧视频就是那个东西。视频就是很多帧。
+            </div>
+          </div>
+          <div>
+            <h3>模型推理 = 函数调用</h3>
+            <div class="layer mt-3">
+              <p class="layer-label">本质</p>
+              <p class="text-sm">模型就是一个函数：<code>input → output</code>。跟调 REST API 一样，区别在于逻辑不是人写的 if-else，是从数据里学出来的</p>
+            </div>
+            <div class="layer">
+              <p class="layer-label">参数 (Parameter)</p>
+              <p class="text-sm">= 模型内部的可调节数字。7B = 70亿个"旋钮"。训练 = 有人帮你调好所有旋钮。推理 = 你使用调好的旋钮</p>
+            </div>
+            <div class="layer">
+              <p class="layer-label">置信度 (Confidence)</p>
+              <p class="text-sm">模型输出不是"是/否"而是概率，比如"我 87% 确定这是切点"。你设阈值（threshold）决定信不信</p>
+            </div>
+            <div class="analogy">
+              类比：训练 = 刷了10万道题的人。推理 = 这个人做一道新题。模型文件 = 这个人的大脑状态。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 五大子系统详细拆解 -->
+    <!-- ============================================================ -->
+
+    <!-- 1. 镜头切分 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-block h-4 w-4 rounded-full" style="background:var(--color-sys-a)"></span>
+        <h2 class="!mb-0">子系统 A — 镜头切分 (Shot Detection)</h2>
+      </div>
+      <div class="concept-card">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- 核心概念 -->
+          <div class="lg:col-span-2">
+            <h4 style="color:var(--color-sys-a)">解决的问题：视频里哪些时刻画面"跳"了？</h4>
+            
+            <div class="layer">
+              <p class="layer-label">镜头 (Shot) vs 场景 (Scene)</p>
+              <p class="text-sm"><strong>镜头</strong> = 一次不间断的录制。按"录制"到按"停止"之间就是一个镜头。<br>
+              <strong>场景</strong> = 一组在相同地点/时间讲同一件事的镜头集合。</p>
+              <p class="text-sm mt-1 opacity-70">镜头切分容易（像素突变），场景理解很难（需要理解语义）。我们先做镜头切分。</p>
+            </div>
+
+            <div class="layer">
+              <p class="layer-label">TransNetV2 的工作原理</p>
+              <p class="text-sm">① 把每帧缩小到 48×27 像素（只看大致颜色布局）<br>
+              ② 用"滑动窗口"沿时间线比较相邻帧的差异<br>
+              ③ 有些窗口跳着看（膨胀卷积 = 看第1帧和第20帧的差异，捕捉慢渐变）<br>
+              ④ 每帧输出一个 0~1 的分数 = 这帧是切点的概率<br>
+              ⑤ 超过阈值 → 标记为切点</p>
+            </div>
+
+            <div class="analogy">
+              类比：你是 DJ 在监控人群情绪。短期传感器（1秒内有没有突变？）捕捉硬切。长期传感器（30秒前后对比）捕捉渐变。网络同时用多种时间尺度的"传感器"。
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mt-4">
+              <div class="layer">
+                <p class="layer-label">硬切 Hard Cut</p>
+                <p class="text-sm">第N帧是狗，第N+1帧是山。像素瞬间全变。</p>
+                <p class="text-xs opacity-60">→ 容易检测：信号很响</p>
+              </div>
+              <div class="layer">
+                <p class="layer-label">渐变 Dissolve</p>
+                <p class="text-sm">画面A慢慢变透明，画面B慢慢浮现。20-30帧内渐进变化。</p>
+                <p class="text-xs opacity-60">→ 难检测：需要"远距离"对比</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 关键词速查 -->
+          <div class="bg-surface/80 rounded-lg p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-3">术语速查</p>
+            <dl class="space-y-2 text-sm">
+              <dt class="term">下采样</dt><dd class="text-xs text-muted">把大图缩成小图。只看概况不看细节</dd>
+              <dt class="term">1D 卷积</dt><dd class="text-xs text-muted">沿时间线的滑动窗口比较</dd>
+              <dt class="term">膨胀(dilated)</dt><dd class="text-xs text-muted">窗口不看相邻帧，跳着看。看得更远</dd>
+              <dt class="term">阈值 threshold</dt><dd class="text-xs text-muted">人为画的线。高于=信，低于=不信</dd>
+              <dt class="term">Precision</dt><dd class="text-xs text-muted">说了10个切点，8个对 = 80%</dd>
+              <dt class="term">Recall</dt><dd class="text-xs text-muted">实际12个切点，找到8个 = 67%</dd>
+              <dt class="term">F1</dt><dd class="text-xs text-muted">P 和 R 的平衡分。防止偏科</dd>
+              <dt class="term">假阳性</dt><dd class="text-xs text-muted">说有切点但其实没有（闪光、快速摇镜）</dd>
+              <dt class="term">假阴性</dt><dd class="text-xs text-muted">有切点但没检出（相似画面之间的切）</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. OCR / 字幕提取 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-block h-4 w-4 rounded-full" style="background:var(--color-sys-b)"></span>
+        <h2 class="!mb-0">子系统 B — 字幕提取 (OCR + Timing)</h2>
+      </div>
+      <div class="concept-card">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2">
+            <h4 style="color:var(--color-sys-b)">解决三个独立问题：WHERE + WHAT + WHEN</h4>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+              <div class="layer">
+                <p class="layer-label">问题A：WHERE（在哪）</p>
+                <p class="text-sm">图里哪些区域有文字？</p>
+                <p class="text-xs mt-1 opacity-60">输出：坐标框 (bounding box)</p>
+                <p class="text-xs opacity-60">≈ <code>getBoundingClientRect()</code></p>
+              </div>
+              <div class="layer">
+                <p class="layer-label">问题B：WHAT（是什么）</p>
+                <p class="text-sm">框里的文字写了什么？</p>
+                <p class="text-xs mt-1 opacity-60">输出：字符串</p>
+                <p class="text-xs opacity-60">≈ <code>element.textContent</code></p>
+              </div>
+              <div class="layer">
+                <p class="layer-label">问题C：WHEN（什么时候）</p>
+                <p class="text-sm">这条字幕从几秒出现到几秒消失？</p>
+                <p class="text-xs mt-1 opacity-60">输出：时间戳对</p>
+                <p class="text-xs opacity-60">≈ <code>MutationObserver</code></p>
+              </div>
+            </div>
+
+            <div class="layer mt-4">
+              <p class="layer-label">传统方案 vs 端到端方案</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                <div>
+                  <p class="font-semibold">PaddleOCR（传统流水线）</p>
+                  <p class="text-xs mt-1">每帧独立处理：检测框 → 识别文字 → 跨帧比对追踪。<br>
+                  像是每 33ms 轮询 <code>textContent</code> 然后做 diff。</p>
+                </div>
+                <div>
+                  <p class="font-semibold">EVE（端到端）</p>
+                  <p class="text-xs mt-1">一个模型，整段视频进去，字幕+时间戳直接出来。<br>
+                  有时间维度的理解，能处理淡入淡出。像 React 的声明式 vs jQuery 的命令式。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="layer mt-3">
+              <p class="layer-label">为什么字体识别特别难？</p>
+              <p class="text-sm">文字内容是有限的（26个字母/4000常用汉字），模型从已知集合里选。<br>
+              字体风格是连续的、高维的——粗细、衬线、圆角、间距... 像从截图反推 CSS 一样难。<br>
+              → 解法：不精确分类，而是让 VLM（视觉语言模型）用自然语言描述风格。</p>
+            </div>
+          </div>
+
+          <div class="bg-surface/80 rounded-lg p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-3">术语速查</p>
+            <dl class="space-y-2 text-sm">
+              <dt class="term">OCR</dt><dd class="text-xs text-muted">图片里的文字 → 可编辑字符串</dd>
+              <dt class="term">Bounding Box</dt><dd class="text-xs text-muted">包围文字的最小矩形 = CSS position:absolute</dd>
+              <dt class="term">Detection</dt><dd class="text-xs text-muted">找文字区域的位置。不管内容</dd>
+              <dt class="term">Recognition</dt><dd class="text-xs text-muted">读出区域里写了什么。不管位置</dd>
+              <dt class="term">端到端 E2E</dt><dd class="text-xs text-muted">一个模型搞定全部，不分阶段</dd>
+              <dt class="term">VLM</dt><dd class="text-xs text-muted">视觉语言模型：能"看"图又能"说"话</dd>
+              <dt class="term">Confidence</dt><dd class="text-xs text-muted">"Hello" 0.98 很确定 / "He1lo" 0.62 不确定</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 音频指纹 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-block h-4 w-4 rounded-full" style="background:var(--color-sys-c)"></span>
+        <h2 class="!mb-0">子系统 C — BGM 识别 (Audio Fingerprint)</h2>
+      </div>
+      <div class="concept-card">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2">
+            <h4 style="color:var(--color-sys-c)">解决的问题：这段视频的背景音乐是什么？</h4>
+
+            <div class="layer mt-3">
+              <p class="layer-label">概念链（从底到上）</p>
+              <div class="space-y-2 text-sm">
+                <p><strong>① 声音</strong> = 空气振动。麦克风把振动变成电信号，芯片把电信号变成数字序列</p>
+                <p><strong>② 采样率</strong> = 每秒记录多少次。44100 Hz = 每秒 44100 个数字快照</p>
+                <p><strong>③ 频率</strong> = 振动快慢。低频=鼓点(60Hz)，高频=哨子(4000Hz)。Hz = 每秒振动次数</p>
+                <p><strong>④ 频谱</strong> = 某一时刻的"成分表"。一杯果汁里30%草莓50%香蕉 → 一段声音里多少低频多少高频</p>
+                <p><strong>⑤ 傅里叶变换</strong> = "逆搅拌机"。把混合的声音拆解回各个频率成分。你不用学公式，只要知道它把时间波形变成频率柱状图</p>
+                <p><strong>⑥ 频谱图</strong> = 频谱沿时间排列。X轴=时间，Y轴=频率，颜色=音量强度。音乐的"热力图"</p>
+              </div>
+            </div>
+
+            <div class="layer mt-3">
+              <p class="layer-label">Shazam 算法（5步）</p>
+              <p class="text-sm">
+                ① 把音频变成频谱图<br>
+                ② 找频谱图上最亮的点（能量峰值 = 星座点）<br>
+                ③ 把相邻的峰值配对 → (频率A, 频率B, 时间差) 三元组<br>
+                ④ 把三元组变成哈希码 = 指纹<br>
+                ⑤ 拿指纹去数据库查：哪首歌在相同时间偏移处有相同的指纹？
+              </p>
+              <div class="analogy">
+                类比：每首歌有独特的"星座图案"。即使只看到几颗星（几秒片段），只要相对位置对得上，就能认出是哪个星座（哪首歌）。
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+              <div class="layer">
+                <p class="layer-label">经典指纹 (Shazam)</p>
+                <p class="text-xs">手工规则：找峰值→配对→哈希<br>精确匹配："这是同一首歌吗？"<br><span class="opacity-60">弱点：变速会失效</span></p>
+              </div>
+              <div class="layer">
+                <p class="layer-label">神经指纹</p>
+                <p class="text-xs">神经网络从配对样本中学习<br>输出一个向量（128个数字）<br><span class="opacity-60">优势：变速/翻唱也能匹配</span></p>
+              </div>
+              <div class="layer">
+                <p class="layer-label">CLAP Score</p>
+                <p class="text-xs">音频和文字放进同一个空间<br>不问"是哪首"，问"风格像什么"<br><span class="opacity-60">"找一首节奏欢快的电子乐"</span></p>
+              </div>
+            </div>
+
+            <div class="layer mt-3">
+              <p class="layer-label">为什么有噪声也能识别？</p>
+              <p class="text-sm">指纹只保留最响的峰值。噪声很少恰好在同样频率产生同样响的峰。就像山顶在云雾中依然突出——你认山看的是最高峰的相对位置，不是山脚的细节。</p>
+            </div>
+          </div>
+
+          <div class="bg-surface/80 rounded-lg p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-3">术语速查</p>
+            <dl class="space-y-2 text-sm">
+              <dt class="term">采样率 Hz</dt><dd class="text-xs text-muted">每秒采多少个数字。44100=CD品质</dd>
+              <dt class="term">频率 Frequency</dt><dd class="text-xs text-muted">振动快慢。低=鼓，高=哨</dd>
+              <dt class="term">频谱 Spectrum</dt><dd class="text-xs text-muted">某一时刻各频率的音量"成分表"</dd>
+              <dt class="term">频谱图</dt><dd class="text-xs text-muted">时间×频率×音量的热力图</dd>
+              <dt class="term">傅里叶变换</dt><dd class="text-xs text-muted">混合声→各频率成分的"逆搅拌机"</dd>
+              <dt class="term">星座点</dt><dd class="text-xs text-muted">频谱图上最突出的能量峰值</dd>
+              <dt class="term">指纹 Fingerprint</dt><dd class="text-xs text-muted">一首歌的紧凑唯一摘要</dd>
+              <dt class="term">哈希 Hash</dt><dd class="text-xs text-muted">把配对信息压缩成一个短码</dd>
+              <dt class="term">Embedding</dt><dd class="text-xs text-muted">神经网络输出的向量=语义坐标</dd>
+              <dt class="term">CLAP</dt><dd class="text-xs text-muted">音频和文字放同一空间，按风格匹配</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 多模态模型 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-block h-4 w-4 rounded-full" style="background:var(--color-sys-d)"></span>
+        <h2 class="!mb-0">子系统 D — 多模态理解 (ARC-Hunyuan-Video-7B)</h2>
+      </div>
+      <div class="concept-card">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2">
+            <h4 style="color:var(--color-sys-d)">解决的问题：整体上这个视频在"讲什么"、"怎么讲的"、"想让你感受什么"</h4>
+
+            <div class="layer mt-3">
+              <p class="layer-label">什么是"多模态"</p>
+              <p class="text-sm">模态 = 信息通道类型（文字/图像/声音）。人天然多模态：同时看画面+听声音+读字幕来理解视频。<br>
+              有人说"我很好"但声音发抖 → 你综合判断他不好。多模态模型做同样的事。</p>
+            </div>
+
+            <div class="layer">
+              <p class="layer-label">Token（令牌）— 模型消化信息的最小单元</p>
+              <p class="text-sm">
+                文字 → 拆成词块（"前端开发" → ["前端", "开发"]）<br>
+                图像 → 切成小方块（16×16像素 = 1个 token）<br>
+                音频 → 频谱图切成小矩形（一段时间×频率区间 = 1个 token）<br>
+                <strong>关键洞察：一切都变成 token 后，同一个引擎（Transformer）可以统一处理</strong>
+              </p>
+            </div>
+
+            <div class="layer">
+              <p class="layer-label">Transformer = 注意力引擎</p>
+              <p class="text-sm">核心机制"注意力"：输入的哪些部分应该关注哪些其他部分？<br>
+              比如"它很累"中的"它"往回看 → 发现指的是"猫"而不是"垫子"。<br>
+              视频理解中：第5秒说的话 × 第5秒的画面 → 跨模态关联。</p>
+              <div class="analogy">
+                类比：React 的 virtual DOM 解决"UI 哪些部分需要重新渲染"。Attention 解决"输入哪些部分需要互相感知"。
+              </div>
+            </div>
+
+            <div class="layer">
+              <p class="layer-label">ARC-Hunyuan-Video 的特别之处</p>
+              <p class="text-sm">
+                • <strong>时间戳叠加</strong>：把 "00:15" 直接印到帧图片上 → 模型能读时间码 → 知道"什么时候"发生了什么<br>
+                • <strong>音视频同步编码器</strong>：音频和画面精确对齐，能理解"这个笑声配合的是哪个画面"<br>
+                • <strong>GRPO 强化学习</strong>：生成多个回答 → 互相比较 → 学习更好的那些 → 事实精度提升带动主观理解提升
+              </p>
+            </div>
+
+            <div class="layer">
+              <p class="layer-label">ShortVid-Bench 6维评估</p>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2 text-xs">
+                <div class="bg-bg rounded p-2"><strong>时序推理</strong><br>什么顺序发生</div>
+                <div class="bg-bg rounded p-2"><strong>情感意图</strong><br>想让你感受什么</div>
+                <div class="bg-bg rounded p-2"><strong>创作者意图</strong><br>为什么做这个视频</div>
+                <div class="bg-bg rounded p-2"><strong>叙事理解</strong><br>故事的起承转合</div>
+                <div class="bg-bg rounded p-2"><strong>幽默解构</strong><br>哪里好笑，为什么</div>
+                <div class="bg-bg rounded p-2"><strong>创意创新</strong><br>编辑手法的新颖之处</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-surface/80 rounded-lg p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-3">术语速查</p>
+            <dl class="space-y-2 text-sm">
+              <dt class="term">模态 Modality</dt><dd class="text-xs text-muted">信息通道类型：视/听/文</dd>
+              <dt class="term">Token</dt><dd class="text-xs text-muted">模型读取的最小单元"咬一口"</dd>
+              <dt class="term">Transformer</dt><dd class="text-xs text-muted">当前几乎所有AI的核心引擎</dd>
+              <dt class="term">Attention</dt><dd class="text-xs text-muted">"哪些部分该关注哪些"机制</dd>
+              <dt class="term">7B 参数</dt><dd class="text-xs text-muted">70亿个可调"旋钮"=模型容量</dd>
+              <dt class="term">时间戳叠加</dt><dd class="text-xs text-muted">帧上印时间码让模型知道when</dd>
+              <dt class="term">GRPO</dt><dd class="text-xs text-muted">生成多答案，比较学习好的那些</dd>
+              <dt class="term">强化学习 RL</dt><dd class="text-xs text-muted">通过"做得好/差"的反馈改进</dd>
+              <dt class="term">端到端 E2E</dt><dd class="text-xs text-muted">原始输入→最终输出，一个模型</dd>
+              <dt class="term">AVI 范式</dt><dd class="text-xs text-muted">LLM当指挥+专家工具各做一块</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 编排范式 -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-block h-4 w-4 rounded-full" style="background:var(--color-sys-e)"></span>
+        <h2 class="!mb-0">架构范式 — 单模型 vs 智能体编排 (AVI)</h2>
+      </div>
+      <div class="concept-card">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4>方案 A：一个大模型做所有事</h4>
+            <p class="text-sm text-muted mt-2">ARC-Hunyuan-Video = 一个多面手独自演奏所有乐器。</p>
+            <ul class="text-sm mt-3 space-y-1">
+              <li>✓ 快速、简单、端到端</li>
+              <li>✓ 适合短视频（< 5分钟）</li>
+              <li>✗ 难以新增能力</li>
+              <li>✗ 长视频吃不下</li>
+            </ul>
+            <div class="analogy">类比：jQuery 时代——一个库干所有事</div>
+          </div>
+          <div>
+            <h4>方案 B：LLM 指挥 + 专家工具</h4>
+            <p class="text-sm text-muted mt-2">AVI 范式 = 导演自己不演戏，编排各个演员上场时机。</p>
+            <ul class="text-sm mt-3 space-y-1">
+              <li>✓ 灵活、可扩展、可解释</li>
+              <li>✓ 每个工具做一件事做到极致</li>
+              <li>✓ 适合复杂/长视频</li>
+              <li>✗ 编排复杂度高</li>
+            </ul>
+            <div class="analogy">类比：React + 状态管理 + API 层的微服务架构</div>
+          </div>
+        </div>
+        <div class="mt-4 p-4 bg-surface rounded-lg">
+          <p class="text-sm"><strong>KOX 的选择：两者结合。</strong> ARC-Hunyuan-Video 作为 AVI 编排中的一个"专家工具"，负责整体叙事理解。TransNetV2、PaddleOCR、音频指纹等各自负责自己的子任务。最终由编排层组装成统一 JSON。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 概念依赖图 (Mermaid mindmap) -->
+    <!-- ============================================================ -->
+    <section class="mb-10 rounded-xl border border-line bg-surface p-6">
+      <h2 class="mb-4">概念依赖图 — 从哪里开始学，往哪里深入</h2>
+      <pre class="mermaid">
+mindmap
+  root((视频结构化拆解))
+    **基础层**
+      像素与帧
+        RGB颜色模型
+        帧率 FPS
+      数字音频
+        采样率 Hz
+        振幅
+      模型推理
+        输入→输出函数
+        参数=记忆
+        置信度+阈值
+    **镜头切分**
+      Shot vs Scene
+      帧差异检测
+        下采样
+        滑动窗口
+        膨胀卷积
+      转场类型
+        硬切
+        渐变/淡入淡出
+        擦除
+      评估指标
+        Precision
+        Recall
+        F1
+    **字幕提取**
+      检测 WHERE
+        Bounding Box
+        PaddleOCR
+      识别 WHAT
+        字符分类
+        Confidence
+      时序 WHEN
+        跨帧追踪
+        EVE端到端
+      样式描述
+        VLM自然语言
+    **音频指纹**
+      频率与频谱
+        傅里叶变换
+        频谱图
+      Shazam算法
+        星座点
+        配对哈希
+        数据库匹配
+      神经指纹
+        向量/Embedding
+        鲁棒性
+      CLAP风格匹配
+    **多模态理解**
+      Token化
+        文字→词块
+        图→Patch
+        音→频谱块
+      Transformer
+        Attention注意力
+      ARC-Hunyuan-Video
+        时间戳叠加
+        音视频同步
+        GRPO强化学习
+        ShortVid-Bench
+      </pre>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 学习路径建议 -->
+    <!-- ============================================================ -->
+    <section class="mb-10">
+      <h2 class="mb-4">推荐学习路径 — 从你已有的知识出发</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="concept-card border-t-3" style="border-top-color:var(--color-ink)">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Week 1</p>
+          <h4 class="mt-1">基础层</h4>
+          <p class="text-sm text-muted mt-2">
+            ffmpeg 操作视频/音频<br>
+            理解帧、像素、采样率<br>
+            "模型=函数"的直觉
+          </p>
+          <p class="text-xs mt-3 opacity-50">你已有的基础：Canvas API, ArrayBuffer</p>
+        </div>
+        <div class="concept-card border-t-3" style="border-top-color:var(--color-sys-a)">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Week 2</p>
+          <h4 class="mt-1">镜头 + OCR</h4>
+          <p class="text-sm text-muted mt-2">
+            理解 TransNetV2 输出<br>
+            理解 PaddleOCR 输出<br>
+            Precision/Recall 直觉
+          </p>
+          <p class="text-xs mt-3 opacity-50">你已有的基础：JSON 解析, getBoundingClientRect</p>
+        </div>
+        <div class="concept-card border-t-3" style="border-top-color:var(--color-sys-c)">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Week 3</p>
+          <h4 class="mt-1">音频指纹</h4>
+          <p class="text-sm text-muted mt-2">
+            频率/频谱/频谱图<br>
+            Shazam 原理<br>
+            经典 vs 神经指纹
+          </p>
+          <p class="text-xs mt-3 opacity-50">你已有的基础：Web Audio API 接触过频率概念</p>
+        </div>
+        <div class="concept-card border-t-3" style="border-top-color:var(--color-sys-d)">
+          <p class="text-xs font-semibold uppercase tracking-wider text-muted">Week 4</p>
+          <h4 class="mt-1">多模态 + 编排</h4>
+          <p class="text-sm text-muted mt-2">
+            Token/Transformer/Attention<br>
+            ARC-Hunyuan-Video 能力边界<br>
+            AVI 编排范式
+          </p>
+          <p class="text-xs mt-3 opacity-50">你已有的基础：微服务/组件化思维</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 类比映射表 -->
+    <!-- ============================================================ -->
+    <section class="mb-10 rounded-xl border border-line p-6">
+      <h2 class="mb-4">前端概念 → AI/视频概念 映射表</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-line">
+              <th class="text-left py-2 px-3 text-muted font-semibold">你熟悉的前端概念</th>
+              <th class="text-left py-2 px-3 text-muted font-semibold">对应的 AI/视频概念</th>
+              <th class="text-left py-2 px-3 text-muted font-semibold">为什么它们是同一件事</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-line/50">
+            <tr><td class="py-2 px-3"><code>getImageData()</code> RGBA 数组</td><td class="py-2 px-3">一帧视频</td><td class="py-2 px-3 text-muted">都是像素网格的数字表示</td></tr>
+            <tr><td class="py-2 px-3"><code>getBoundingClientRect()</code></td><td class="py-2 px-3">Bounding Box</td><td class="py-2 px-3 text-muted">都是矩形坐标定位一个区域</td></tr>
+            <tr><td class="py-2 px-3"><code>element.textContent</code></td><td class="py-2 px-3">OCR Recognition 输出</td><td class="py-2 px-3 text-muted">都是从视觉表现提取文字内容</td></tr>
+            <tr><td class="py-2 px-3"><code>MutationObserver</code></td><td class="py-2 px-3">字幕时序追踪</td><td class="py-2 px-3 text-muted">都是检测"什么时候内容变了"</td></tr>
+            <tr><td class="py-2 px-3"><code>fetch(url).then(transform)</code></td><td class="py-2 px-3">模型推理</td><td class="py-2 px-3 text-muted">都是给输入→拿输出的异步调用</td></tr>
+            <tr><td class="py-2 px-3">React 组件化架构</td><td class="py-2 px-3">AVI 编排范式</td><td class="py-2 px-3 text-muted">都是专一组件各做一事，编排层组合</td></tr>
+            <tr><td class="py-2 px-3">TypeScript 的类型置信度</td><td class="py-2 px-3">模型 Confidence Score</td><td class="py-2 px-3 text-muted">都是对推断结果确定程度的量化</td></tr>
+            <tr><td class="py-2 px-3">Virtual DOM diff</td><td class="py-2 px-3">Transformer Attention</td><td class="py-2 px-3 text-muted">都在回答"哪些部分需要互相感知"</td></tr>
+            <tr><td class="py-2 px-3"><code>array.map().filter()</code></td><td class="py-2 px-3">Pipeline 管线</td><td class="py-2 px-3 text-muted">都是数据流经多步变换到最终形态</td></tr>
+            <tr><td class="py-2 px-3">反推截图的 CSS</td><td class="py-2 px-3">字体/风格识别</td><td class="py-2 px-3 text-muted">都是从渲染结果反向推导声明式描述</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-line pt-4 text-xs text-muted">
+      基于方案调研文档 <code>短视频反解/docs/高质量视频结构化拆解-方案调研.md</code> 生成 · KOX 项目内部学习材料 · 2026-05-29
+    </footer>
+  </main>
+</body>
+</html>
