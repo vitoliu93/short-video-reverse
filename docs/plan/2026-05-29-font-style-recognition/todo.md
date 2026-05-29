@@ -1,24 +1,24 @@
 # Todo: 字体 + 样式识别
 
 ## Current State  ← 这是 resume 游标，开工/收尾/交接前必须更新
-- **Phase**: F0 — 验证闭集字体匹配可行性
-- **Status**: in_progress (preflight ✅ 全过；F0 smoke 待写)
+- **Phase**: F1 — 字体参考索引 + OCR 前端
+- **Status**: in_progress (F0 ✅ 已通过并提交)
 - **Branch**: dev-plan-2026-05-29-font-style-recognition
-- **Last done**: preflight 全过 — `.venv-font`(3.12)+依赖就位；TTF 下载→Pillow 渲染 CJK→RapidOCR 读回(8/8) 全链路验证；渲染保留字体独特风格
-- **Next**: 写 `font_match_smoke.py` — 拉 100~200 款 CJK 字体，合成集 top-1/top-5 找回率 + 退化探针，横评 掩码IoU/Chamfer vs DINOv2 embedding
-- **Blockers**: none。**踩坑**：用 `.venv-font/bin/python` 直跑，别用 `uv run --python`(会另建空 .venv)
+- **Last done**: F0 通过 —— 148 款 CJK 合成集 combo 退化 NCC top-1=0.97/top-5=0.99(随机 0.034)；gallery.png 肉眼确认是真形状判别。口径锁 NCC，**不需专训/embedding**。结果落 spec §9
+- **Next**: F1 — (1) `font_build_index.py` 流式建全库参考索引；(2) OCR 前端 ffmpeg 抽帧+RapidOCR 在真实帧出 crop+字符串
+- **Blockers**: none。踩坑：`.venv-font/bin/python` 直跑，别 `uv run --python`
 
 ## Phases
 
-### F0 — 验证假设：闭集字形渲染-比对能否区分 ~1300 CJK 字体  [todo]  ⭐最关键
-- [ ] 从库里拉 100~200 款 CJK 命名字体（带 preview 的那批优先）到 `assets/fonts/`
-- [ ] 写 `font_match_smoke.py`：合成集 = 用已知字体渲染若干短语 → 跑匹配器 → 算 top-1/top-5 找回率
-- [ ] 横评相似度口径：二值掩码 IoU/Chamfer（基线） vs DINOv2/open_clip 形状 embedding
-- [ ] 退化鲁棒性探针：对渲染图加 JPEG 压缩 / 降采样 / 重上色 / 半透明底，复测找回率
-- [ ] 落 `outputs/font_smoke/`：metrics.json + 可视对比 html（query vs top-k 渲染图）
-- **Acceptance**: 合成集 top-5 找回率**显著超随机**（随机≈k/N）；退化后仍可用；明确选定相似度口径与是否需要粗类预过滤
-- **Verify**: `.venv-font/bin/python scripts/font_match_smoke.py` → 打印 top-1/top-5 + 退化曲线  → **Result**: pending
-- **决策门**: 通过 → F1；不通过 → 在 spec §3/§8 记录并调整方案（降级粒度 / 上专训 / 加 VLM 粗类），不硬上
+### F0 — 验证假设：闭集字形渲染-比对能否区分 ~1300 CJK 字体  [done]  ⭐最关键
+- [x] 拉 148 款 CJK 命名字体（每 5 款取 1）到 `assets/fonts/`
+- [x] 写 `font_match_smoke.py` + `font_common.py`：合成集 top-1/top-5 找回率
+- [x] 横评 IoU vs NCC（两者都接近天花板，NCC 略胜；模板法即可，未上 embedding）
+- [x] 退化探针：downscale / jpeg / recolor_bg / affine / combo 全测
+- [x] 落 `outputs/font_smoke/`：metrics.json + gallery.html + gallery.png
+- **Acceptance**: ✅ combo 退化 NCC top-1=0.97/top-5=0.99（随机 0.034，~29×）；gallery.png 确认真形状判别
+- **Verify**: `.venv-font/bin/python scripts/font_match_smoke.py`  → **Result**: ✅ 见 spec §9
+- **决策门**: ✅ 通过 → F1。口径锁 NCC，不需专训/embedding；粗类预过滤对精度非必需(留作提速)
 
 ### F1 — 地基：字体参考索引 + OCR 前端  [todo]
 - [ ] `font_build_index.py`：流式（下载→渲染/embedding→删）建全库或 CJK 子集参考索引 → `outputs/font_index/`
