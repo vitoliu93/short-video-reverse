@@ -2,10 +2,10 @@
 
 ## Current State  ← 这是 resume 游标，开工/收尾/交接前必须更新
 - **Phase**: ✅ POC 完成（F0/F1/F2/F3 全过）+ 两项收尾实验
-- **Status**: DONE — 待 vito 过目；review.md 复盘 = 最后一步
+- **Status**: DONE + 已复盘（review.md）— 待 vito 过目 / 合并
 - **Branch**: dev-plan-2026-05-29-font-style-recognition
 - **Last done**: 收尾两件事 —— (a) **颜色极性 bug 已修**：fill 改从字形内部(高 dt 距离变换)取主色，不再误锁黑描边；v2 主字幕 #020202→#FFFFFF，合成 12/12 无回归（spec §12）。(b) **DINOv2 embedding 实验已做并证伪**：低分辨率/退化下显著差于 NCC（合成 combo dino t1=0.32 vs ncc 0.76；真实 v1/v2 在噪声内无增益），**不采纳**，保持 NCC + 视频级投票（spec §12，并修正 §11 旧推荐）
-- **Next**: `/dev-plan review` → 写 review.md（本 session 协作复盘）。无其它必做项
+- **Next**: 无。POC + 复盘全部完成，等 vito 决定是否合并 / 进生产
 - **Blockers**: none
 
 ## Phases
