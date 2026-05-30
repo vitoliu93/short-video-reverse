@@ -1,0 +1,393 @@
+{
+  "video": "douyin_hair_17s",
+  "frame": [
+    1080,
+    1920
+  ],
+  "duration": 17.633,
+  "n_shots": 18,
+  "n_windows": 20,
+  "model": "doubao-seed-2.0-pro",
+  "transitions": [
+    {
+      "t_start": 0.908,
+      "t_center": 1.258,
+      "t_end": 1.608,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧画面还是长发待剪的状态，第五帧直接切换为头发已经剪短后的造型，两个不同时间节点的理发场景之间没有过渡效果，直接跳转。",
+      "description_en": "The first four frames show the state of long hair waiting to be cut, and the fifth frame directly switches to the scene where the hair has been cut short. There is no transition effect between the two haircut scenes at different time points, and the switch is immediate.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前后画面的内容发生了跳变：人物头发从长发湿发状态直接变为短发现状，顶部字幕从“POV：剪短发只有0次和无数次”变为“🤔那么…开赌吧！”，理发师的手部动作和人物持手机的姿势也没有前后衔接的连续性，不存在渐变、擦除等过渡过程。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 1.309,
+      "t_center": 1.659,
+      "t_end": 2.009,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "镜头在吹头发的画面和后续整理头发的画面之间直接跳转，没有过渡效果。前序画面中理发师的手在画面左侧抓着头发正在吹，后续画面直接切换为理发师在画面右侧整理发型，且人物头发状态、拿手机的手势、手部指甲样式都发生了无过渡的突变。",
+      "description_en": "The shot jumps directly between the scene of hair blowing and the subsequent hair arranging scene without any transition effect. In the previous frames, the hairdresser's hand is on the left side of the frame holding the hair for blowing, and the scene directly switches to the hairdresser arranging the hairstyle on the right side of the frame, with abrupt changes in the character's hair state, the gesture of holding the phone, and the style of the hand nails without transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "1. 前4帧理发师的手在画面左侧操作头发，第5帧开始理发师的手突然出现在画面右侧，位置无连续过渡；2. 前4帧人物刘海是凌乱遮挡眼睛的状态，第5帧开始刘海变为整齐的状态，发型发生无过渡的明显变化；3. 前4帧拿手机的手的指甲是金色美甲，第5帧开始变为淡粉色带闪美甲，且握持手机的手势发生突变，无中间过渡过程；4. 整个切换过程没有叠化、擦除等过渡特效，是画面直接跳转。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 1.683,
+      "t_center": 2.033,
+      "t_end": 2.383,
+      "gap": 0.0,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "前四帧画面中人物的头发还是被弄乱的状态，理发师的手在整理头发，无手表；1.983s到下一秒的画面直接跳转，头发变成整齐的状态，理发师的手上出现了手表和纹身，并且拿着梳子和剪刀准备修剪，两个不同时间的理发场景之间没有过渡效果，直接切换。",
+      "description_en": "In the first four frames, the character's hair is still in a messy state, with the hairdresser's hand arranging the hair and no watch on the hand. The picture jumps directly at the time from 1.983s to the next second: the hair becomes neat, and the hairdresser's hand has a watch and a tattoo, holding a comb and scissors ready for trimming. There is no transition effect between the two haircut scenes at different times, and they switch directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "1. 前四帧人物头发凌乱，理发师手部无手表，动作是整理头发；第五帧及之后人物头发整齐，理发师手部有手表和纹身，手持梳子和剪刀；2. 两个场景切换无渐变、滑动等过渡效果，内容变化是瞬间完成的。",
+      "src": "ffmpeg",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 2.174,
+      "t_center": 2.524,
+      "t_end": 2.874,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧还呈现理发师手持梳子和剪刀准备修剪刘海的画面，后续帧直接跳转为刘海已经被剪完、理发师正在整理发型的画面，两个不同动作阶段的镜头直接切换，无过渡效果。",
+      "description_en": "The first four frames show the hairdresser holding a comb and scissors ready to trim the bangs, and the subsequent frames directly jump to the scene where the bangs have been cut and the hairdresser is arranging the hairstyle. The shots of two different action stages are switched directly without transition effects.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前四帧画面里右上角有理发师拿着梳子和剪刀的手，上方有文字贴纸“那么…开赌吧！”，人物拿手机的是左手；后四帧画面里理发师的手没有拿梳子和剪刀，上方无文字贴纸，人物用双手握持手机，场景内容发生了无过渡的直接跳转。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 2.583,
+      "t_center": 2.933,
+      "t_end": 3.283,
+      "gap": 0.0,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "第7帧和第8帧之间发生了硬切转场，前序画面是人物对着镜子举手机自拍的镜像画面，直接切换为人物侧脸、无手机的理发现场画面，场景和拍摄视角都发生了突变，没有过渡效果。",
+      "description_en": "A hard-cut transition occurs between the 7th and 8th frames. The previous frames are mirror shots of the person taking a selfie with a mobile phone in front of the mirror, and it directly switches to a scene of the person with side face, no mobile phone, at the haircut scene. The scene and shooting perspective change abruptly without any transition effect.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前7帧都是人物手持带橙黄装饰的粉色手机对镜自拍的镜像画面，理发师的手臂无纹身；第8帧画面中手机消失，人物变为侧脸朝向，理发师手上持有粉色工具，人物围布上出现碎发，镜头视角、画面元素和场景状态都发生了无过渡的突变。",
+      "src": "ffmpeg",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 2.942,
+      "t_center": 3.292,
+      "t_end": 3.642,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧是人物对着镜子举手机自拍的正对视角画面，第五帧直接无过渡切换为人物的侧对视角画面，镜头取景角度、拍摄对象的朝向、画面里的道具都发生了突然变化，没有渐变或其他过渡效果。",
+      "description_en": "The first four frames are a front-facing view of the person taking a selfie in the mirror holding a phone, and the fifth frame directly switches to a side-facing view of the person without any transition. The shooting angle, the orientation of the subject, and the props in the frame change abruptly, with no gradient or other transition effects.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前四帧画面中人物正对镜头，手持粉橙配色带黄色指环的手机，理发师手持白色梳子；从第五帧开始，人物变为侧对镜头，不再持有手机，理发师手持粉色工具，取景角度、人物姿态、画面道具都发生了无过渡的突变，符合硬切的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 3.374,
+      "t_center": 3.724,
+      "t_end": 4.074,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前4帧是理发师为女士修剪耳侧短发的斜视角画面，没有过渡过程，直接切换为后4帧女士正对镜头、理发师为其修剪另一侧头发，且画面中出现手机的正面视角画面。",
+      "description_en": "The first 4 frames show an oblique view of the hairdresser trimming the short hair near the lady's ear. Without any transition process, it directly switches to the last 4 frames of the front view where the lady faces the camera, the hairdresser trims the other side of her hair, and a mobile phone appears in the frame.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "第4帧和第5帧之间，画面的拍摄角度、人物的面部特征、手持的工具形态、是否存在手机元素均发生了无过渡的突变，符合硬切转场的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 4.111,
+      "t_center": 4.461,
+      "t_end": 4.811,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.9,
+      "description_cn": "画面在不同的美发阶段之间直接跳转，没有过渡效果：首先是修剪刘海的场景，直接切换到头发修剪到短款的状态，之后又直接切换到头发部分被夹起、正在卷发的场景。",
+      "description_en": "The footage jumps directly between different hairdressing stages without transition effects: first, the scene of trimming bangs switches directly to the state where the hair is cut to a short style, and then switches directly to the scene where part of the hair is clipped up and being curled.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前后帧的画面内容突变：前一帧还有手持梳子、围脖上有碎发的元素，下一帧这些元素消失，人物发型、动作和画面里的物品都直接发生了变化，没有渐变、滑动等过渡过程，符合硬切的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 4.75,
+      "t_center": 5.1,
+      "t_end": 5.45,
+      "gap": 0.0,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "前4帧画面中手机在画面左侧，头顶头发用发夹夹住，后侧手在整理侧边头发；第5帧直接切换为手机在画面右侧，头顶头发没有发夹，有人正用卷发棒夹头顶的头发，两个场景无过渡直接切换。",
+      "description_en": "In the first 4 frames, the mobile phone is on the left side of the frame, the hair on the top of the head is clipped with a hairpin, and the hand at the back is arranging the side hair; the 5th frame directly switches to the scene where the mobile phone is on the right side of the frame, there is no hairpin on the top of the head, and someone is using a curling iron to clamp the hair on the top of the head, the two scenes switch directly without transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前后画面的手机位置、头顶是否有发夹、手部动作和工具都发生了无过渡的突变，场景直接跳转。",
+      "src": "ffmpeg",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 5.209,
+      "t_center": 5.559,
+      "t_end": 5.909,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧画面中理发师的手正在用卷发棒处理人物头发，手机仅在画面右侧露出一部分；第五帧直接跳转为人物双手举着手机正对镜头的画面，没有过渡效果，两个画面的动作和物体位置发生了突变。",
+      "description_en": "In the first four frames, the hairdresser's hands are using a curling iron on the character's hair, and only part of the mobile phone is exposed on the right side of the frame; the fifth frame directly jumps to the scene where the character holds the mobile phone with both hands facing the camera, without any transition effect, and the movements and object positions of the two scenes change abruptly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前四帧存在理发师的手和卷发棒，手机在画面右侧边缘；第五帧理发师的手和卷发棒消失，手机被人物双手举在画面中间，前后画面内容无重叠过渡，直接切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 5.709,
+      "t_center": 6.059,
+      "t_end": 6.409,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧是人物穿围布举着手机对镜自拍的画面，紧接着无过渡直接切换为人物穿浅蓝色短袖侧身摆弄头发的画面，两个场景瞬间完成切换。",
+      "description_en": "The first four frames show the person wearing a salon cape, holding a phone to take a selfie in the mirror, then it switches directly to the scene where the person is wearing a light blue short-sleeved shirt and touching her hair from the side, without any transition effect between the two scenes.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "第4帧到第5帧之间，画面的人物着装、姿态、场景内容都发生了完全的跳变，没有叠化、擦除等过渡效果，是直接从一个场景跳到另一个场景。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 6.374,
+      "t_center": 6.724,
+      "t_end": 7.074,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "前四帧画面中人物是侧脸朝向左侧，手部在画面右侧，第四帧之后直接切换为人物正脸朝向镜头的画面，没有过渡效果，镜头的拍摄角度和人物朝向直接发生了跳变。",
+      "description_en": "In the first four frames, the character is in profile facing left, with the hand on the right side of the frame. After the fourth frame, the picture directly switches to the scene where the character is facing the camera with a full front view, no transition effect is applied, and the shooting angle of the lens and the character's orientation have a direct jump change.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前四帧画面人物为左侧脸，手部位于画面右侧，第四帧到第五帧时画面无任何过渡就变成了人物正脸，人物朝向、镜头角度都发生了突变，画面内容跳变明显。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 8.575,
+      "t_center": 8.925,
+      "t_end": 9.275,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前四帧是室内浅色墙面背景下的人物正面平视画面，无过渡直接跳切到后四帧的车内场景，场景、光线、人物姿态和拍摄视角都发生了突变。",
+      "description_en": "The first four frames are front-facing shots of the character in an indoor environment with a light-colored wall background. Then it directly cuts to the last four frames which are shots inside a car without any transition. The scene, lighting, character posture and shooting perspective all change abruptly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前4帧的背景是浅色纹理墙面，人物穿着浅蓝上衣，面带微笑正对镜头；第5帧直接切换为车内场景，背景变成车内顶棚和座椅，人物穿着浅色上衣，手抬在脸侧，系着安全带，光线是户外射入的阳光，两个场景间没有任何过渡效果，画面内容完全跳变。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 9.508,
+      "t_center": 9.858,
+      "t_end": 10.208,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "前四帧为近距离自拍画面，人物抬手靠近镜头，随后直接切换为距离更远的自拍画面，人物姿势、衣物光影、画面构图都发生了无过渡的直接跳转。",
+      "description_en": "The first four frames are close-up selfie shots with the character raising their hand close to the lens, then it directly switches to a farther selfie shot, with the character's pose, clothing lighting, and frame composition changing abruptly without transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前序画面中人物右手是黄绿美甲且在画面右侧、衣服有强阳光光斑、头发被光线照成暖金色，切换后的画面人物右手是淡粉美甲且在画面左侧、衣服无强光斑、头发颜色为深棕色，前后画面内容无过渡过程，是直接跳转。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 10.109,
+      "t_center": 10.459,
+      "t_end": 10.809,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧画面场景为车内，人物身边有黑色安全带、手放在眼部位置，背景是车内内饰；在t=10.409s到t=10.509s之间，画面无过渡直接切换到户外公园场景，人物肩上变成浅色包带，手的位置消失，背景变为树木道路，是直接的硬切转场。",
+      "description_en": "The first four frames are set inside a car, with a black seat belt next to the character, the character's hand near the eye, and the background is the car interior. Between t=10.409s and t=10.509s, the picture directly switches to an outdoor park scene without any transition: the strap on the character's shoulder becomes a light-colored bag strap, the hand near the eye disappears, and the background changes to trees and paths, which is a direct hard cut transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前后画面的场景、环境元素、人物随身物品（安全带/包带）、人物手部位置都发生了突变，没有任何渐变、滑动等过渡效果，两帧之间内容完全不连续。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 10.809,
+      "t_center": 11.159,
+      "t_end": 11.509,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前四帧画面是户外公园道路场景，人物在户外自拍，下一帧直接切换为车内场景，人物坐在车内系着安全带，两个场景之间没有过渡效果，直接跳转。",
+      "description_en": "The first four frames are the outdoor park road scene where the character is taking a selfie outdoors, and the next frame directly switches to the in-car scene where the character is sitting in the car with a seat belt on. There is no transition effect between the two scenes, and it jumps directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "t=11.109s的画面是户外公园道路背景，人物背着编织肩带的包、wink，t=11.209s的画面直接变为车内背景，人物系着汽车安全带、手放在下巴处，前后场景、人物姿势、周边物品都无衔接，没有叠化、擦除等过渡过程，场景直接突变。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 11.508,
+      "t_center": 11.858,
+      "t_end": 12.208,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "前四帧人物手放在下巴位置，背景是车的侧窗；第五帧直接切换为人物手放下、身体后移，背景变为车后座车窗的画面，两个镜头之间没有过渡效果，直接跳转。",
+      "description_en": "In the first four frames, the character's hand is placed under the chin with the car's side window in the background; the fifth frame directly switches to the scene where the character's hand is put down, the body moves back, and the background becomes the car's rear window. There is no transition effect between the two shots, and it jumps directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前四帧人物手部在下巴处，视角更近，背景是右侧车窗；第五帧及之后人物手部不在下巴位置，视角更远，背景出现后车窗的蓝色标识，画面内容发生了无过渡的直接切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 12.142,
+      "t_center": 12.492,
+      "t_end": 12.842,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前四帧画面是人物坐在车内的场景，在t=12.442s到t=12.542s之间画面直接跳转为人物身处紫色系室内的场景，两个场景之间没有任何过渡效果，直接完成切换。",
+      "description_en": "The first four frames show the character sitting in a car. Between t=12.442s and t=12.542s, the picture directly jumps to the scene where the character is in a purple-toned indoor space, and the switching between the two scenes is completed directly without any transition effect.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前后相邻的两帧画面场景完全不同，前帧是车内环境，人物穿白色短袖、系安全带；后帧是紫色调室内环境，人物穿粉色长袖、戴发箍，两个场景没有过渡过程，直接切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    }
+  ],
+  "effects": [],
+  "elapsed_seconds": 189.3
+}

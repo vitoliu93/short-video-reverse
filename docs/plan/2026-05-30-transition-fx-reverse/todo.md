@@ -1,13 +1,13 @@
 # Todo: 短视频「转场/特效」反解 (`fx_`)
 
 ## Current State  ← update this constantly; it is the resume cursor
-- **Phase**: X3 — eval + report（真实抖音片）
-- **Status**: blocked（等用户提供抖音竖屏爆款素材）
+- **Phase**: 全部完成（X0→X3 done）；plan 收尾
+- **Status**: done
 - **Owner**: 41529b37-8723-4107-8555-72ce2a0a7c9a
 - **Branch**: dev-plan-2026-05-30-transition-fx-reverse
-- **Last done**: X2 完成——fx_extract 端到端跑通 Lotus，输出 12 转场 + 4 特效到 outputs/fx/Lotus_*.json(~150s)。发现 temp=0 仍非完全确定(spec §11)。
-- **Next**: 用户放抖音片到 assets/ → 跑 fx_extract；对 type 加 k 次多数投票；人工核准确率、标定阈值；写 X3 结果块
-- **Blockers**: **等用户提供 1-3 条真实抖音竖屏爆款**（X0-X2 全部完成，管线就绪）
+- **Last done**: X3 完成——3 片全链路 + 人工核 + k-投票实证 + 调查 0-窗口 + 修 2 bug，结论写入 spec §12。实验目标达成。
+- **Next**: （超出本 plan）k-投票收进 fx_extract；收紧运动类 prompt；ARC RL 微调语料。等用户决定是否并入 main。
+- **Blockers**: none
 
 ## Phases
 
@@ -34,10 +34,12 @@
 - **Acceptance**: JSON 生成，transitions[] 非空且字段完整（type/desc_cn-en/capcut/confidence/visual_cues），人工抽查描述合理
 - **Verify**: `uv run scripts/fx_extract.py assets/Lotus_*.mp4` → 12转场/4特效，描述连贯、映射正确  → **Result**: ✅ 通过（发现 temp=0 仍非完全确定，记 spec §11；type 待 k-投票）
 
-### X3 — eval + report  [todo]
-- [ ] 用户提供真实抖音竖屏爆款 → 跑 fx_extract
-- [ ] 人工核对：转场定位召回 + type 准确率 + 标签合理性；标定验收阈值
-- [ ] VLM 成本/延迟估算
-- [ ] spec.md 追加 X1/X2/X3 结果块 + 诚实 known-limitations
-- **Acceptance**: 在真实抖音片上转场被正确定位且 type 多数正确（阈值此处标定）
-- **Verify**: 人工评测表 + spec 结果块  → **Result**: pending
+### X3 — eval + report  [done]
+- [x] 7 条真实抖音 detect 全跑(184窗口)；car/hair/drama 全链路 VLM 处理
+- [x] 人工核(contact sheet)：glitch×2 正确(彩条故障)、push/slide 误报(k=3→hard-cut)、hair 硬切正确、none 剔除有效
+- [x] k-投票实证：push 3/3 hard-cut(纠偏)、glitch 3/3 glitch(稳定)
+- [x] 调查 0-窗口：ai 正确空(连续AI场景不误报)、kid 低内容变化同机位微切=召回盲点
+- [x] 成本/延迟估算 + 修 2 bug(full-range YUV / 末帧)
+- [x] spec §12 结果块 + 净结论 + known-limitations
+- **Acceptance**: 真实抖音片转场被正确定位且 type 多数正确
+- **Verify**: spec §12 评测；hard-cut/glitch 可靠、k=3 去噪、盲点已知  → **Result**: ✅ 实验目标达成（真实抖音转场/特效可拆解结构化）

@@ -1,0 +1,157 @@
+{
+  "video": "douyin_drama_16s",
+  "frame": [
+    1080,
+    1920
+  ],
+  "duration": 15.733,
+  "n_shots": 6,
+  "n_windows": 5,
+  "model": "doubao-seed-2.0-pro",
+  "transitions": [
+    {
+      "t_start": 2.708,
+      "t_center": 3.058,
+      "t_end": 3.408,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 1.0,
+      "description_cn": "前一帧画面还是室内有木质沙发的场景，后一帧直接切换到室外街道场景，两个场景之间没有过渡效果，直接跳转。",
+      "description_en": "The previous frame is an indoor scene with a wooden sofa, and the next frame directly switches to an outdoor street scene, with no transition effect between the two scenes, jumping directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "t=3.008s时画面为室内环境，背景是木质长椅、白墙，还有红色塑料凳元素；t=3.108s时画面直接变为户外街道场景，有马路、行道树、交通标识，场景内容发生了无过渡的直接切换，符合硬切的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 4.142,
+      "t_center": 4.492,
+      "t_end": 4.842,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧是发型干爽的男子抬手摸脸的画面，直接无过渡切换为后四帧头发被打湿、状态不同的男子摸脸的画面，前后场景为同一条街道，人物穿着一致但形象状态和景别存在跳变，无中间过渡过程。",
+      "description_en": "The first four frames show a man with dry hairstyle touching his face, then it directly cuts to the last four frames where the man has wet hair and touches his face. The front and back scenes are the same street, the character wears the same clothes but the appearance state and shot size jump, with no intermediate transition process.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "第4帧到第5帧画面直接发生跳变，人物发型从干爽变为湿的、人物样貌出现变化、拍摄景别更近，无叠化、渐变等过渡效果，符合硬切的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 6.374,
+      "t_center": 6.724,
+      "t_end": 7.074,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前一帧画面还是人物站在户外街道的场景，下一帧直接切换为人物身处卫生间的场景，两个场景之间没有任何过渡效果，直接跳转。",
+      "description_en": "The previous frame shows the character standing on an outdoor street, and the next frame directly switches to the scene where the character is in the bathroom, with no transition effect between the two scenes, jumping directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前四帧的背景是户外街道，有树木、交通标识、车辆等元素，黄色字幕为“*2.出去吹一下风时”；后四帧背景变为卫生间，有淋浴设施、格子窗户等元素，黄色字幕变为“*3.上厕所时”，两个场景完全不同且切换无过渡，是硬切转场。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 11.508,
+      "t_center": 11.858,
+      "t_end": 12.208,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前一帧画面还是卫生间内人物坐在马桶前的场景，下一帧直接无过渡地切换到人物站在窗帘前准备拉窗帘的场景，两个场景内容完全不同，中间没有渐变、擦除等过渡效果，是直接的镜头切换。",
+      "description_en": "The previous frame shows the scene of the character sitting in front of the toilet in the bathroom, and the next frame directly switches to the scene of the character standing in front of the curtain ready to pull the curtain without any transition. The contents of the two scenes are completely different, and there are no transition effects such as gradient or wipe in between, which is a direct shot switch.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前后帧的场景环境完全不同，前帧是带有淋浴设施、粉色格纹窗的卫生间，后帧是带有刺绣窗帘、绿植的室内空间，场景没有过渡过程直接切换，且没有其他转场特效的视觉特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 12.542,
+      "t_center": 12.892,
+      "t_end": 13.242,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前几帧是现实中人物拉开窗帘的场景，在窗帘完全拉开露出窗户后，画面直接无过渡地切换为火焰中人物被热浪冲击的夸张动画场景，两个场景内容完全不同，切换没有渐变等过渡过程。",
+      "description_en": "The first few frames show a character pulling open the curtains in a real scene. After the curtains are fully opened to reveal the window, the screen directly switches to an exaggerated animation scene of a character being hit by heat waves in flames without any transition. The content of the two scenes is completely different, and there is no transition process such as gradient during the switch.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "1. 前四帧为真实室内场景，人物在拉窗帘，环境是普通家居环境；2. 从第四帧到第五帧，画面没有任何叠化、擦除等过渡效果，直接从真实家居场景跳转为火焰动画场景，场景内容、画风都完全不同，衔接没有过渡过程。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    }
+  ],
+  "effects": [
+    {
+      "t_start": 13.8,
+      "t_end": 14.8,
+      "present": true,
+      "types": [
+        "shake",
+        "particles"
+      ],
+      "types_cn": [
+        "抖动",
+        "粒子"
+      ],
+      "confidence": 0.9,
+      "description_cn": "画面存在抖动效果，同时爆炸场景中带有飘散的碎屑/粒子效果，模拟爆炸时的飞散碎块",
+      "description_en": "The picture has a shake effect, and there are drifting debris/particle effects in the explosion scene, simulating the flying fragments during the explosion",
+      "visual_cues": "连续帧中爆炸的画面位置有明显晃动偏移，呈现抖动效果；同时画面里存在不断移动的深色小碎屑/颗粒状元素，随帧变化位置，属于粒子效果",
+      "model": "doubao-seed-2.0-pro",
+      "_parse_ok": true
+    },
+    {
+      "t_start": 3.267,
+      "t_end": 4.267,
+      "present": true,
+      "types": [
+        "particles"
+      ],
+      "types_cn": [
+        "粒子"
+      ],
+      "confidence": 0.9,
+      "description_cn": "画面中添加了手绘的蓝色风形动态特效，用来表现吹风的效果",
+      "description_en": "Hand-drawn blue wind-shaped dynamic special effects are added to the picture to show the effect of blowing wind",
+      "visual_cues": "前两帧画面中有手绘的蓝色曲线形态的风特效元素，随着时间推进该特效元素消失，属于额外添加的粒子类装饰特效",
+      "model": "doubao-seed-2.0-pro",
+      "_parse_ok": true
+    }
+  ],
+  "elapsed_seconds": 76.7
+}

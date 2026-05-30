@@ -116,7 +116,8 @@ def build_windows(video: Path, threshold: float = 0.5):
         windows.append({
             "t_center": center,
             "t_start": round(max(0.0, center - half), 3),
-            "t_end": round(min(dur, center + half), 3),
+            # 末端留 0.05s 余量：避免采样落到最后一帧导致 ffmpeg 抽帧失败(X3)
+            "t_end": round(min(dur - 0.05, center + half), 3),
             "gap": round(gap, 3),
             "prob": round(max(probs), 3) if probs else None,
             "src": "+".join(srcs),

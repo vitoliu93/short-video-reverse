@@ -113,6 +113,8 @@ def extract_frame(video, t, width=640):
     out = subprocess.run(
         ["ffmpeg", "-v", "error", "-ss", f"{float(t):.3f}", "-i", str(video),
          "-frames:v", "1", "-vf", f"scale={width}:-1", "-q:v", "4",
+         # -strict unofficial: 部分抖音片是 full-range YUV，mjpeg 默认拒绝（X3 实测 hair 末帧报错）
+         "-strict", "unofficial",
          "-f", "image2pipe", "-vcodec", "mjpeg", "-"],
         capture_output=True,
     )

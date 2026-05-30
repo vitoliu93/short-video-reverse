@@ -1,0 +1,832 @@
+{
+  "video": "douyin_car_135s",
+  "frame": [
+    1080,
+    1920
+  ],
+  "duration": 135.4,
+  "n_shots": 40,
+  "n_windows": 39,
+  "model": "doubao-seed-2.0-pro",
+  "transitions": [
+    {
+      "t_start": 2.041,
+      "t_center": 2.391,
+      "t_end": 2.741,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前4帧画面中人物为近景，背景可见浅色汽车，字幕为“讨厌电车”；第5帧直接切换为人物中远景，背景变为黑色跑车，字幕变为“这是我的燃油车”，无过渡效果，是直接的镜头切换。",
+      "description_en": "In the first 4 frames, the character is in a close-up shot with a light-colored car in the background and the subtitle \"讨厌电车\". The 5th frame directly switches to a medium-long shot of the character, with the background changed to a black sports car and the subtitle changed to \"这是我的燃油车\". There is no transition effect, it is a direct shot switch.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前后帧的景别、背景车辆、字幕内容、人物的动作姿态都发生了无过渡的突变，没有叠化、渐变等过渡效果，符合硬切转场的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 3.241,
+      "t_center": 3.591,
+      "t_end": 3.941,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧画面中人物身旁是黑色跑车，第四帧到第五帧没有过渡过程，直接切换为人物身旁是银色汽车的画面，场景内容瞬间跳转。",
+      "description_en": "In the first four frames, there is a black sports car next to the character. There is no transition process from the fourth frame to the fifth frame, and the picture directly switches to the scene where a silver car is next to the character, with the scene content jumping instantly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前后帧的背景车辆、背景环境结构都发生了突变，没有渐变、叠化等过渡效果，画面直接从一个场景跳转到另一个场景。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 4.408,
+      "t_center": 4.758,
+      "t_end": 5.108,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前一帧画面还是女子站在银灰色Emeya车旁的场景，下一帧直接切换为黑色跑车的场景，中间没有任何过渡效果。",
+      "description_en": "The previous frame shows a woman standing next to a silver Emeya, and the next frame directly switches to a scene of a black sports car without any transition effect.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前后帧的场景内容完全不同，前帧有身着灰色外套的女子和银灰色轿车，后帧仅出现黑色跑车与伸出的手，且两帧衔接无渐变、擦除等过渡效果，是直接的画面跳转。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 6.575,
+      "t_center": 6.925,
+      "t_end": 7.275,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前序画面展示的是黑色跑车，镜头向左平移过程中，画面直接切换为浅灰色跑车的场景，无中间过渡效果，同时字幕也从“两年开了5,000多公里”变为“最讨厌的电车”，是两个不同镜头的直接切换。",
+      "description_en": "The previous frames show a black sports car, and during the leftward panning of the camera, the画面 directly switches to the scene of a light gray sports car without any intermediate transition effect. Meanwhile, the subtitle changes from 'Drove more than 5,000 kilometers in two years' to 'The most annoying electric car', which is a direct switch between two different shots.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前后帧的拍摄主体、场景内容完全不同，没有叠化、滑动等过渡过程，属于直接的镜头跳转，没有转场特效的过渡痕迹。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 8.975,
+      "t_center": 9.325,
+      "t_end": 9.675,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 1.0,
+      "description_cn": "前序帧画面内容为停放的浅灰色路特斯汽车，在9.275s到9.375s之间没有任何过渡效果，直接切换为女生出镜的画面，是无过渡的直接镜头切换。",
+      "description_en": "The previous frames show a light gray Lotus car parked in the parking lot. Between 9.275s and 9.375s, the scene switches directly to the footage of a girl without any transition effects, which is a direct lens switch without transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前四帧均为停车场内的浅灰色跑车画面，第五帧及之后的画面直接变为人物近景，场景内容完全不同，且中间没有叠化、擦除等过渡效果，是直接跳转的。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 11.508,
+      "t_center": 11.858,
+      "t_end": 12.208,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前一帧画面背景是带有数字2标识的墙面与黑色车辆，下一帧直接切换到背景为带有字母A标识的墙面与银色车辆，没有过渡效果，直接完成场景跳转。",
+      "description_en": "The previous frame's background is a wall with the number 2 and a black car, and the next frame directly switches to a background with a wall marked with the letter A and a silver car, with no transition effect, completing the scene jump directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "11.808s帧背景为带数字2的墙面和黑色车辆，11.908s帧背景直接变为带字母A的墙面和银色车辆，画面内容无重叠过渡，直接切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 13.774,
+      "t_center": 14.124,
+      "t_end": 14.474,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前四帧画面是室内停车场场景，背景为灰色跑车，第五帧直接无过渡切换到室外场景，背景变为浅色电车和高楼，两个场景间没有渐变、滑动等过渡效果，是直接跳转的硬切转场。",
+      "description_en": "The first four frames are in an indoor parking lot with a gray sports car in the background. The fifth frame directly switches to an outdoor scene with a light-colored electric car and high-rise buildings in the background without any transition effects such as gradient or sliding, which is a direct jump hard cut transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前后画面的背景环境从室内停车场突然变为室外街道，背景车辆、场景元素完全不同，且没有任何过渡特效，切换是瞬间完成的。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 16.575,
+      "t_center": 16.925,
+      "t_end": 17.275,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前一帧还是人物处于画面前景的镜头，下一帧直接无过渡地切换到仅展示汽车尾部的镜头，两个镜头内容直接跳转。",
+      "description_en": "The previous frame shows a person in the foreground, and the next frame directly switches to a shot only showing the rear of the car without any transition, the content of the two shots jumps directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前4帧画面主体为人物和背景中的汽车，第5帧及之后画面直接变为以汽车尾部为主体的不同取景画面，两者间没有渐变、滑动等过渡效果，内容是直接切换的。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 20.908,
+      "t_center": 21.258,
+      "t_end": 21.608,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "前一帧还是仅展示路特斯汽车尾部的远景画面，下一帧直接切换为人物出镜的近景画面，中间没有任何过渡效果，是直接的镜头切换。",
+      "description_en": "The previous frame was a long shot only showing the rear of the Lotus car, and the next frame directly switches to a close-up shot with a person in the frame, without any transition effect in between, which is a direct shot switch.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "21.208s的画面中只有车辆尾部和远景建筑，21.308s的画面中突然出现人物近景，画面主体内容发生了无过渡的 abrupt 切换，没有叠化、擦除等过渡特征，符合硬切的表现。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 22.175,
+      "t_center": 22.525,
+      "t_end": 22.875,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前四帧画面为人物蹲在车尾前的近景，第五帧直接切换为展示手持手机、背景是车辆侧面的画面，两个镜头无过渡过程，直接完成切换。",
+      "description_en": "The first four frames are close-up shots of a person squatting in front of the rear of the car, and the fifth frame directly switches to a shot showing a hand holding a mobile phone with the side of the car as the background. There is no transition process between the two shots, and the switch is completed directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "无转场",
+        "硬切"
+      ],
+      "visual_cues": "前四帧主体是人物和车尾，t=22.475s到t=22.575s的帧之间，画面主体、拍摄角度、背景地面都发生了完全的变化，没有叠化、移动等过渡效果，是直接跳转。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 28.908,
+      "t_center": 29.258,
+      "t_end": 29.608,
+      "gap": 0.034,
+      "present": true,
+      "type": "glitch",
+      "type_cn": "故障",
+      "confidence": 0.99,
+      "description_cn": "画面从手持手机展示车辆控制界面的实拍场景，直接跳转为彩色信号测试条的故障风格画面，属于故障类转场。",
+      "description_en": "The footage directly jumps from the real-shot scene of holding a mobile phone displaying the vehicle control interface to a glitch-style screen with color signal test bars, which belongs to a glitch transition.",
+      "capcut_category": "Glitch",
+      "capcut_tags": [
+        "信号故障",
+        "彩条",
+        "复古电视故障"
+      ],
+      "visual_cues": "前四帧为室外手持手机搭配背景车辆的正常实拍画面，第五帧及之后突然变为无内容关联的彩色电视信号测试条画面，属于数字故障类的画面跳转效果。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 29.408,
+      "t_center": 29.758,
+      "t_end": 30.108,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 1.0,
+      "description_cn": "前四帧为SMPTE彩条测试画面，后续帧直接跳转为汽车内部中控的画面，两个场景之间没有任何过渡效果，直接完成切换。",
+      "description_en": "The first four frames are SMPTE color bar test pictures, and the subsequent frames directly jump to the picture of the car's central control. There is no transition effect between the two scenes, and the switch is completed directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前四帧画面内容是彩色竖条的测试信号图，后几帧画面内容为汽车中控，二者内容完全无关，且没有叠化、擦除等过渡过程，画面是直接切换的。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 45.708,
+      "t_center": 46.058,
+      "t_end": 46.408,
+      "gap": 0.034,
+      "present": true,
+      "type": "glitch",
+      "type_cn": "故障",
+      "confidence": 0.98,
+      "description_cn": "前四帧为汽车内饰中控画面，之后直接跳转为电视信号故障的彩色竖条画面，属于类似信号故障的故障类转场效果。",
+      "description_en": "The first four frames show the central control interior of a car, then it directly cuts to a color vertical bar image of TV signal failure, which is a glitch transition effect similar to signal malfunction.",
+      "capcut_category": "Glitch",
+      "capcut_tags": [
+        "信号故障",
+        "彩条转场"
+      ],
+      "visual_cues": "前序画面是汽车中控的正常拍摄内容，转场后画面变为典型的电视无信号彩条图案，属于数字故障类的画面跳变，符合故障转场的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 46.275,
+      "t_center": 46.625,
+      "t_end": 46.975,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 1.0,
+      "description_cn": "前4帧画面为电视彩条测试图，第5帧直接跳转为汽车中控台的画面，两个场景之间没有过渡效果，直接切换。",
+      "description_en": "The first 4 frames are TV color bar test patterns, and the 5th frame directly jumps to the picture of the car center console. There is no transition effect between the two scenes, and the switch is direct.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前4帧内容是彩色竖条的测试画面，第5帧瞬间变为完全不同的汽车内饰中控画面，没有叠加、渐变等过渡过程，属于无过渡的直接切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 48.8,
+      "t_center": 49.15,
+      "t_end": 49.5,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "画面在前后帧之间直接切换，前帧底部字幕为“播放风吹一夏”，中控功能区域是带“AUTO”标识的空调控制模块，后帧底部字幕变为“好的”，中控功能区域变为带锁形标识的控制模块，没有过渡效果，直接跳转。",
+      "description_en": "The picture switches directly between consecutive frames. The subtitle at the bottom of the previous frame is '播放风吹一夏', and the central control function area is the air conditioning control module with 'AUTO' logo. The subtitle at the bottom of the next frame changes to '好的', and the central control function area becomes the control module with lock logo, with no transition effect and direct jump.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "1. 前后帧的底部字幕内容直接从“播放风吹一夏”变为“好的”，没有渐变或其他过渡；2. 中控区域的功能按键样式发生了突变，没有中间过渡状态，是无衔接的直接切换。",
+      "src": "transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 62.975,
+      "t_center": 63.325,
+      "t_end": 63.675,
+      "gap": 0.033,
+      "present": true,
+      "type": "glitch",
+      "type_cn": "故障",
+      "confidence": 0.95,
+      "description_cn": "前四帧为汽车中控导航画面，之后直接切换为电视信号故障的彩条画面，属于故障类转场效果",
+      "description_en": "The first four frames show the car's central control navigation screen, then it directly switches to the color bar pattern of TV signal failure, which is a glitch transition effect.",
+      "capcut_category": "Glitch",
+      "capcut_tags": [
+        "故障",
+        "彩条"
+      ],
+      "visual_cues": "画面内容从正常的车载导航界面无过渡地跳转为模拟信号故障的彩色竖条画面，符合故障转场的视觉特征",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 63.442,
+      "t_center": 63.792,
+      "t_end": 64.142,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前四帧为电视彩条测试画面，没有过渡过程，下一帧直接切换为女子坐在车内的实拍画面，两个完全不同的场景瞬间完成切换。",
+      "description_en": "The first four frames are TV color bar test patterns, with no transition process, and the next frame directly switches to the real shot of a woman sitting in the car. The two completely different scenes are switched instantly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前四帧画面内容完全一致，都是SMPTE彩条画面，t=63.842s的画面直接变为完全不同的车内人物场景，二者之间没有任何渐变、滑动、叠化等过渡效果，是直接的画面跳变。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 69.075,
+      "t_center": 69.425,
+      "t_end": 69.775,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前4帧画面为拍摄者坐在车内的画面，在t=69.375s到t=69.475s之间，画面直接跳转为汽车仪表盘的画面，没有任何过渡效果，属于硬切转场。",
+      "description_en": "The first 4 frames show the photographer sitting in the car. Between t=69.375s and t=69.475s, the picture directly jumps to the picture of the car dashboard without any transition effect, which is a hard-cut transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前序画面是人物在车内的场景，后续画面突然变为汽车仪表盘的完全不同场景，两部分画面之间没有叠化、擦除、滑动等过渡效果，场景直接切换，符合硬切转场的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 71.042,
+      "t_center": 71.392,
+      "t_end": 71.742,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前4帧是车内仪表盘的画面，没有过渡过程，直接切换到了室外人物出镜的画面。",
+      "description_en": "The first 4 frames are the picture of the car dashboard, and then it switches directly to the picture of the person appearing outdoors without any transition process.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前4帧的场景为车内，内容是汽车仪表盘显示的能耗等信息，相邻帧内容几乎无变化；第5帧及之后的场景突然变为室外街道，内容是人物说话的画面，前后场景完全不相关，且没有任何叠化、擦除等过渡效果，是直接跳转的。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 76.142,
+      "t_center": 76.492,
+      "t_end": 76.842,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "前4帧画面是人物正面朝向镜头、手持充电枪，背景可见停车场围栏、车辆与红建筑；第5帧直接切换为人物侧面特写，背景仅可见天空和远处绿植，没有过渡过程，属于硬切转场。",
+      "description_en": "The first 4 frames show the character facing the camera frontally, holding a charging gun, with the parking lot fence, vehicles and red building visible in the background. The 5th frame directly switches to a close-up of the character's side face, with only the sky and distant green plants visible in the background, no transition process, which is a hard cut transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前后画面的人物朝向、取景范围、背景元素都发生了突变，没有叠化、擦除等过渡效果，是直接的镜头切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 76.575,
+      "t_center": 76.925,
+      "t_end": 77.275,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前四帧画面都是人物近景内容，第五帧直接切换为汽车充电的场景，两个完全不同的场景之间没有任何过渡效果，直接跳转。",
+      "description_en": "The first four frames are close-up shots of a person, and the fifth frame directly switches to a car charging scene. There is no transition effect between the two completely different scenes, and the switch is immediate.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前四帧的主体是染发女性，穿着灰色连帽衫、佩戴黑色项链，第五帧及之后的画面主体变为浅绿色汽车、充电枪，场景也从人物近景变为户外车辆场景，画面内容在相邻两帧间发生了无过渡的彻底切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 79.866,
+      "t_center": 80.216,
+      "t_end": 80.566,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "画面在连续的插拔充电枪动作过程中，直接从手持黑色充电枪的镜头切换到了充电枪消失、仅露出人物衣袖的镜头，两个镜头衔接没有过渡效果，是直接跳转。",
+      "description_en": "During the continuous action of plugging and unplugging the charging gun, the footage directly cuts from the shot of holding the black charging gun to the shot where the charging gun disappears and only the character's sleeve is visible. There is no transition effect between the two shots, and it jumps directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前几帧中黑色充电枪和手持的手部都清晰存在，t=80.266s的帧里充电枪直接消失，仅露出浅色衣袖，场景背景的车身、建筑等元素虽大致连续，但前景的充电枪和手部直接消失，两帧之间没有叠化、擦除等过渡过程，是直接跳转的硬切。",
+      "src": "transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 86.233,
+      "t_center": 86.583,
+      "t_end": 86.933,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.9,
+      "description_cn": "前四帧是人物侧脸特写且字幕为“帮我拿一下”，第五帧直接切换为人物正脸画面，字幕也变为“好的”，两个镜头之间没有过渡效果，直接跳转。",
+      "description_en": "The first four frames are close-up shots of the character's side face with the subtitle '帮我拿一下', the fifth frame directly switches to the front face shot of the character with the subtitle changed to '好的'. There is no transition effect between the two shots, and it jumps directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切",
+        "无转场"
+      ],
+      "visual_cues": "前后画面的人物朝向、景别、字幕内容都发生了突变，没有叠加、渐变等过渡过程，符合硬切无过渡直接跳转的特征。",
+      "src": "transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 87.075,
+      "t_center": 87.425,
+      "t_end": 87.775,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧是人物近景画面，第五帧直接切换为汽车内部中控屏的画面，两个场景之间没有过渡效果，瞬间完成切换。",
+      "description_en": "The first four frames are close-up shots of a person, and the fifth frame directly switches to the shot of the central control screen inside the car. There is no transition effect between the two scenes, and the switch is completed instantly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前四帧的内容为染发女性的近景，服饰、项链等元素连续，t=87.375s到t=87.475s时画面内容直接变为汽车中控的完全不同场景，没有渐变、滑动等过渡过程，场景发生了无过渡的直接切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 90.142,
+      "t_center": 90.492,
+      "t_end": 90.842,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧画面是汽车内部的内饰、中控屏视角，没有过渡过程，下一帧直接跳转到室外停车场的汽车外部全景，两个场景完全不同且无叠加等过渡效果",
+      "description_en": "The first four frames show the interior view of the car, including the center control screen and interior trims. Without any transition process, the next frame directly jumps to the exterior panoramic view of the car in the outdoor parking lot. The two scenes are completely different with no overlapping or other transition effects.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "t=90.442s及之前的画面内容均为汽车内部，包含方向盘、中控屏、车内装饰；t=90.542s的画面直接变为室外停车场的车辆外观、充电桩等场景，两个相邻帧的画面内容没有任何重叠、过渡，场景完全切换",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 95.408,
+      "t_center": 95.758,
+      "t_end": 96.108,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 1.0,
+      "description_cn": "前四帧画面内容为停放的浅蓝色汽车，第四帧到第五帧没有任何过渡效果，直接切换为人物自拍的画面，属于无过渡的硬切转场。",
+      "description_en": "The first four frames show a light blue parked car, and from the fourth frame to the fifth frame, there is no transition effect, directly switching to the scene of a person taking a selfie, which is a hard cut transition without transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前序帧画面主体是浅蓝色汽车、停车场背景，后续帧画面主体是人物、户外树木背景，二者画面内容完全不同，且切换过程无叠化、擦除等过渡效果，直接完成画面跳转。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 99.642,
+      "t_center": 99.992,
+      "t_end": 100.342,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.99,
+      "description_cn": "前四帧画面是人物自拍的户外场景，第五帧直接无过渡切换为汽车尾部的场景，两个画面之间没有任何渐变、特效等过渡过程，瞬间完成切换。",
+      "description_en": "The first four frames are outdoor scenes of a person taking a selfie, and the fifth frame directly switches to the scene of the rear of a car without any transition. There is no gradient, special effect or other transition process between the two pictures, and the switch is completed instantly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "第四帧内容是人物自拍，下一帧直接变为完全不同的汽车尾部场景，前后帧画面内容无重叠关联，且不存在任何过渡特效，切换过程无渐变等中间态。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 101.241,
+      "t_center": 101.591,
+      "t_end": 101.941,
+      "gap": 0.033,
+      "present": true,
+      "type": "push",
+      "type_cn": "推移",
+      "confidence": 0.92,
+      "description_cn": "镜头朝向汽车尾部向前推近，从较远的车尾视角平滑过渡到更近的车尾细节视角，过程中画面主体逐渐变大，背景的充电站等环境元素逐渐移出画面",
+      "description_en": "The camera pushes forward towards the rear of the car, smoothly transitioning from a distant view of the car tail to a closer view of the tail details. During the process, the main subject in the frame gradually becomes larger, and background elements such as the charging station gradually move out of the frame.",
+      "capcut_category": "Slide",
+      "capcut_tags": [
+        "推近",
+        "向前推移"
+      ],
+      "visual_cues": "前四帧画面能看到车尾周边的充电设施、树木、围栏等背景元素，后四帧这些背景元素消失，汽车尾部的标识、车牌等细节占比明显增大，是镜头向前推进的效果，属于推移类转场",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 101.908,
+      "t_center": 102.258,
+      "t_end": 102.608,
+      "gap": 0.034,
+      "present": true,
+      "type": "slide",
+      "type_cn": "滑动",
+      "confidence": 0.9,
+      "description_cn": "前4帧画面呈现汽车尾部，镜头从左向右滑动，原本位于画面左侧的车尾标识等元素逐渐移出画面，右侧的车身侧面及后轮拱区域逐渐移入画面，到第5帧后完全变为车身侧面的画面，完成滑动转场。",
+      "description_en": "The first 4 frames show the rear of the car, the camera slides from left to right, the elements such as the car rear logo originally located on the left side of the frame gradually move out of the frame, and the side of the car body and the rear wheel arch area on the right gradually move into the frame. After the 5th frame, the picture completely changes to the side of the car body, completing the slide transition.",
+      "capcut_category": "Slide",
+      "capcut_tags": [
+        "滑动转场",
+        "向右滑动"
+      ],
+      "visual_cues": "前4帧内容为汽车尾部，有EMEYA标识、绿色车牌等元素，画面从左到右移动，这些元素逐渐移出画面，后轮拱等车身侧面元素逐渐进入画面，后续帧完全是车身侧面的内容，没有叠化、硬切等其他转场特征，是典型的滑动转场表现。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 103.908,
+      "t_center": 104.258,
+      "t_end": 104.608,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 1.0,
+      "description_cn": "前一帧画面内容是汽车车身局部，下一秒直接切换为车内的人物画面，两个不同场景的画面间没有过渡效果，直接跳转",
+      "description_en": "The previous frame shows a partial view of a car body, and the next frame directly switches to a scene of a person inside the car. There is no transition effect between the two different scenes, and the switch is immediate.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "104.208s的帧是汽车局部外观，104.308s的帧直接变为车内人物，画面内容完全不同，无叠化、擦除等过渡过程，属于无过渡的直接切换",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 112.241,
+      "t_center": 112.591,
+      "t_end": 112.941,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧是车内人物的正常拍摄画面，在t=112.541s时画面直接跳转为彩色电视信号测试图，前后内容无过渡直接切换。",
+      "description_en": "The first four frames are normal shooting pictures of people in the car. At t=112.541s, the picture directly jumps to the color TV signal test pattern, and the content before and after is directly switched without transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前序帧画面为车内人物场景，后续帧直接变为完全不同的彩条测试图，两个不同场景的画面之间没有任何渐变、滑动等过渡效果，是直接跳转切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 112.675,
+      "t_center": 113.025,
+      "t_end": 113.375,
+      "gap": 0.033,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 1.0,
+      "description_cn": "前四帧画面是电视信号测试彩条画面，第五帧直接切换为车内人物的画面，两个完全不同的场景之间没有任何过渡效果，直接完成切换。",
+      "description_en": "The first four frames are TV signal test color bar screens, and the fifth frame directly switches to the scene of a person inside a car. There is no transition effect between the two completely different scenes, and the switch is completed directly.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前四帧画面内容为彩色竖条的测试图，第五帧及之后画面直接变为车内人物的内容，前后画面内容完全不相关，且没有叠化、擦除等过渡过程，是瞬间完成的场景切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 117.508,
+      "t_center": 117.858,
+      "t_end": 118.208,
+      "gap": 0.034,
+      "present": true,
+      "type": "glitch",
+      "type_cn": "故障",
+      "confidence": 0.99,
+      "description_cn": "前序画面为车内人物手持纸巾的实拍内容，无渐变、滑动等过渡过程，直接跳转为电视彩条信号故障风格的画面，属于故障类转场。",
+      "description_en": "The previous frames show a person holding tissue in a car, and there is no transition process such as gradient or sliding, then it directly jumps to a TV color bar signal glitch style picture, which belongs to glitch transition.",
+      "capcut_category": "Glitch",
+      "capcut_tags": [
+        "故障彩条",
+        "信号干扰"
+      ],
+      "visual_cues": "画面在117.8s到117.9s的间隔中，直接从正常的实拍人物场景切换为无内容关联的SMPTE彩条画面，属于模拟信号故障的视觉效果，符合故障转场的特征。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 117.908,
+      "t_center": 118.258,
+      "t_end": 118.608,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 1.0,
+      "description_cn": "前四帧是彩色SMPTE测试卡画面，没有过渡过程，直接切换为车内人物的画面，属于无过渡的硬切转场。",
+      "description_en": "The first four frames are SMPTE color bar test pattern, then it directly switches to the scene of a person inside a car without any transition process, which is a hard cut transition.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前序帧内容为彩色竖条的测试卡画面，后续帧直接变为车内人物自拍的场景，两个场景之间没有任何渐变、动画类的过渡效果，内容瞬间完全切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 123.309,
+      "t_center": 123.659,
+      "t_end": 124.009,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.98,
+      "description_cn": "前四帧画面中人物坐在车内，背景可见带橙色装饰的头枕与后排座椅，在123.609s到123.709s之间直接切换到后四帧画面，背景变为带有黄绿白三色安全带的汽车B柱区域，画面无过渡效果直接跳转。",
+      "description_en": "In the first 4 frames, the character is sitting in the car, with a headrest with orange decoration and the rear seats visible in the background. Between 123.609s and 123.709s, it directly switches to the last 4 frames, where the background changes to the car B-pillar area with yellow-green-white three-color seat belts, and the picture jumps directly without transition effects.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切"
+      ],
+      "visual_cues": "前后画面的车内背景元素（头枕、安全带、车内结构）出现明显突变，字幕内容也从“品牌的电车更蠢”直接变为“像i7”，无任何渐变、滑动等过渡动画，属于无过渡的直接镜头切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    },
+    {
+      "t_start": 131.309,
+      "t_center": 131.659,
+      "t_end": 132.009,
+      "gap": 0.034,
+      "present": true,
+      "type": "hard-cut",
+      "type_cn": "硬切",
+      "confidence": 0.95,
+      "description_cn": "两个镜头都是人物在车内的自拍画面，前一帧人物处于汽车主驾位置，背景有带绿色条的车窗、深色头枕旁的绿色小靠枕，底部字幕为“那肯定还是最喜欢S480”；后一帧直接切换到人物处于汽车副驾位置，背景头枕带有橙色块，底部字幕变为“最后祝各位彦祖都灵”，无过渡效果直接跳转。",
+      "description_en": "Both shots are selfies of the character inside the car. In the previous frame, the character is in the driver's seat, with a window with a green strip and a small green pillow next to the dark headrest in the background, and the subtitle at the bottom is '那肯定还是最喜欢S480'. The next frame directly switches to the character in the passenger seat, with a headrest with orange blocks in the background, and the subtitle changes to '最后祝各位彦祖都灵', with no transition effect and direct jump.",
+      "capcut_category": "",
+      "capcut_tags": [
+        "硬切转场"
+      ],
+      "visual_cues": "前后帧的车内座位背景、头枕样式、底部字幕内容均发生了突变，画面没有叠化、滑动等过渡效果，属于无过渡的直接镜头切换。",
+      "src": "ffmpeg+transnet",
+      "model": "doubao-seed-2.0-pro",
+      "_raw_type": null,
+      "_parse_ok": true
+    }
+  ],
+  "effects": [
+    {
+      "t_start": 37.4,
+      "t_end": 38.4,
+      "present": true,
+      "types": [
+        "shake"
+      ],
+      "types_cn": [
+        "抖动"
+      ],
+      "confidence": 0.8,
+      "description_cn": "画面存在轻微的抖动效果",
+      "description_en": "There is a slight shaking effect on the picture.",
+      "visual_cues": "连续帧之间，车机屏幕、换挡区域等固定物体的位置出现了小幅度的偏移，符合抖动特效的特征，其余特效无明显表现。",
+      "model": "doubao-seed-2.0-pro",
+      "_parse_ok": true
+    },
+    {
+      "t_start": 55.733,
+      "t_end": 56.733,
+      "present": true,
+      "types": [
+        "shake"
+      ],
+      "types_cn": [
+        "抖动"
+      ],
+      "confidence": 0.9,
+      "description_cn": "画面存在轻微的抖动效果",
+      "description_en": "The picture has a slight shake effect",
+      "visual_cues": "连续6帧的画面中，车机屏幕、车内按键等固定物体的位置出现了轻微的往复偏移，属于抖动特效的表现，无其他明显特效特征",
+      "model": "doubao-seed-2.0-pro",
+      "_parse_ok": true
+    },
+    {
+      "t_start": 82.9,
+      "t_end": 83.9,
+      "present": true,
+      "types": [
+        "light-leak"
+      ],
+      "types_cn": [
+        "漏光"
+      ],
+      "confidence": 0.9,
+      "description_cn": "画面中标识牌位置持续存在模拟的过曝漏光特效，是人为添加的画面光斑效果，并非自然拍摄的反光。",
+      "description_en": "There is a simulated overexposure light leak effect continuously present at the position of the sign in the picture, which is an artificially added light spot effect, not a reflection from natural shooting.",
+      "visual_cues": "标识牌区域在6帧画面中都存在不符合真实光照逻辑的高亮过曝光斑，且光斑随镜头运动保持在标识牌对应位置，是后期添加的漏光特效。",
+      "model": "doubao-seed-2.0-pro",
+      "_parse_ok": true
+    }
+  ],
+  "elapsed_seconds": 424.9
+}
