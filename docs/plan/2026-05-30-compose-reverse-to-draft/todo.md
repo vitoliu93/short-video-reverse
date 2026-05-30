@@ -1,11 +1,11 @@
 # Todo: compose_ — 反解结果编排 + 映射到 KOX icccut_draft
 
 ## Current State  ← 恢复游标，常更新
-- **Phase**: C2 — full chain：compose_extract.py
-- **Status**: todo（C0 ✅ / C1 ✅）
+- **Phase**: C3 — eval + report
+- **Status**: todo（C0 ✅ / C1 ✅ / C2 ✅）
 - **Branch**: worktree-dev-plan-2026-05-30-compose-reverse-to-draft
-- **Last done**: **C1 通过** — `compose_common.py`(映射表+换算器+DraftBuilder+merge+load_cached) / `compose_validate.py` / `compose_smoke.py`。自测全过：14+7+3 映射值过校验、换算器单测过、Lotus 真模块回归 24/24、add_text_event fixture 过（spec §10）
-- **Next**: 写 `scripts/compose_extract.py` 单视频 CLI：编排(缓存优先,缺则可选重跑+fx_detect 去重) → 写 `outputs/compose/<stem>.json` + `.draft.json` → 整稿过 `validate_icccut_draft.py`(含 id 全局唯一)。demo: Lotus + drama
+- **Last done**: **C2 通过** — `compose_extract.py` 5 样本端到端全过整稿校验（Lotus24/drama9/hair18/ai1/kid1）。抓修真 bug：同轨时间重叠→`_alloc_lane` 分轨。spec §11
+- **Next**: C3 = 量化映射保真度（各模态信号落进/丢失/为何）+ spec §12 结果块 + known-limitations + 登记 CLAUDE.md（第6条 compose_）+ review.md
 - **Blockers**: none
 
 ## Phases
@@ -30,13 +30,13 @@
 - **Acceptance**: 各 builder 单测产出过 validate_action.py；映射表 16+12+4 全覆盖（命中或显式 unmapped）；枚举校验对接通
 - **Verify**: `uv run --directory $ICC python scripts/compose_smoke.py` → **Result**: ✅ **全过**（14+7+3 映射值过校验 / 换算器单测过 / Lotus 回归 24/24 / add_text fixture 过）。spec §10
 
-### C2 — full chain：compose_extract.py  [todo]
+### C2 — full chain：compose_extract.py  [done ✅ 2026-05-30]
 - [ ] 单视频入口：编排→统一反解 JSON `outputs/compose/<stem>.json`
 - [ ] 映射→`outputs/compose/<stem>.draft.json`
 - [ ] 整稿过 `validate_icccut_draft.py`（含 id 全局唯一）
 - [ ] Lotus（fx+narr+bgm 全）+ 1 douyin 跑通
 - **Acceptance**: 两类视频产出字段完整、整稿校验过、unmapped 段落诚实记录、单镜头相册走 add_image
-- **Verify**: 跑 compose_extract + validate_icccut_draft.py 整稿校验 → **Result**: pending
+- **Verify**: 跑 compose_extract + validate_icccut_draft.py 整稿校验 → **Result**: ✅ **5/5 整稿过**（Lotus24/drama9/hair18/ai1/kid1）。抓修同轨重叠真 bug→_alloc_lane 分轨。spec §11
 
 ### C3 — eval + report：映射保真度评测  [todo]
 - [ ] ≥3 真实抖音（drama/hair/+）跑 compose_extract

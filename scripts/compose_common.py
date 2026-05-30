@@ -128,6 +128,7 @@ class DraftBuilder:
     _idx: int = 0
     _media_n: int = 0
     _audio_n: int = 0
+    _lanes: dict[str, list[float]] = field(default_factory=dict)   # 轨道组 → 各 lane 当前末尾时间(防同轨重叠)
     unmapped: list[dict] = field(default_factory=list)   # 诚实记录映射不到的反解信号
 
     # --- 内部 ---
@@ -152,6 +153,19 @@ class DraftBuilder:
     def _note_unmapped(self, kind: str, tag: str, reason: str, t: Any = None):
         self.unmapped.append({"kind": kind, "tag": tag, "reason": reason, "at": t})
 
+    def _alloc_lane(self, group: str, base_name: str, base_idx: int,
+                    t_start: float, t_end: float) -> tuple[str, int]:
+        """同轨时间重叠非法(icccut)→ 把同组并发片段分配到不同 lane(轨)。
+        复用首个末尾<=t_start 的 lane,否则新开。返回 (track_name, track_render_index)。"""
+        lanes = self._lanes.setdefault(group, [])
+        for i, end in enumerate(lanes):
+            if end <= t_start + 1e-6:
+                lanes[i] = t_end
+                return (base_name if i == 0 else f"{base_name}_{i}", base_idx + i)
+        lanes.append(t_end)
+        i = len(lanes) - 1
+        return (base_name if i == 0 else f"{base_name}_{i}", base_idx + i)
+
     # --- builders ---
     def add_video_shot(self, shot: dict, transitions: list[dict]) -> dict:
         """一个镜头 → 一段主轨 add_video(媒体占位)。若 out 点有转场,挂 transition。"""
@@ -172,10 +186,12 @@ class DraftBuilder:
 
     def add_text_event(self, ev: dict, frame_h: int) -> dict:
         """font_ texts[] 一条 → add_text(坐标/颜色/描边/动画换算)。"""
-        tname, tidx = TRACK["subtitle"]
+        t0, t1 = round(ev["appear"]["first"], 3), round(ev["appear"]["last"], 3)
+        base_n, base_i = TRACK["subtitle"]
+        tname, tidx = self._alloc_lane("subtitle", base_n, base_i, t0, t1)   # 同时多条字幕→分轨
         tx, ty = bbox_to_transform(ev["bbox"])
         p: dict[str, Any] = {
-            "text": ev["text"], "start": round(ev["appear"]["first"], 3), "end": round(ev["appear"]["last"], 3),
+            "text": ev["text"], "start": t0, "end": t1,
             "transform_x": tx, "transform_y": ty, "track_name": tname, "track_render_index": tidx,
         }
         font = norm_font((ev.get("font") or {}).get("match"))
@@ -218,7 +234,8 @@ class DraftBuilder:
         """fx effect tag → add_effect(scene) / add_filter(filter) / 记 unmapped。"""
         name, route = map_effect(tag)
         if route == "scene" and name:
-            tname, tidx = TRACK["effect"]
+            base_n, base_i = TRACK["effect"]
+            tname, tidx = self._alloc_lane("effect", base_n, base_i, t_start, t_end)
             a = self._act("add_effect", {"effect_type": name, "effect_category": "scene", "params": [],
                                          "start": round(t_start, 3), "end": round(t_end, 3),
                                          "track_name": tname, "track_render_index": tidx})
@@ -232,7 +249,8 @@ class DraftBuilder:
         return None
 
     def add_filter_window(self, filter_name: str, t_start: float, t_end: float) -> dict:
-        tname, tidx = TRACK["filter"]
+        base_n, base_i = TRACK["filter"]
+        tname, tidx = self._alloc_lane("filter", base_n, base_i, t_start, t_end)
         a = self._act("add_filter", {"filter_type": filter_name, "intensity": 80,
                                      "start": round(t_start, 3), "end": round(t_end, 3),
                                      "track_name": tname, "track_render_index": tidx})

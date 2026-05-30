@@ -95,3 +95,25 @@
 **自测结果**：① 14+7+3 映射值全过 validate_action；② 换算器单测过；③ **Lotus 真模块回归 24/24 过**（15 add_video+transition / 1 add_audio / 8 add_effect；id 唯一 / index 递增）；④ add_text_event 用 font fixture 过（transform_y=0.1166、font_size=18.5、打字机_I；pop/scroll/none 变体均过）。`outputs/compose/Lotus_*.json` + `.draft.json` 落盘。
 
 **诚实局限**：编排「缓存未命中则重跑管线 + fx_detect 去重」在 C1 仅 load_cached + merge（重跑集成是 C2）；font 仍未在真视频跑（builder 用 fixture 验）；color-filter 检出但未识别具体 LUT。
+
+---
+
+## §11 C2 结果块 — full chain `compose_extract.py`（✅ 通过，2026-05-30）
+
+**交付**：`scripts/compose_extract.py` 单视频 CLI。口径 **缓存优先**——compose_ 消费各管线已落盘 `outputs/<pfx>/<stem>.json`（它们是已 de-risk 的独立 POC），正常路径**无重复 fx_detect**；`--run fx,narr` 委托独立入口补跑（各自含 detect）。产 `outputs/compose/<stem>.json`（统一反解）+ `.draft.json`（KOX draft），整稿过兄弟仓 `validate_icccut_draft.py`（id 全局唯一 + 串联 + 时间轴重叠 + 画布空隙）。
+
+**5 样本端到端全过**：
+
+| 片 | present(fx/font/narr/bgm) | shots/trans/effects/subs/bgm | draft actions | per-action | 整稿校验 |
+|-|-|-|-|-|-|
+| Lotus | ✓/✗/✓/✓ | 15/12/4/0/✓ | 15 add_video+1 add_audio+8 add_effect | 24/24 | ✅ |
+| drama | ✓/✗/✓/✗ | 6/5/2/0/✗ | 6 add_video+3 add_effect | 9/9 | ✅ |
+| hair | ✓/✗/✓/✗ | 18/18/0/0/✗ | 18 add_video | 18/18 | ✅ |
+| ai | ✗/✗/✓/✗ | 1/0/0/0/✗ | 1 add_video（单镜头全长） | 1/1 | ✅ |
+| kid | ✗/✗/✓/✗ | 1/0/0/0/✗ | 1 add_video | 1/1 | ✅ |
+
+**C2 抓到并修掉的真 bug：同轨时间重叠**。首跑 Lotus/drama 整稿校验 FAIL——一个镜头窗多个 effect（如 Lotus[2.94,3.94]=rgb-split+shake+light-leak 3 条）全落同一 `effects` 轨 → icccut 判「非法重叠」（阈 0.1s）。这是 per-action 校验看不到、整稿校验才抓得到的**跨 action 时间线约束**。修复 = `DraftBuilder._alloc_lane()` 区间 lane 分配：同组并发片段分到不同轨（effects/effects_1/effects_2…，track_render_index 8000+i），非重叠复用同轨。effect/filter/subtitle 三组均接入。重跑后 5/5 整稿校验过。
+
+**设计验证**：① **缓存优先编排正确**——compose 不重算，消费 POC 产出，无冗余 detect；② **部分失败降级**——缺 fx/bgm/font 时对应段落留空 + provenance.present 记录，仍产合法 draft（ai/kid 仅 narr 也出稿）；③ **单镜头**走单条全长 add_video（add_image 不需要——源是视频非静图）；④ 整稿校验是「映射对不对」的硬判据，比自我宣称强。
+
+**诚实局限**：font 仍未在真视频跑（5 片 subs=0；字幕轨/坐标/字体映射仅 fixture 验，真 font 需建 14GB 索引——C3 记为局限）；`--run` 重跑路径已编码但 demo 走缓存（重跑 fx/narr 烧 VLM/ARC 额度、font/bgm 需未建索引）；transition_duration 用默认 0.5、font_size 近似未标定；media 全占位。
