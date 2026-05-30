@@ -76,3 +76,22 @@
 6. **add_effect.params 可空 `[]` 过校验**；精确 0–100 默认值 C1 接 `get_effect_meta.py`。
 
 **诚实局限**：仅 1 条 16:9 对照片（Lotus，非抖音竖屏）；font 用 fixture 非真检测；transition_duration/font_size 未标定；映射表仅覆盖 Lotus 出现的 tag 子集（全 16+12 表是 C1）。
+
+---
+
+## §10 C1 结果块 — foundation `compose_common.py`（✅ 通过，2026-05-30）
+
+**交付**：`scripts/compose_common.py`（映射表 + 换算器 + DraftBuilder + merge_reverse + load_cached）、`compose_validate.py`（复用 icccut `validate_action` 校验整稿）、`compose_smoke.py`（C1 自测）。零新依赖（纯 stdlib）。
+
+**全量映射表（onto `--list-values` 校验集，全部实测过校验）**：
+- `FX_TRANS_TO_JY`(16)：14 映射 + 2 省略(hard-cut/none)。dissolve→叠化 / fade-to-black→闪黑 / fade-to-white→闪白 / flash→白光快闪 / push→推近 / slide→滑动 / wipe→向左擦除 / zoom-in→模糊放大 / zoom-out→模糊缩小 / spin→中心旋转 / glitch→故障 / blur→模糊 / whip-pan→横移模糊 / mask→圆形遮罩。
+- `FX_EFFECT_TO_JY`(12)：7 scene 映射 + 5 unmapped/路由。shake→动感模糊 / zoom-pulse→变焦推镜 / rgb-split→RGB描边 / light-leak→光晕 / particles→光斑飘落 / blur-pulse→模糊 / film-grain→噪点；**unmapped（校验子集无忠实目标，诚实记录）**：vignette(暗角不在子集) / freeze-frame(故障定格不在子集)；color-filter→filter 路由但 fx 未识别具体 LUT → 记 unmapped；speed-ramp→speed 参数非 effect。
+- `FONT_ANIM_TO_JY`(4)：typewriter→打字机_I / scroll→向上滑动 / pop→弹入 / none→省略。
+
+**换算器（单测过）**：`bbox_to_transform` tx=(cx-0.5)·2 ty=(0.5-cy)·2；`size_rel_to_font_size`=size_rel·H/5.2（icccut CJK 字宽≈5.2·font_size 反推，近似口径）；`norm_font` 连字符→下划线（font_ 典型匹配 SourceHanSansCN_Bold/抖音美好体/得意黑/站酷酷黑体 均在 786 校验字体集 ✓）。
+
+**DraftBuilder**：id（uuid12）全局唯一、index 1..N 递增、按 skill 分组、媒体 `${media_N}`/`${audio_N}` 占位（default=bgm 检索到的相似 url）、`reverse_narrative` 作 meta、`_unmapped` 诚实落字段。
+
+**自测结果**：① 14+7+3 映射值全过 validate_action；② 换算器单测过；③ **Lotus 真模块回归 24/24 过**（15 add_video+transition / 1 add_audio / 8 add_effect；id 唯一 / index 递增）；④ add_text_event 用 font fixture 过（transform_y=0.1166、font_size=18.5、打字机_I；pop/scroll/none 变体均过）。`outputs/compose/Lotus_*.json` + `.draft.json` 落盘。
+
+**诚实局限**：编排「缓存未命中则重跑管线 + fx_detect 去重」在 C1 仅 load_cached + merge（重跑集成是 C2）；font 仍未在真视频跑（builder 用 fixture 验）；color-filter 检出但未识别具体 LUT。

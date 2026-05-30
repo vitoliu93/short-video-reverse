@@ -1,11 +1,11 @@
 # Todo: compose_ — 反解结果编排 + 映射到 KOX icccut_draft
 
 ## Current State  ← 恢复游标，常更新
-- **Phase**: C1 — foundation：compose_common.py
-- **Status**: todo（C0 ✅ 完成）
+- **Phase**: C2 — full chain：compose_extract.py
+- **Status**: todo（C0 ✅ / C1 ✅）
 - **Branch**: worktree-dev-plan-2026-05-30-compose-reverse-to-draft
-- **Last done**: **C0 通过** — `/tmp/compose_c0_probe.py` 从真实 Lotus 反解搓 draft，25/25 action 过 validate_action（spec §9）。关键结论：校验闭集=参考 MD 子集（非全量枚举）、validate_action 可 in-process、transition 挂载 |t_center−shot.end|<0.25
-- **Next**: 写 `scripts/compose_common.py`：① 枚举加载器（从 icccut `validate_params --list-values` 取真集）② 全量映射表 FX_TRANS(16)/FX_EFFECT(12)/FONT_ANIM(4)，逐个 onto 真集校验、无真名落 unmapped ③ 换算器 ④ action builders + 信封 ⑤ 编排器（缓存命中/去重 fx_detect/部分失败）
+- **Last done**: **C1 通过** — `compose_common.py`(映射表+换算器+DraftBuilder+merge+load_cached) / `compose_validate.py` / `compose_smoke.py`。自测全过：14+7+3 映射值过校验、换算器单测过、Lotus 真模块回归 24/24、add_text_event fixture 过（spec §10）
+- **Next**: 写 `scripts/compose_extract.py` 单视频 CLI：编排(缓存优先,缺则可选重跑+fx_detect 去重) → 写 `outputs/compose/<stem>.json` + `.draft.json` → 整稿过 `validate_icccut_draft.py`(含 id 全局唯一)。demo: Lotus + drama
 - **Blockers**: none
 
 ## Phases
@@ -20,7 +20,7 @@
 - **Acceptance**: 至少 add_text + add_audio + add_video(+transition) 三类 action 过 validate_action.py；坐标/颜色/枚举名经人工核对合理；font.match→Font_type 对齐情况摸清（对齐/需规整/需 unmapped）
 - **Verify**: `uv run --directory $ICC python validate_action.py`（in-process 校验每条 action）→ **Result**: ✅ **25/25 过**（Lotus 真反解：15 add_video+transition / 1 add_audio / 8 add_effect / 1 add_text）。校验闭集=MD 子集（抖动/漏光不在→改 动感模糊/光晕）。spec §9。draft: `outputs/compose/_c0_probe.draft.json`，探针 `/tmp/compose_c0_probe.py`
 
-### C1 — foundation：compose_common.py  [todo]
+### C1 — foundation：compose_common.py  [done ✅ 2026-05-30]
 - [ ] 编排器 `run_pipelines(video)`：命中 outputs/ 缓存、去重 fx_detect、部分失败降级 + provenance
 - [ ] 映射表：`FX_TRANS_TO_JY`(16)、`FX_EFFECT_TO_JY`(12)、`FONT_ANIM_TO_JY`(4)，未映射项显式 None→unmapped
 - [ ] 换算器：bbox→transform_x/y、size_rel→font_size、color 透传、时间秒
@@ -28,7 +28,7 @@
 - [ ] action builders：build_add_video / add_text / add_audio / add_effect / add_filter + draft 信封（meta/inputs/script、id 唯一、index 递增）
 - [ ] 统一反解 JSON schema（{shots,subtitles,bgm,transitions,effects,narrative,provenance}）
 - **Acceptance**: 各 builder 单测产出过 validate_action.py；映射表 16+12+4 全覆盖（命中或显式 unmapped）；枚举校验对接通
-- **Verify**: `uv run python -m pytest`-style 内联单测脚本 / 直接 assert 脚本 → **Result**: pending
+- **Verify**: `uv run --directory $ICC python scripts/compose_smoke.py` → **Result**: ✅ **全过**（14+7+3 映射值过校验 / 换算器单测过 / Lotus 回归 24/24 / add_text fixture 过）。spec §10
 
 ### C2 — full chain：compose_extract.py  [todo]
 - [ ] 单视频入口：编排→统一反解 JSON `outputs/compose/<stem>.json`
