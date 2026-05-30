@@ -38,7 +38,7 @@ def video_duration(video: Path) -> float:
 
 
 def transnet_boundaries(video: Path, threshold: float = 0.5, device: str = "cpu"):
-    """返回 (boundaries, n_shots)。boundary = 相邻镜头之间的转场。"""
+    """返回 (boundaries, shots)。boundary = 相邻镜头之间的转场；shots = 镜头区间。"""
     from transnetv2_pytorch import TransNetV2
 
     model = TransNetV2(device=device)
@@ -55,7 +55,13 @@ def transnet_boundaries(video: Path, threshold: float = 0.5, device: str = "cpu"
             "prob": round(float(b["probability"]), 3),
             "src": "transnet",
         })
-    return bounds, len(scenes)
+    shots = [{
+        "shot_id": s["shot_id"],
+        "start": round(float(s["start_time"]), 3),
+        "end": round(float(s["end_time"]), 3),
+        "dur": round(float(s["end_time"]) - float(s["start_time"]), 3),
+    } for s in scenes]
+    return bounds, shots
 
 
 def ffmpeg_cuts(video: Path, threshold: float = 0.3):
@@ -77,7 +83,7 @@ def ffmpeg_cuts(video: Path, threshold: float = 0.3):
 def build_windows(video: Path, threshold: float = 0.5):
     """TransNetV2 ⊕ ffmpeg，合并近邻候选，输出带自适应窗宽的转场候选。"""
     dur = video_duration(video)
-    bounds, n_shots = transnet_boundaries(video, threshold=threshold)
+    bounds, shots = transnet_boundaries(video, threshold=threshold)
     cuts = ffmpeg_cuts(video)
 
     # 统一成 (t_center, gap, prob, src) 候选列表
@@ -115,7 +121,8 @@ def build_windows(video: Path, threshold: float = 0.5):
             "prob": round(max(probs), 3) if probs else None,
             "src": "+".join(srcs),
         })
-    return {"duration": round(dur, 3), "n_shots": n_shots, "windows": windows}
+    return {"duration": round(dur, 3), "n_shots": len(shots),
+            "shots": shots, "windows": windows}
 
 
 def main():

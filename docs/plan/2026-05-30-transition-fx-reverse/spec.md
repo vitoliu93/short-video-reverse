@@ -140,3 +140,20 @@ docs/plan/2026-05-30-transition-fx-reverse/   ← 本计划
 **设计决策**：schema 以 `fx_describe` 实际产出为准（比 §4 草案多 `type_cn`/`_parse_ok`/`_raw_type` 审计字段）；type 不在闭集时落 `"unknown"` 并保留 `_raw_type`。
 
 **诚实局限**：仍只在 Lotus(非抖音)上验证；聚合去重、特效遍、真实抖音召回/准确率属 X2/X3。
+
+---
+
+## §11 X2 结果块 — full chain（✅ 跑通，2026-05-30）
+
+**目的**：`fx_extract` 串起 定位→描述→聚合→特效遍，产出第一份 `outputs/fx/<stem>.json`。
+
+**成果**：Lotus 15s 端到端 ~130–156s（detect 3s + 12 转场 VLM + 4 特效 VLM，串行）。输出 **12 转场 + 4 特效**，字段完整、中文正常、capcut 类目映射正确（hard-cut→空、glitch→Glitch、dissolve→Overlay、fade→Basic、wipe→Slide、spin→Camera、flash→Light Effect）。叙事连贯：spin/硬切 → 中段 glitch montage → 闪/淡 → 叠化 → 擦除 → 淡入白场结尾；特效抓到 film-grain/调色、rgb-split/漏光、卡点缩放、变速——都是抖音常见手法。**→ 直接证明：转场/特效可被拆解并结构化文字描述（含 NL 描述 + 闭集 type + 剪映类目）。**
+
+**⚠️ 诚实发现（修正 X1 的乐观判断）**：
+1. **temperature=0 降低但未消除随机性。** doubao/Ark 即使 temp=0、相同帧+prompt（已逐字确认请求一致），两次完整重跑标签仍漂：`4.19 glitch↔wipe`、`9.63 flash↔fade-to-black`、`12.22 wipe↔dissolve`（LLM 服务端 batching/MoE 的 token 级非确定，温度控不住）。**结构清晰的转场（hard-cut/dissolve/fade）稳定；效果型模糊转场（glitch/wipe/distortion 一族）在家族内漂。** 应对（X3）：对 type 做 **k 次多数投票**（借鉴 font 视频级投票），投票分布即置信度。**定位（TransNetV2+ffmpeg）完全确定，不受影响。**
+2. 偶发英文字段中文泄漏（"The画面…"），VLM 产物瑕疵非管线 bug；X3 可在 prompt 约束或后处理。
+3. 标签未经人工 ground-truth；中段 glitch×3-4 是否真为故障转场、还是「快切 + RGB错位特效」被并报，需人工核（X3）。
+
+**设计决策**：`temperature` 默认 0（仍对：省成本 + 压漂移）；`fx_extract` 对单窗口 VLM 调用包 try/except——外部 Ark 偶发分类器瞬时拒绝，单窗失败只记录不毁整批。committed Lotus JSON 是 temp=0 的一次代表输出，重跑模糊标签可能不同。
+
+**诚实局限**：仍是非抖音素材；串行 12+4 调用 ~150s，真实抖音(60–180s)候选更多、更慢，X3 量化成本；k-投票会成倍增调用。

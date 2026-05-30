@@ -1,13 +1,13 @@
 # Todo: 短视频「转场/特效」反解 (`fx_`)
 
 ## Current State  ← update this constantly; it is the resume cursor
-- **Phase**: X2 — full chain（fx_extract 全链路 + 聚合去重 + 特效遍）
-- **Status**: todo
+- **Phase**: X3 — eval + report（真实抖音片）
+- **Status**: blocked（等用户提供抖音竖屏爆款素材）
 - **Owner**: 41529b37-8723-4107-8555-72ce2a0a7c9a
 - **Branch**: dev-plan-2026-05-30-transition-fx-reverse
-- **Last done**: X1 完成——后端锁定(Ark/doubao-seed-2.0-pro)、TransNetV2(CPU)、fx_detect、fx_common、fx_describe 全部落地并冒烟通过(spec §10)。发现 type 标签 model-dependent。
-- **Next**: 写 fx_extract.py（遍历候选窗口→describe→视频级聚合→写 outputs/fx/Lotus_*.json），加特效遍，跑 Lotus 验证
-- **Blockers**: none（X3 抖音素材待用户提供，不阻塞 X2；外部 Ark 调用偶发分类器瞬时拒绝，重试即可）
+- **Last done**: X2 完成——fx_extract 端到端跑通 Lotus，输出 12 转场 + 4 特效到 outputs/fx/Lotus_*.json(~150s)。发现 temp=0 仍非完全确定(spec §11)。
+- **Next**: 用户放抖音片到 assets/ → 跑 fx_extract；对 type 加 k 次多数投票；人工核准确率、标定阈值；写 X3 结果块
+- **Blockers**: **等用户提供 1-3 条真实抖音竖屏爆款**（X0-X2 全部完成，管线就绪）
 
 ## Phases
 
@@ -26,13 +26,13 @@
 - **Acceptance**: TransNetV2 跑通+墙钟✓；fx_detect 候选窗口与 ffmpeg cut 吻合且多召回渐变✓；fx_common 的 VLM 客户端能稳定取到答案✓
 - **Verify**: `fx_detect`→12窗口/3.38s；`fx_describe` 4.19窗口→ pro 返回 wipe/conf0.92/中文正常/JSON解析OK  → **Result**: ✅ 全部通过（发现 type 标签 model-dependent，记入 spec §10）
 
-### X2 — full chain  [todo]
-- [ ] `fx_describe.py`：单窗口 N 帧 → VLM → 结构化转场描述
-- [ ] `fx_extract.py`：端到端 + 视频级聚合投票去重（借鉴 font group_events/best_obs）
-- [ ] 特效第二遍：镜头内均匀采样窗口 → VLM 描述特效 → effects[]
-- [ ] 写出 `outputs/fx/Lotus_*.json`
+### X2 — full chain  [done]
+- [x] `fx_describe.py`：单窗口 N 帧 → VLM → 结构化转场描述（X1 已建）
+- [x] `fx_extract.py`：端到端 + 候选窗口遍历 + VLM-present 投票 + 单窗 try/except 容错
+- [x] 特效第二遍：较长镜头(≥1.2s,最多6个)内部采样 → VLM 描述特效 → effects[]
+- [x] 写出 `outputs/fx/Lotus_*.json`（12 转场 + 4 特效）
 - **Acceptance**: JSON 生成，transitions[] 非空且字段完整（type/desc_cn-en/capcut/confidence/visual_cues），人工抽查描述合理
-- **Verify**: `uv run scripts/fx_extract.py assets/Lotus_*.mp4` + 读 outputs/fx/Lotus_*.json  → **Result**: pending
+- **Verify**: `uv run scripts/fx_extract.py assets/Lotus_*.mp4` → 12转场/4特效，描述连贯、映射正确  → **Result**: ✅ 通过（发现 temp=0 仍非完全确定，记 spec §11；type 待 k-投票）
 
 ### X3 — eval + report  [todo]
 - [ ] 用户提供真实抖音竖屏爆款 → 跑 fx_extract

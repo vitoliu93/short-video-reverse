@@ -137,11 +137,17 @@ def img_block(jpg_bytes):
 
 
 # ── VLM 客户端（Ark Anthropic SSE） ──────────────────────────────────
-def vlm(blocks, creds=None, system=None, max_tokens=1500):
-    """调用 Ark doubao-seed-2.0-pro（流式）。返回 {thinking, text, model, usage, stop_reason}。"""
+def vlm(blocks, creds=None, system=None, max_tokens=1500, temperature=0.0):
+    """调用 Ark doubao-seed-2.0-pro（流式）。返回 {thinking, text, model, usage, stop_reason}。
+
+    temperature 默认 0 以压低 run-to-run 漂移；但实测 Ark/doubao 即便 temp=0、请求逐字
+    相同，模糊转场标签仍会漂（glitch↔wipe，见 spec §11，属服务端 token 级非确定）。
+    彻底稳定需对 type 做 k 次多数投票（X3）。定位(TransNetV2+ffmpeg)不受影响、完全确定。
+    """
     creds = creds or load_creds()
     payload = {
         "model": creds["model"], "max_tokens": max_tokens, "stream": True,
+        "temperature": temperature,
         "messages": [{"role": "user", "content": blocks}],
     }
     if system:
