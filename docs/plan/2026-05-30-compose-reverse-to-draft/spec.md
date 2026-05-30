@@ -56,3 +56,23 @@
 | **C1** | foundation | `compose_common.py`：编排（去重 detect/缓存/部分失败）+ 映射表 + 换算器 + 枚举加载校验 + action builders + 信封 + 统一 JSON schema | 各部件单测过；映射表覆盖 16+12+4 tag；枚举校验对接通 |
 | **C2** | full chain | `compose_extract.py` 端到端：Lotus + 1 douyin → 统一 JSON + .draft.json，整稿过 validate_icccut_draft.py | 两类视频产出字段完整、整稿校验过、unmapped 诚实记录 |
 | **C3** | eval + report | ≥3 真实抖音评测映射保真度（落进/丢失/为何）+ spec 结果块 + known-limitations + CLAUDE.md 登记 | 保真度量化、局限诚实、第 6 条能力登记 |
+
+---
+
+## §9 C0 结果块 — 映射最薄一刀过真实校验（✅ 通过，2026-05-30）
+
+**目的**：投入编排/映射工程前，先证明最大未知——「反解输出经映射搓出的 action JSON，icccut-agents 的真实校验器收不收」，尤其最险的 add_text（参数最多、坐标换算、字体枚举）。
+
+**方法**：探针 `/tmp/compose_c0_probe.py`，从**真实 Lotus 反解输出**（`outputs/{fx,narr,bgm}/Lotus_*.json`）搓一份 draft，逐条过 `validate_action`（在 icccut venv 内 import，单进程校验全部）。跑：`uv run --directory $ICC python /tmp/compose_c0_probe.py`。
+
+**Verdict：映射架构成立。25/25 action 全过校验。** 15 add_video（含 transition 故障/闪黑/叠化/闪白）+ 1 add_audio + 8 add_effect（噪点/RGB描边/变焦推镜/动感模糊/光晕）+ 1 add_text（坐标换算 tx=0 ty=-0.68、font 下划线规整、#FFFF00、描边、intro_animation）。draft 信封完整：16 占位（15 media + 1 audio）、id 全局唯一、index 递增、`reverse_narrative` 作 meta 带出。
+
+**C0 得出的关键设计结论（落进 C1）**：
+1. **校验闭集 = 参考 MD 子集，非全量枚举**：`validate_params.PARAM_REFERENCE_MAP` 从 `add-*/references/*.md` 抽有效值——transition/scene-effect/font/text-intro 各是 pyJianYingDraft 全量枚举（913/468/798…）的**子集**。`抖动`/`漏光`/`色差` 在全量枚举里有、但**不在校验 MD 子集** → 必须映射 onto MD 子集名（用 `validate_params.py --param X --list-values` 取真集）。首跑 shake→抖动、light-leak→漏光 即因此 FAIL，改 shake→动感模糊、light-leak→光晕 后 25/25。
+2. **校验可单进程 in-process**：`from validate_action import validate_action; validate_action(a, atype)->List[str]`（空=过），无需逐条 subprocess、无需 init_draft 上下文。C1/C2 用此校验。
+3. **transition 挂载口径**：`|t_center − shot.end| < 0.25s` → 挂该镜头 out 点；`hard-cut`/`none` 不挂 transition；duration 暂用默认 0.5s（gap≈0.04 是 TransNet 帧级边界，非视觉转场时长）。
+4. **unmapped 方法生效**：`color-filter` 正确判为 filter 类（非 scene effect）→ 不造 add_effect、记 unmapped（C1 走 add_filter，filter_type 不过枚举校验）。`speed-ramp` 实为 speed 参数非 effect。
+5. **font 对齐**：`SourceHanSansCN-Bold`（font_ 连字符）→ 下划线规整 `SourceHanSansCN_Bold` 过校验。**机制通**；font_ 全库 vs Font_type 798 的整体对齐率待 C1/C3 用真 font 核。
+6. **add_effect.params 可空 `[]` 过校验**；精确 0–100 默认值 C1 接 `get_effect_meta.py`。
+
+**诚实局限**：仅 1 条 16:9 对照片（Lotus，非抖音竖屏）；font 用 fixture 非真检测；transition_duration/font_size 未标定；映射表仅覆盖 Lotus 出现的 tag 子集（全 16+12 表是 C1）。
