@@ -26,6 +26,7 @@ def eval_one(stem: str) -> dict:
     mapped_t = sum(1 for a in acts if a["action_type"] == "add_video" and "transition" in a["params"])
     unmapped = d.get("_unmapped") or []
     eff_tags = sum(len(e.get("types", [])) for e in u["effects"])
+    addtext = [a for a in acts if a["action_type"] == "add_text"]
     return {
         "stem": stem, "shots": len(u["shots"]), "add_video": by.get("add_video", 0),
         "trans_present": len(trans), "trans_cut": cut, "trans_mapped": mapped_t,
@@ -33,6 +34,8 @@ def eval_one(stem: str) -> dict:
         "eff_tags": eff_tags, "add_effect": by.get("add_effect", 0), "add_filter": by.get("add_filter", 0),
         "eff_unmapped": sum(1 for x in unmapped if x["kind"] == "effect"),
         "subs": len(u["subtitles"]), "add_text": by.get("add_text", 0),
+        "font_face": sum(1 for a in addtext if "font" in a["params"]),     # font-face 真发出
+        "font_unmapped": sum(1 for x in unmapped if x["kind"] == "font"),  # 低分/不在闭集 → 留默认
         "bgm": bool(u["bgm"]), "add_audio": by.get("add_audio", 0),
         "narrative": bool(u.get("narrative")), "n_actions": len(acts),
     }
@@ -51,7 +54,8 @@ def main():
     g = Counter()
     for r in rows:
         for k in ("shots", "add_video", "trans_present", "trans_cut", "trans_mapped", "trans_unmapped",
-                  "eff_tags", "add_effect", "eff_unmapped", "subs", "add_text", "add_audio"):
+                  "eff_tags", "add_effect", "eff_unmapped", "subs", "add_text",
+                  "font_face", "font_unmapped", "add_audio"):
             g[k] += r[k]
         g["bgm"] += int(r["bgm"]); g["narr"] += int(r["narrative"])
     n = len(rows)
@@ -64,7 +68,8 @@ def main():
     print(f"effects: {g['eff_tags']} tags → {g['add_effect']} add_effect + {g['eff_unmapped']} unmapped  "
           f"→ 落地率 {g['add_effect']}/{g['eff_tags']}")
     print(f"bgm→add_audio: {g['bgm']}/{n} have bgm, {g['add_audio']} audio actions")
-    print(f"subtitles→add_text: {g['subs']}→{g['add_text']} (font 未在样本上跑)")
+    print(f"subtitles→add_text: {g['subs']}→{g['add_text']} (1:1 {g['subs']==g['add_text']})  "
+          f"font-face 命中闭集且够分 {g['font_face']}/{g['add_text']}、其余 {g['font_unmapped']} 留默认(低分/不在闭集,诚实)")
     print(f"narrative carried(meta): {g['narr']}/{n}")
 
 

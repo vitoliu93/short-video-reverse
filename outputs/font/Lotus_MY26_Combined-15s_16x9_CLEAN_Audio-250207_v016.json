@@ -1,0 +1,1828 @@
+{
+  "video": "Lotus_MY26_Combined-15s_16x9_CLEAN_Audio-250207_v016.mp4",
+  "frame": [
+    1920,
+    1080
+  ],
+  "texts": [
+    {
+      "text": "D",
+      "appear": {
+        "first": 1.25,
+        "last": 1.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        568,
+        378,
+        185,
+        139
+      ],
+      "bbox": [
+        0.2958,
+        0.35,
+        0.0964,
+        0.1287
+      ],
+      "position": "center-big",
+      "font": {
+        "match": "ZY_Spunk",
+        "score": 0.3732,
+        "topk": [
+          {
+            "name": "ZY_Spunk",
+            "score": 0.3732
+          },
+          {
+            "name": "CC_Rapid",
+            "score": 0.344
+          },
+          {
+            "name": "CC_Chubby",
+            "score": 0.3388
+          },
+          {
+            "name": "ZY_Courage",
+            "score": 0.3371
+          },
+          {
+            "name": "ZY_Timing",
+            "score": 0.3172
+          }
+        ]
+      },
+      "color": {
+        "fill": "#75766B",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.1287,
+      "animation": "none"
+    },
+    {
+      "text": "0",
+      "appear": {
+        "first": 2.5,
+        "last": 2.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        1108,
+        599,
+        199,
+        211
+      ],
+      "bbox": [
+        0.5771,
+        0.5546,
+        0.1036,
+        0.1954
+      ],
+      "position": "center-big",
+      "font": {
+        "match": "文雅体",
+        "score": 0.4665,
+        "topk": [
+          {
+            "name": "文雅体",
+            "score": 0.4665
+          },
+          {
+            "name": "ZY_Pace",
+            "score": 0.348
+          },
+          {
+            "name": "Aa融融宋",
+            "score": 0.3159
+          },
+          {
+            "name": "ZYLiberty",
+            "score": 0.3143
+          },
+          {
+            "name": "Cormorant_Garamond_Medium",
+            "score": 0.3119
+          }
+        ]
+      },
+      "color": {
+        "fill": "#402620",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.1954,
+      "animation": "none"
+    },
+    {
+      "text": "J",
+      "appear": {
+        "first": 3.75,
+        "last": 3.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        522,
+        281,
+        51,
+        67
+      ],
+      "bbox": [
+        0.2719,
+        0.2602,
+        0.0266,
+        0.062
+      ],
+      "position": "top-left",
+      "font": {
+        "match": "ZY_Coruscant",
+        "score": 0.2718,
+        "topk": [
+          {
+            "name": "ZY_Coruscant",
+            "score": 0.2718
+          },
+          {
+            "name": "承英体",
+            "score": 0.2436
+          },
+          {
+            "name": "Rubik",
+            "score": 0.2239
+          },
+          {
+            "name": "RedHatDisplay-Regular",
+            "score": 0.2222
+          },
+          {
+            "name": "ZY_Hope",
+            "score": 0.2143
+          }
+        ]
+      },
+      "color": {
+        "fill": "#2E2B2A",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.062,
+      "animation": "none"
+    },
+    {
+      "text": "LOTUSS",
+      "appear": {
+        "first": 5.25,
+        "last": 13.75,
+        "n_obs": 13
+      },
+      "bbox_px": [
+        924,
+        455,
+        58,
+        17
+      ],
+      "bbox": [
+        0.4813,
+        0.4213,
+        0.0302,
+        0.0157
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.3614,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.3614
+          },
+          {
+            "name": "ZY_Courage",
+            "score": 0.2784
+          },
+          {
+            "name": "ZY_Spunk",
+            "score": 0.2775
+          },
+          {
+            "name": "wuxiati",
+            "score": 0.2771
+          },
+          {
+            "name": "wuxiati_font",
+            "score": 0.2771
+          }
+        ]
+      },
+      "color": {
+        "fill": "#8C9AA0",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0815,
+      "animation": "none"
+    },
+    {
+      "text": "5",
+      "appear": {
+        "first": 5.5,
+        "last": 5.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        1079,
+        417,
+        109,
+        100
+      ],
+      "bbox": [
+        0.562,
+        0.3861,
+        0.0568,
+        0.0926
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Pace",
+        "score": 0.2385,
+        "topk": [
+          {
+            "name": "ZY_Pace",
+            "score": 0.2385
+          },
+          {
+            "name": "ZY_Diligent",
+            "score": 0.234
+          },
+          {
+            "name": "Cormorant_Garamond_Medium",
+            "score": 0.2247
+          },
+          {
+            "name": "Bailleul-Bold",
+            "score": 0.2246
+          },
+          {
+            "name": "suxie",
+            "score": 0.2223
+          }
+        ]
+      },
+      "color": {
+        "fill": "#6C6842",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "thin",
+      "size_rel": 0.0926,
+      "animation": "none"
+    },
+    {
+      "text": "61",
+      "appear": {
+        "first": 5.75,
+        "last": 6.0,
+        "n_obs": 2
+      },
+      "bbox_px": [
+        1135,
+        408,
+        78,
+        72
+      ],
+      "bbox": [
+        0.5911,
+        0.3778,
+        0.0406,
+        0.0667
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Panacea",
+        "score": 0.312,
+        "topk": [
+          {
+            "name": "ZY_Panacea",
+            "score": 0.312
+          },
+          {
+            "name": "HeptaSlab-ExtraBold",
+            "score": 0.2996
+          },
+          {
+            "name": "Clostan",
+            "score": 0.2983
+          },
+          {
+            "name": "ZY_Balloonbillow",
+            "score": 0.2982
+          },
+          {
+            "name": "BowlbyOne-Regular",
+            "score": 0.2955
+          }
+        ]
+      },
+      "color": {
+        "fill": "#121104",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.0715,
+      "animation": "none"
+    },
+    {
+      "text": "二",
+      "appear": {
+        "first": 6.25,
+        "last": 6.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        983,
+        448,
+        185,
+        303
+      ],
+      "bbox": [
+        0.512,
+        0.4148,
+        0.0964,
+        0.2806
+      ],
+      "position": "center-big",
+      "font": {
+        "match": "字由油画体",
+        "score": 0.249,
+        "topk": [
+          {
+            "name": "字由油画体",
+            "score": 0.249
+          },
+          {
+            "name": "字由油画体_font",
+            "score": 0.249
+          },
+          {
+            "name": "字由逸致拼音体",
+            "score": 0.23
+          },
+          {
+            "name": "字由逸致拼音体_font",
+            "score": 0.23
+          },
+          {
+            "name": "字由虎啸拼音体",
+            "score": 0.2224
+          }
+        ]
+      },
+      "color": {
+        "fill": "#F7F6F5",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#B1C2C9",
+          "width_px": 5
+        },
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.2806,
+      "animation": "none"
+    },
+    {
+      "text": "9O0",
+      "appear": {
+        "first": 6.5,
+        "last": 6.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        709,
+        649,
+        39,
+        23
+      ],
+      "bbox": [
+        0.3693,
+        0.6009,
+        0.0203,
+        0.0213
+      ],
+      "position": "center",
+      "font": {
+        "match": "仓耳视频体",
+        "score": 0.2879,
+        "topk": [
+          {
+            "name": "仓耳视频体",
+            "score": 0.2879
+          },
+          {
+            "name": "Anson",
+            "score": 0.2736
+          },
+          {
+            "name": "ZY_Innocent",
+            "score": 0.2707
+          },
+          {
+            "name": "仓耳酷黑",
+            "score": 0.2602
+          },
+          {
+            "name": "ZYLAA_Flechazo",
+            "score": 0.2592
+          }
+        ]
+      },
+      "color": {
+        "fill": "#494222",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0213,
+      "animation": "none"
+    },
+    {
+      "text": "EMEYA",
+      "appear": {
+        "first": 6.5,
+        "last": 10.5,
+        "n_obs": 7
+      },
+      "bbox_px": [
+        856,
+        572,
+        191,
+        30
+      ],
+      "bbox": [
+        0.4458,
+        0.5296,
+        0.0995,
+        0.0278
+      ],
+      "position": "center-big",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.3373,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.3373
+          },
+          {
+            "name": "JYruisong",
+            "score": 0.2574
+          },
+          {
+            "name": "文雅体",
+            "score": 0.2396
+          },
+          {
+            "name": "CC_Chubby",
+            "score": 0.2291
+          },
+          {
+            "name": "suiyuanlishu",
+            "score": 0.208
+          }
+        ]
+      },
+      "color": {
+        "fill": "#6F7578",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.1208,
+      "animation": "none"
+    },
+    {
+      "text": "MAM",
+      "appear": {
+        "first": 6.5,
+        "last": 6.75,
+        "n_obs": 2
+      },
+      "bbox_px": [
+        183,
+        950,
+        179,
+        127
+      ],
+      "bbox": [
+        0.0953,
+        0.8796,
+        0.0932,
+        0.1176
+      ],
+      "position": "bottom-left",
+      "font": {
+        "match": "字由虎啸拼音体",
+        "score": 0.4217,
+        "topk": [
+          {
+            "name": "字由虎啸拼音体",
+            "score": 0.4217
+          },
+          {
+            "name": "字由虎啸拼音体_font",
+            "score": 0.4217
+          },
+          {
+            "name": "字由逸致拼音体",
+            "score": 0.4217
+          },
+          {
+            "name": "字由逸致拼音体_font",
+            "score": 0.4217
+          },
+          {
+            "name": "jinkai",
+            "score": 0.3866
+          }
+        ]
+      },
+      "color": {
+        "fill": "#A6A29F",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.1167,
+      "animation": "none"
+    },
+    {
+      "text": "EMEVA",
+      "appear": {
+        "first": 7.0,
+        "last": 12.75,
+        "n_obs": 4
+      },
+      "bbox_px": [
+        849,
+        679,
+        202,
+        33
+      ],
+      "bbox": [
+        0.4422,
+        0.6287,
+        0.1052,
+        0.0306
+      ],
+      "position": "bottom-center",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.3308,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.3308
+          },
+          {
+            "name": "BREXTER",
+            "score": 0.231
+          },
+          {
+            "name": "CC_Chubby",
+            "score": 0.2132
+          },
+          {
+            "name": "JYruisong",
+            "score": 0.2066
+          },
+          {
+            "name": "ZY_Azure",
+            "score": 0.192
+          }
+        ]
+      },
+      "color": {
+        "fill": "#61676A",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0625,
+      "animation": "none"
+    },
+    {
+      "text": "900",
+      "appear": {
+        "first": 7.0,
+        "last": 7.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        737,
+        644,
+        48,
+        25
+      ],
+      "bbox": [
+        0.3839,
+        0.5963,
+        0.025,
+        0.0231
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.2645,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.2645
+          },
+          {
+            "name": "ZY_Courage",
+            "score": 0.2357
+          },
+          {
+            "name": "BREXTER",
+            "score": 0.2258
+          },
+          {
+            "name": "ZY_Spunk",
+            "score": 0.2133
+          },
+          {
+            "name": "Aa封神榜书",
+            "score": 0.1975
+          }
+        ]
+      },
+      "color": {
+        "fill": "#464232",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0231,
+      "animation": "none"
+    },
+    {
+      "text": "MEW",
+      "appear": {
+        "first": 7.0,
+        "last": 7.25,
+        "n_obs": 2
+      },
+      "bbox_px": [
+        149,
+        936,
+        201,
+        128
+      ],
+      "bbox": [
+        0.0776,
+        0.8667,
+        0.1047,
+        0.1185
+      ],
+      "position": "bottom-left",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.1787,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.1787
+          },
+          {
+            "name": "ZY_Loose",
+            "score": 0.1451
+          },
+          {
+            "name": "BREXTER",
+            "score": 0.1433
+          },
+          {
+            "name": "JYruisong",
+            "score": 0.1427
+          },
+          {
+            "name": "Love",
+            "score": 0.132
+          }
+        ]
+      },
+      "color": {
+        "fill": "#ACAAAA",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.1192,
+      "animation": "none"
+    },
+    {
+      "text": "AMEVA",
+      "appear": {
+        "first": 7.5,
+        "last": 7.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        136,
+        929,
+        211,
+        128
+      ],
+      "bbox": [
+        0.0708,
+        0.8602,
+        0.1099,
+        0.1185
+      ],
+      "position": "bottom-left",
+      "font": {
+        "match": "BREXTER",
+        "score": 0.4575,
+        "topk": [
+          {
+            "name": "BREXTER",
+            "score": 0.4575
+          },
+          {
+            "name": "lieyanti",
+            "score": 0.4574
+          },
+          {
+            "name": "lieyanti_font",
+            "score": 0.4574
+          },
+          {
+            "name": "字由龙飞行书",
+            "score": 0.4491
+          },
+          {
+            "name": "字由龙飞行书_font",
+            "score": 0.4491
+          }
+        ]
+      },
+      "color": {
+        "fill": "#ABAEB1",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.1185,
+      "animation": "none"
+    },
+    {
+      "text": "Loru",
+      "appear": {
+        "first": 7.75,
+        "last": 7.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        809,
+        584,
+        152,
+        111
+      ],
+      "bbox": [
+        0.4214,
+        0.5407,
+        0.0792,
+        0.1028
+      ],
+      "position": "center-big",
+      "font": {
+        "match": "オーバーラップ",
+        "score": 0.4154,
+        "topk": [
+          {
+            "name": "オーバーラップ",
+            "score": 0.4154
+          },
+          {
+            "name": "ZY_Coconut_Regular",
+            "score": 0.397
+          },
+          {
+            "name": "ZY_Loose",
+            "score": 0.3867
+          },
+          {
+            "name": "ZYENA Autism",
+            "score": 0.3796
+          },
+          {
+            "name": "CC_Piston",
+            "score": 0.3745
+          }
+        ]
+      },
+      "color": {
+        "fill": "#090506",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#46505A",
+          "width_px": 2
+        },
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.1028,
+      "animation": "none"
+    },
+    {
+      "text": "SLETFI点",
+      "appear": {
+        "first": 8.0,
+        "last": 8.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        791,
+        599,
+        170,
+        45
+      ],
+      "bbox": [
+        0.412,
+        0.5546,
+        0.0885,
+        0.0417
+      ],
+      "position": "center",
+      "font": {
+        "match": "仓耳视频体",
+        "score": 0.1961,
+        "topk": [
+          {
+            "name": "仓耳视频体",
+            "score": 0.1961
+          },
+          {
+            "name": "Aa漆书",
+            "score": 0.1954
+          },
+          {
+            "name": "未来黑",
+            "score": 0.1947
+          },
+          {
+            "name": "Aa方块黑",
+            "score": 0.1903
+          },
+          {
+            "name": "ZhuLiRen",
+            "score": 0.1891
+          }
+        ]
+      },
+      "color": {
+        "fill": "#CCD997",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#A4ACAA",
+          "width_px": 2
+        },
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0417,
+      "animation": "none"
+    },
+    {
+      "text": "三L三TRE",
+      "appear": {
+        "first": 8.0,
+        "last": 8.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        489,
+        888,
+        166,
+        44
+      ],
+      "bbox": [
+        0.2547,
+        0.8222,
+        0.0865,
+        0.0407
+      ],
+      "position": "bottom-left",
+      "font": {
+        "match": "无界黑",
+        "score": 0.3083,
+        "topk": [
+          {
+            "name": "无界黑",
+            "score": 0.3083
+          },
+          {
+            "name": "wuxiati",
+            "score": 0.3077
+          },
+          {
+            "name": "wuxiati_font",
+            "score": 0.3077
+          },
+          {
+            "name": "テ_ラコ_シック",
+            "score": 0.3057
+          },
+          {
+            "name": "Lark",
+            "score": 0.297
+          }
+        ]
+      },
+      "color": {
+        "fill": "#99A2A2",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0407,
+      "animation": "none"
+    },
+    {
+      "text": "ELETRE",
+      "appear": {
+        "first": 9.0,
+        "last": 13.25,
+        "n_obs": 2
+      },
+      "bbox_px": [
+        1001,
+        637,
+        77,
+        24
+      ],
+      "bbox": [
+        0.5214,
+        0.5898,
+        0.0401,
+        0.0222
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.3667,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.3667
+          },
+          {
+            "name": "Candice",
+            "score": 0.2933
+          },
+          {
+            "name": "BREXTER",
+            "score": 0.2656
+          },
+          {
+            "name": "文雅体",
+            "score": 0.2474
+          },
+          {
+            "name": "Facon",
+            "score": 0.2383
+          }
+        ]
+      },
+      "color": {
+        "fill": "#727578",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0403,
+      "animation": "none"
+    },
+    {
+      "text": "ELETFE",
+      "appear": {
+        "first": 9.25,
+        "last": 9.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        738,
+        631,
+        220,
+        48
+      ],
+      "bbox": [
+        0.3844,
+        0.5843,
+        0.1146,
+        0.0444
+      ],
+      "position": "center",
+      "font": {
+        "match": "FuSuShouXieLi",
+        "score": 0.2103,
+        "topk": [
+          {
+            "name": "FuSuShouXieLi",
+            "score": 0.2103
+          },
+          {
+            "name": "FuSuShouXieLi_font",
+            "score": 0.2103
+          },
+          {
+            "name": "三极泼墨体",
+            "score": 0.1871
+          },
+          {
+            "name": "ZY_Loyalty",
+            "score": 0.1857
+          },
+          {
+            "name": "励字逆反差圆舞简_超级黑",
+            "score": 0.1848
+          }
+        ]
+      },
+      "color": {
+        "fill": "#C8D396",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#9FA7A6",
+          "width_px": 2
+        },
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0444,
+      "animation": "none"
+    },
+    {
+      "text": "FETETEETTTTS",
+      "appear": {
+        "first": 9.75,
+        "last": 9.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        1369,
+        227,
+        184,
+        86
+      ],
+      "bbox": [
+        0.713,
+        0.2102,
+        0.0958,
+        0.0796
+      ],
+      "position": "top-right",
+      "font": {
+        "match": "CC_Fluffy",
+        "score": 0.416,
+        "topk": [
+          {
+            "name": "CC_Fluffy",
+            "score": 0.416
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.4065
+          },
+          {
+            "name": "オーバーラップ",
+            "score": 0.3905
+          },
+          {
+            "name": "Aa锐甲黑",
+            "score": 0.3818
+          },
+          {
+            "name": "CC_Moderno",
+            "score": 0.3811
+          }
+        ]
+      },
+      "color": {
+        "fill": "#B0B4B4",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.0796,
+      "animation": "none"
+    },
+    {
+      "text": "TETEETTTTT馆心",
+      "appear": {
+        "first": 10.0,
+        "last": 10.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        1378,
+        257,
+        188,
+        90
+      ],
+      "bbox": [
+        0.7177,
+        0.238,
+        0.0979,
+        0.0833
+      ],
+      "position": "top-right",
+      "font": {
+        "match": "仓耳视频体",
+        "score": 0.3382,
+        "topk": [
+          {
+            "name": "仓耳视频体",
+            "score": 0.3382
+          },
+          {
+            "name": "字由像素之城",
+            "score": 0.2742
+          },
+          {
+            "name": "字由像素之城_font",
+            "score": 0.2742
+          },
+          {
+            "name": "momangti",
+            "score": 0.273
+          },
+          {
+            "name": "momangti_font",
+            "score": 0.273
+          }
+        ]
+      },
+      "color": {
+        "fill": "#252F31",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0833,
+      "animation": "none"
+    },
+    {
+      "text": "TETETTEETEETEEN",
+      "appear": {
+        "first": 10.25,
+        "last": 10.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        1337,
+        364,
+        241,
+        88
+      ],
+      "bbox": [
+        0.6964,
+        0.337,
+        0.1255,
+        0.0815
+      ],
+      "position": "center-right",
+      "font": {
+        "match": "ZY_Coconut_Regular",
+        "score": 0.3241,
+        "topk": [
+          {
+            "name": "ZY_Coconut_Regular",
+            "score": 0.3241
+          },
+          {
+            "name": "ZY_Harmony",
+            "score": 0.313
+          },
+          {
+            "name": "Anton",
+            "score": 0.302
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.2913
+          },
+          {
+            "name": "ZY_Loose",
+            "score": 0.2901
+          }
+        ]
+      },
+      "color": {
+        "fill": "#ADB8BB",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "thin",
+      "size_rel": 0.0815,
+      "animation": "none"
+    },
+    {
+      "text": "三MEYA",
+      "appear": {
+        "first": 10.25,
+        "last": 10.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        853,
+        604,
+        198,
+        33
+      ],
+      "bbox": [
+        0.4443,
+        0.5593,
+        0.1031,
+        0.0306
+      ],
+      "position": "center",
+      "font": {
+        "match": "suiyuanlishu",
+        "score": 0.2805,
+        "topk": [
+          {
+            "name": "suiyuanlishu",
+            "score": 0.2805
+          },
+          {
+            "name": "suiyuanlishu_font",
+            "score": 0.2805
+          },
+          {
+            "name": "JYruisong",
+            "score": 0.2784
+          },
+          {
+            "name": "文雅体",
+            "score": 0.2678
+          },
+          {
+            "name": "仓耳趣黑",
+            "score": 0.2264
+          }
+        ]
+      },
+      "color": {
+        "fill": "#70767A",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0306,
+      "animation": "none"
+    },
+    {
+      "text": "TEETTTETTETTENN",
+      "appear": {
+        "first": 10.5,
+        "last": 10.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        1345,
+        393,
+        244,
+        91
+      ],
+      "bbox": [
+        0.7005,
+        0.3639,
+        0.1271,
+        0.0843
+      ],
+      "position": "center-right",
+      "font": {
+        "match": "Anton",
+        "score": 0.2965,
+        "topk": [
+          {
+            "name": "Anton",
+            "score": 0.2965
+          },
+          {
+            "name": "オーバーラップ",
+            "score": 0.2806
+          },
+          {
+            "name": "ZY_Loose",
+            "score": 0.2748
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.2716
+          },
+          {
+            "name": "ZY_Trend",
+            "score": 0.2532
+          }
+        ]
+      },
+      "color": {
+        "fill": "#A7B1B6",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#323A3E",
+          "width_px": 2
+        },
+        "shadow": false
+      },
+      "weight": "thin",
+      "size_rel": 0.0843,
+      "animation": "none"
+    },
+    {
+      "text": "LDTUS",
+      "appear": {
+        "first": 10.75,
+        "last": 10.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        917,
+        506,
+        74,
+        37
+      ],
+      "bbox": [
+        0.4776,
+        0.4685,
+        0.0385,
+        0.0343
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Loose",
+        "score": 0.4181,
+        "topk": [
+          {
+            "name": "ZY_Loose",
+            "score": 0.4181
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.4143
+          },
+          {
+            "name": "Anton",
+            "score": 0.3947
+          },
+          {
+            "name": "オーバーラップ",
+            "score": 0.3899
+          },
+          {
+            "name": "Calfine",
+            "score": 0.3862
+          }
+        ]
+      },
+      "color": {
+        "fill": "#283237",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0343,
+      "animation": "none"
+    },
+    {
+      "text": "EMB",
+      "appear": {
+        "first": 12.25,
+        "last": 12.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        925,
+        575,
+        47,
+        26
+      ],
+      "bbox": [
+        0.4818,
+        0.5324,
+        0.0245,
+        0.0241
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Loose",
+        "score": 0.365,
+        "topk": [
+          {
+            "name": "ZY_Loose",
+            "score": 0.365
+          },
+          {
+            "name": "ZY_Rainbow",
+            "score": 0.3452
+          },
+          {
+            "name": "ZYENA Autism",
+            "score": 0.3276
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.3275
+          },
+          {
+            "name": "Love",
+            "score": 0.3251
+          }
+        ]
+      },
+      "color": {
+        "fill": "#74736F",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#565651",
+          "width_px": 2
+        },
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0241,
+      "animation": "none"
+    },
+    {
+      "text": "路特斯",
+      "appear": {
+        "first": 12.25,
+        "last": 12.5,
+        "n_obs": 2
+      },
+      "bbox_px": [
+        441,
+        587,
+        113,
+        41
+      ],
+      "bbox": [
+        0.2297,
+        0.5435,
+        0.0589,
+        0.038
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "字由茉莉体",
+        "score": 0.5263,
+        "topk": [
+          {
+            "name": "字由茉莉体",
+            "score": 0.5263
+          },
+          {
+            "name": "字由茉莉体_font",
+            "score": 0.5263
+          },
+          {
+            "name": "文雅体",
+            "score": 0.4944
+          },
+          {
+            "name": "无界黑",
+            "score": 0.4942
+          },
+          {
+            "name": "三极力量体简_粗",
+            "score": 0.4928
+          }
+        ]
+      },
+      "color": {
+        "fill": "#464542",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.038,
+      "animation": "none"
+    },
+    {
+      "text": "三MEVA",
+      "appear": {
+        "first": 12.25,
+        "last": 12.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        678,
+        654,
+        148,
+        41
+      ],
+      "bbox": [
+        0.3531,
+        0.6056,
+        0.0771,
+        0.038
+      ],
+      "position": "center",
+      "font": {
+        "match": "文雅体",
+        "score": 0.3684,
+        "topk": [
+          {
+            "name": "文雅体",
+            "score": 0.3684
+          },
+          {
+            "name": "Lark",
+            "score": 0.3502
+          },
+          {
+            "name": "字由茉莉体",
+            "score": 0.3398
+          },
+          {
+            "name": "字由茉莉体_font",
+            "score": 0.3398
+          },
+          {
+            "name": "无界黑",
+            "score": 0.3261
+          }
+        ]
+      },
+      "color": {
+        "fill": "#86878A",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.038,
+      "animation": "none"
+    },
+    {
+      "text": "ALETRA",
+      "appear": {
+        "first": 12.75,
+        "last": 12.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        988,
+        625,
+        79,
+        27
+      ],
+      "bbox": [
+        0.5146,
+        0.5787,
+        0.0411,
+        0.025
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.4212,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.4212
+          },
+          {
+            "name": "ZY_Courage",
+            "score": 0.4037
+          },
+          {
+            "name": "CC_Chubby",
+            "score": 0.3833
+          },
+          {
+            "name": "CC_Rapid",
+            "score": 0.3702
+          },
+          {
+            "name": "CC-Santa",
+            "score": 0.3591
+          }
+        ]
+      },
+      "color": {
+        "fill": "#5A5B5F",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.025,
+      "animation": "none"
+    },
+    {
+      "text": "LOTUS&",
+      "appear": {
+        "first": 13.0,
+        "last": 13.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        955,
+        143,
+        335,
+        92
+      ],
+      "bbox": [
+        0.4974,
+        0.1324,
+        0.1745,
+        0.0852
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "楚辰体",
+        "score": 0.6605,
+        "topk": [
+          {
+            "name": "楚辰体",
+            "score": 0.6605
+          },
+          {
+            "name": "Aa厚底黑",
+            "score": 0.6535
+          },
+          {
+            "name": "ZY_Steady",
+            "score": 0.6515
+          },
+          {
+            "name": "mengxinti",
+            "score": 0.6482
+          },
+          {
+            "name": "mengxinti_font",
+            "score": 0.6482
+          }
+        ]
+      },
+      "color": {
+        "fill": "#D7DEE4",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#A8ACB0",
+          "width_px": 2
+        },
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0852,
+      "animation": "none"
+    },
+    {
+      "text": "LMEVA",
+      "appear": {
+        "first": 13.0,
+        "last": 13.5,
+        "n_obs": 3
+      },
+      "bbox_px": [
+        597,
+        665,
+        154,
+        45
+      ],
+      "bbox": [
+        0.3109,
+        0.6157,
+        0.0802,
+        0.0417
+      ],
+      "position": "center",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.4713,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.4713
+          },
+          {
+            "name": "ZY_Courage",
+            "score": 0.4108
+          },
+          {
+            "name": "CC_Chubby",
+            "score": 0.4046
+          },
+          {
+            "name": "CC_Rapid",
+            "score": 0.378
+          },
+          {
+            "name": "ZY_Spunk",
+            "score": 0.3737
+          }
+        ]
+      },
+      "color": {
+        "fill": "#494C4F",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0431,
+      "animation": "none"
+    }
+  ]
+}

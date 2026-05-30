@@ -50,6 +50,14 @@ FONT_ANIM_TO_JY: dict[str, Optional[str]] = {
     "none": None, "typewriter": "打字机_I", "scroll": "向上滑动", "pop": "弹入",
 }
 
+# 合法剪映字体名闭集(add_text.font),从 icccut validate_params 快照而来(798 个,scripts/compose_valid_fonts.txt)。
+# font_ 当前字体库是 hash 命名的 TTF(<hash>_font.ttf),match 名是 hash → 不在此集 → 不发 font(留默认字面)+ 记 _unmapped。
+# 设计为通用闸:未来若字体库带真实剪映字体名,命中即采用。
+_FONTS_FILE = ROOT / "scripts" / "compose_valid_fonts.txt"
+VALID_FONTS: frozenset[str] = frozenset(
+    ln.strip() for ln in _FONTS_FILE.read_text(encoding="utf-8").splitlines() if ln.strip()
+) if _FONTS_FILE.exists() else frozenset()
+
 # 轨道层级约定(draft-manager §轨道)
 TRACK = {
     "video": ("video", 0), "bgm": ("audio_bgm", 1000), "voice": ("audio_main", 1),
@@ -58,6 +66,9 @@ TRACK = {
 }
 
 CJK_W_FACTOR = 5.2          # icccut: CJK 字宽 ≈ 5.2*font_size(px) → font_size ≈ 字高px/CJK_W_FACTOR
+FONT_MATCH_MIN = 0.6        # 字体匹配 score 下限才发 font-face。真实抖音分本就低(渲染器 gap,剪映≠Pillow;font spec §F3 真实中位 0.53),
+                            # 低分匹配大概率错 → 宁缺勿错(Gold Case 要对);0.6 取「高于真实中位、足够独特」。下限以下记 _unmapped 留默认字面。
+MIN_SUB_DUR = 0.5           # 字幕最短时长(s)。单帧 OCR(first==last)→ end==start,icccut 拒(end>start);且 <0.5s 也读不了 → 下限兜底。
 TRANS_ATTACH_TOL = 0.35     # |t_center − shot.end| ≤ 此值 → 转场挂该镜头 out 点。宽转场(如 glitch)的 center 可偏离切点约半个转场时长,0.25 太紧会漏挂,放宽到 0.35(< DEFAULT_TRANS_DUR/2 量级)。C3 修
 DEFAULT_TRANS_DUR = 0.5     # 默认转场时长(s);gap 是 TransNet 帧级边界非视觉时长
 
@@ -202,7 +213,8 @@ class DraftBuilder:
 
     def add_text_event(self, ev: dict, frame_h: int) -> dict:
         """font_ texts[] 一条 → add_text(坐标/颜色/描边/动画换算)。"""
-        t0, t1 = round(ev["appear"]["first"], 3), round(ev["appear"]["last"], 3)
+        t0 = round(ev["appear"]["first"], 3)
+        t1 = round(max(ev["appear"]["last"], ev["appear"]["first"] + MIN_SUB_DUR), 3)  # 保 end>start + 可读下限
         base_n, base_i = TRACK["subtitle"]
         tname, tidx = self._alloc_lane("subtitle", base_n, base_i, t0, t1)   # 同时多条字幕→分轨
         tx, ty = bbox_to_transform(ev["bbox"])
@@ -210,9 +222,15 @@ class DraftBuilder:
             "text": ev["text"], "start": t0, "end": t1,
             "transform_x": tx, "transform_y": ty, "track_name": tname, "track_render_index": tidx,
         }
-        font = norm_font((ev.get("font") or {}).get("match"))
-        if font:
-            p["font"] = font            # 未命中 Font_type 时校验会拒 → 由 compose_validate 兜
+        match = (ev.get("font") or {}).get("match")
+        score = (ev.get("font") or {}).get("score") or 0.0
+        font = norm_font(match)
+        if font and font in VALID_FONTS and score >= FONT_MATCH_MIN:
+            p["font"] = font            # 命中剪映 Font_type 闭集 且 分够高 才发
+        elif match:                     # 识别到字体但不可信发 → 诚实记 unmapped(留默认字面),区分原因
+            reason = ("low-confidence match (score<%.2f, renderer-gap)" % FONT_MATCH_MIN
+                      if font in VALID_FONTS else "font name not in 剪映 Font_type closed-set")
+            self._note_unmapped("font", f"{match}@{score:.3f}", reason, t0)
         col = (ev.get("color") or {}).get("fill")
         if col:
             p["font_color"] = col

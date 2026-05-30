@@ -1,0 +1,1172 @@
+{
+  "video": "douyin_hair_17s.mp4",
+  "frame": [
+    1080,
+    1920
+  ],
+  "texts": [
+    {
+      "text": "POV：剪短发只有0次和无数次",
+      "appear": {
+        "first": 0.0,
+        "last": 1.0,
+        "n_obs": 5
+      },
+      "bbox_px": [
+        163,
+        230,
+        751,
+        52
+      ],
+      "bbox": [
+        0.1509,
+        0.1198,
+        0.6954,
+        0.0271
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "ResourceHanRoundedCN_Bold",
+        "score": 0.2036,
+        "topk": [
+          {
+            "name": "ResourceHanRoundedCN_Bold",
+            "score": 0.2036
+          },
+          {
+            "name": "ResourceHanRoundedCN_Md",
+            "score": 0.1984
+          },
+          {
+            "name": "SourceHanSansCN_Bold",
+            "score": 0.1962
+          },
+          {
+            "name": "SourceHanSansCN_Medium",
+            "score": 0.1953
+          },
+          {
+            "name": "Aa封神榜书",
+            "score": 0.1947
+          }
+        ]
+      },
+      "color": {
+        "fill": "#000000",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0286,
+      "animation": "none"
+    },
+    {
+      "text": "那么··开赌吧！",
+      "appear": {
+        "first": 1.25,
+        "last": 2.25,
+        "n_obs": 5
+      },
+      "bbox_px": [
+        373,
+        228,
+        356,
+        53
+      ],
+      "bbox": [
+        0.3454,
+        0.1187,
+        0.3296,
+        0.0276
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "利飞体",
+        "score": 0.2061,
+        "topk": [
+          {
+            "name": "利飞体",
+            "score": 0.2061
+          },
+          {
+            "name": "优设好身体",
+            "score": 0.2032
+          },
+          {
+            "name": "Aa厚底黑",
+            "score": 0.2
+          },
+          {
+            "name": "Aa新怪谈",
+            "score": 0.1999
+          },
+          {
+            "name": "字制区喜脉体",
+            "score": 0.1991
+          }
+        ]
+      },
+      "color": {
+        "fill": "#000000",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0276,
+      "animation": "none"
+    },
+    {
+      "text": "一",
+      "appear": {
+        "first": 3.75,
+        "last": 3.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        355,
+        643,
+        117,
+        87
+      ],
+      "bbox": [
+        0.3287,
+        0.3349,
+        0.1083,
+        0.0453
+      ],
+      "position": "center",
+      "font": {
+        "match": "字由虎啸拼音体",
+        "score": 0.1643,
+        "topk": [
+          {
+            "name": "字由虎啸拼音体",
+            "score": 0.1643
+          },
+          {
+            "name": "字由虎啸拼音体_font",
+            "score": 0.1643
+          },
+          {
+            "name": "字由逸致拼音体",
+            "score": 0.1332
+          },
+          {
+            "name": "字由逸致拼音体_font",
+            "score": 0.1332
+          },
+          {
+            "name": "字由逸致体 简",
+            "score": 0.0673
+          }
+        ]
+      },
+      "color": {
+        "fill": "#472724",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.0453,
+      "animation": "none"
+    },
+    {
+      "text": "二",
+      "appear": {
+        "first": 5.0,
+        "last": 6.75,
+        "n_obs": 3
+      },
+      "bbox_px": [
+        486,
+        874,
+        146,
+        162
+      ],
+      "bbox": [
+        0.45,
+        0.4552,
+        0.1352,
+        0.0844
+      ],
+      "position": "center-big",
+      "font": {
+        "match": "HYNuoMiTuanW",
+        "score": 0.673,
+        "topk": [
+          {
+            "name": "HYNuoMiTuanW",
+            "score": 0.673
+          },
+          {
+            "name": "Aa百物语",
+            "score": 0.6565
+          },
+          {
+            "name": "三极欢乐体",
+            "score": 0.6154
+          },
+          {
+            "name": "JYkehua",
+            "score": 0.6096
+          },
+          {
+            "name": "JYkehua_font",
+            "score": 0.6096
+          }
+        ]
+      },
+      "color": {
+        "fill": "#A44E51",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.1112,
+      "animation": "none"
+    },
+    {
+      "text": "O",
+      "appear": {
+        "first": 5.0,
+        "last": 5.25,
+        "n_obs": 2
+      },
+      "bbox_px": [
+        870,
+        1215,
+        202,
+        257
+      ],
+      "bbox": [
+        0.8056,
+        0.6328,
+        0.187,
+        0.1339
+      ],
+      "position": "bottom-right",
+      "font": {
+        "match": "Arvo",
+        "score": 0.6624,
+        "topk": [
+          {
+            "name": "Arvo",
+            "score": 0.6624
+          },
+          {
+            "name": "DuruSans-Regular",
+            "score": 0.6532
+          },
+          {
+            "name": "WorkSans_Regular",
+            "score": 0.6492
+          },
+          {
+            "name": "Ubuntu-Light",
+            "score": 0.6468
+          },
+          {
+            "name": "三极萌喵简体",
+            "score": 0.6468
+          }
+        ]
+      },
+      "color": {
+        "fill": "#E9D569",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.1271,
+      "animation": "none"
+    },
+    {
+      "text": "®",
+      "appear": {
+        "first": 8.25,
+        "last": 14.75,
+        "n_obs": 3
+      },
+      "bbox_px": [
+        480,
+        481,
+        38,
+        30
+      ],
+      "bbox": [
+        0.4444,
+        0.2505,
+        0.0352,
+        0.0156
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "BREXTER",
+        "score": 0.3377,
+        "topk": [
+          {
+            "name": "BREXTER",
+            "score": 0.3377
+          },
+          {
+            "name": "字由茉莉体",
+            "score": 0.3261
+          },
+          {
+            "name": "字由茉莉体_font",
+            "score": 0.3261
+          },
+          {
+            "name": "字由萧墨",
+            "score": 0.3155
+          },
+          {
+            "name": "字由萧墨_font",
+            "score": 0.3155
+          }
+        ]
+      },
+      "color": {
+        "fill": "#280C0A",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0242,
+      "animation": "none"
+    },
+    {
+      "text": "V",
+      "appear": {
+        "first": 9.25,
+        "last": 9.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        851,
+        1405,
+        139,
+        127
+      ],
+      "bbox": [
+        0.788,
+        0.7318,
+        0.1287,
+        0.0661
+      ],
+      "position": "bottom-right",
+      "font": {
+        "match": "ZY_Timing",
+        "score": 0.4305,
+        "topk": [
+          {
+            "name": "ZY_Timing",
+            "score": 0.4305
+          },
+          {
+            "name": "ZY_Courage",
+            "score": 0.405
+          },
+          {
+            "name": "JYmili",
+            "score": 0.391
+          },
+          {
+            "name": "JYmili_font",
+            "score": 0.391
+          },
+          {
+            "name": "BREXTER",
+            "score": 0.3837
+          }
+        ]
+      },
+      "color": {
+        "fill": "#F5F4EE",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0661,
+      "animation": "none"
+    },
+    {
+      "text": "m",
+      "appear": {
+        "first": 9.75,
+        "last": 9.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        40,
+        877,
+        198,
+        281
+      ],
+      "bbox": [
+        0.037,
+        0.4568,
+        0.1833,
+        0.1464
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "オーバーラップ",
+        "score": 0.4249,
+        "topk": [
+          {
+            "name": "オーバーラップ",
+            "score": 0.4249
+          },
+          {
+            "name": "メモ",
+            "score": 0.3647
+          },
+          {
+            "name": "BebasNeue-Regular",
+            "score": 0.3369
+          },
+          {
+            "name": "ZY_Fervent",
+            "score": 0.317
+          },
+          {
+            "name": "ZY_Vigour",
+            "score": 0.3129
+          }
+        ]
+      },
+      "color": {
+        "fill": "#DDA47D",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#B8806B",
+          "width_px": 6
+        },
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.1464,
+      "animation": "none"
+    },
+    {
+      "text": "S",
+      "appear": {
+        "first": 10.75,
+        "last": 10.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        35,
+        459,
+        110,
+        106
+      ],
+      "bbox": [
+        0.0324,
+        0.2391,
+        0.1019,
+        0.0552
+      ],
+      "position": "top-left",
+      "font": {
+        "match": "jpbrp00h",
+        "score": 0.2496,
+        "topk": [
+          {
+            "name": "jpbrp00h",
+            "score": 0.2496
+          },
+          {
+            "name": "ZY_Courage",
+            "score": 0.2493
+          },
+          {
+            "name": "Marker",
+            "score": 0.2406
+          },
+          {
+            "name": "仓耳榜黑",
+            "score": 0.2383
+          },
+          {
+            "name": "Candice",
+            "score": 0.2378
+          }
+        ]
+      },
+      "color": {
+        "fill": "#AFD083",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0552,
+      "animation": "none"
+    },
+    {
+      "text": "共",
+      "appear": {
+        "first": 11.25,
+        "last": 11.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        8,
+        653,
+        121,
+        77
+      ],
+      "bbox": [
+        0.0074,
+        0.3401,
+        0.112,
+        0.0401
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "仓耳趣黑",
+        "score": 0.4429,
+        "topk": [
+          {
+            "name": "仓耳趣黑",
+            "score": 0.4429
+          },
+          {
+            "name": "suiyuanlishu",
+            "score": 0.4358
+          },
+          {
+            "name": "suiyuanlishu_font",
+            "score": 0.4358
+          },
+          {
+            "name": "Aa祝融隶",
+            "score": 0.4251
+          },
+          {
+            "name": "Lark",
+            "score": 0.4111
+          }
+        ]
+      },
+      "color": {
+        "fill": "#A9C398",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0401,
+      "animation": "none"
+    },
+    {
+      "text": "同在一",
+      "appear": {
+        "first": 11.75,
+        "last": 11.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        107,
+        702,
+        145,
+        72
+      ],
+      "bbox": [
+        0.0991,
+        0.3656,
+        0.1343,
+        0.0375
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "Aa鹅卵石",
+        "score": 0.1804,
+        "topk": [
+          {
+            "name": "Aa鹅卵石",
+            "score": 0.1804
+          },
+          {
+            "name": "拼音体",
+            "score": 0.1764
+          },
+          {
+            "name": "字由虎啸拼音体",
+            "score": 0.1603
+          },
+          {
+            "name": "字由虎啸拼音体_font",
+            "score": 0.1603
+          },
+          {
+            "name": "柏青体",
+            "score": 0.1599
+          }
+        ]
+      },
+      "color": {
+        "fill": "#C3D7A6",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0375,
+      "animation": "none"
+    },
+    {
+      "text": "福",
+      "appear": {
+        "first": 11.75,
+        "last": 12.25,
+        "n_obs": 3
+      },
+      "bbox_px": [
+        422,
+        783,
+        46,
+        40
+      ],
+      "bbox": [
+        0.3907,
+        0.4078,
+        0.0426,
+        0.0208
+      ],
+      "position": "center",
+      "font": {
+        "match": "Aa烈焰隶书",
+        "score": 0.5193,
+        "topk": [
+          {
+            "name": "Aa烈焰隶书",
+            "score": 0.5193
+          },
+          {
+            "name": "云魅手书",
+            "score": 0.5023
+          },
+          {
+            "name": "字魂48号-半天云魅黑手书",
+            "score": 0.5023
+          },
+          {
+            "name": "JYtuiwen",
+            "score": 0.4821
+          },
+          {
+            "name": "テ_ラコ_シック",
+            "score": 0.4818
+          }
+        ]
+      },
+      "color": {
+        "fill": "#44221B",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0234,
+      "animation": "none"
+    },
+    {
+      "text": "方誓",
+      "appear": {
+        "first": 12.0,
+        "last": 12.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        214,
+        701,
+        131,
+        88
+      ],
+      "bbox": [
+        0.1981,
+        0.3651,
+        0.1213,
+        0.0458
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "励字小怪兽简",
+        "score": 0.2731,
+        "topk": [
+          {
+            "name": "励字小怪兽简",
+            "score": 0.2731
+          },
+          {
+            "name": "HelloFont ID YouQiTi",
+            "score": 0.2652
+          },
+          {
+            "name": "LiaoQiaoChunFeng",
+            "score": 0.2472
+          },
+          {
+            "name": "LiaoQiaoChunFeng_font",
+            "score": 0.2472
+          },
+          {
+            "name": "JYxiuzhengdai",
+            "score": 0.2372
+          }
+        ]
+      },
+      "color": {
+        "fill": "#81C1D1",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.0458,
+      "animation": "none"
+    },
+    {
+      "text": "方#",
+      "appear": {
+        "first": 12.25,
+        "last": 12.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        200,
+        712,
+        136,
+        80
+      ],
+      "bbox": [
+        0.1852,
+        0.3708,
+        0.1259,
+        0.0417
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "书南体",
+        "score": 0.3166,
+        "topk": [
+          {
+            "name": "书南体",
+            "score": 0.3166
+          },
+          {
+            "name": "字由朗润体",
+            "score": 0.2426
+          },
+          {
+            "name": "字由朗润体_font",
+            "score": 0.2426
+          },
+          {
+            "name": "方糖体",
+            "score": 0.2412
+          },
+          {
+            "name": "励字小怪兽简",
+            "score": 0.2388
+          }
+        ]
+      },
+      "color": {
+        "fill": "#F1FABF",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.0417,
+      "animation": "none"
+    },
+    {
+      "text": "elo!",
+      "appear": {
+        "first": 12.5,
+        "last": 17.0,
+        "n_obs": 12
+      },
+      "bbox_px": [
+        65,
+        839,
+        128,
+        105
+      ],
+      "bbox": [
+        0.0602,
+        0.437,
+        0.1185,
+        0.0547
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "ZYENA Autism",
+        "score": 0.4107,
+        "topk": [
+          {
+            "name": "ZYENA Autism",
+            "score": 0.4107
+          },
+          {
+            "name": "ZY_Loose",
+            "score": 0.4052
+          },
+          {
+            "name": "ZY_Coconut_Regular",
+            "score": 0.3916
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.3913
+          },
+          {
+            "name": "Anton",
+            "score": 0.3882
+          }
+        ]
+      },
+      "color": {
+        "fill": "#91BFF8",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.0563,
+      "animation": "none"
+    },
+    {
+      "text": "C00-V1A",
+      "appear": {
+        "first": 13.0,
+        "last": 13.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        517,
+        1417,
+        162,
+        38
+      ],
+      "bbox": [
+        0.4787,
+        0.738,
+        0.15,
+        0.0198
+      ],
+      "position": "bottom-center",
+      "font": {
+        "match": "BREXTER",
+        "score": 0.1415,
+        "topk": [
+          {
+            "name": "BREXTER",
+            "score": 0.1415
+          },
+          {
+            "name": "字由乘风体",
+            "score": 0.1365
+          },
+          {
+            "name": "字由乘风体_font",
+            "score": 0.1365
+          },
+          {
+            "name": "ZY_Trend",
+            "score": 0.1326
+          },
+          {
+            "name": "FBPungPOPL",
+            "score": 0.1309
+          }
+        ]
+      },
+      "color": {
+        "fill": "#766259",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0198,
+      "animation": "none"
+    },
+    {
+      "text": "6",
+      "appear": {
+        "first": 13.5,
+        "last": 13.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        489,
+        516,
+        40,
+        27
+      ],
+      "bbox": [
+        0.4528,
+        0.2687,
+        0.037,
+        0.0141
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "JYruisong",
+        "score": 0.2555,
+        "topk": [
+          {
+            "name": "JYruisong",
+            "score": 0.2555
+          },
+          {
+            "name": "字由山兰体",
+            "score": 0.2491
+          },
+          {
+            "name": "字由山兰体_font",
+            "score": 0.2491
+          },
+          {
+            "name": "ZY_Timing",
+            "score": 0.2474
+          },
+          {
+            "name": "文雅体",
+            "score": 0.2452
+          }
+        ]
+      },
+      "color": {
+        "fill": "#331210",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.0141,
+      "animation": "none"
+    },
+    {
+      "text": "S00-V12",
+      "appear": {
+        "first": 13.5,
+        "last": 13.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        541,
+        1414,
+        151,
+        35
+      ],
+      "bbox": [
+        0.5009,
+        0.7365,
+        0.1398,
+        0.0182
+      ],
+      "position": "bottom-center",
+      "font": {
+        "match": "ZY_Courage",
+        "score": 0.1939,
+        "topk": [
+          {
+            "name": "ZY_Courage",
+            "score": 0.1939
+          },
+          {
+            "name": "ZY_Spunk",
+            "score": 0.1885
+          },
+          {
+            "name": "BREXTER",
+            "score": 0.1874
+          },
+          {
+            "name": "ZY_Concise",
+            "score": 0.1745
+          },
+          {
+            "name": "Serrat",
+            "score": 0.1728
+          }
+        ]
+      },
+      "color": {
+        "fill": "#7E665E",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.0182,
+      "animation": "none"
+    },
+    {
+      "text": "80030410",
+      "appear": {
+        "first": 13.75,
+        "last": 13.75,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        567,
+        1370,
+        141,
+        46
+      ],
+      "bbox": [
+        0.525,
+        0.7135,
+        0.1306,
+        0.024
+      ],
+      "position": "bottom-center",
+      "font": {
+        "match": "Anson",
+        "score": 0.3948,
+        "topk": [
+          {
+            "name": "Anson",
+            "score": 0.3948
+          },
+          {
+            "name": "云魅手书",
+            "score": 0.3752
+          },
+          {
+            "name": "字魂48号-半天云魅黑手书",
+            "score": 0.3752
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.3721
+          },
+          {
+            "name": "仓耳酷黑",
+            "score": 0.3712
+          }
+        ]
+      },
+      "color": {
+        "fill": "#927E73",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "thin",
+      "size_rel": 0.024,
+      "animation": "none"
+    },
+    {
+      "text": "ela!",
+      "appear": {
+        "first": 17.25,
+        "last": 17.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        65,
+        837,
+        129,
+        109
+      ],
+      "bbox": [
+        0.0602,
+        0.4359,
+        0.1194,
+        0.0568
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "ZY_Loose",
+        "score": 0.4234,
+        "topk": [
+          {
+            "name": "ZY_Loose",
+            "score": 0.4234
+          },
+          {
+            "name": "励字趣石简",
+            "score": 0.4187
+          },
+          {
+            "name": "Anton",
+            "score": 0.4082
+          },
+          {
+            "name": "メモ",
+            "score": 0.4072
+          },
+          {
+            "name": "ZYENA Autism",
+            "score": 0.4016
+          }
+        ]
+      },
+      "color": {
+        "fill": "#8FBDF6",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.0568,
+      "animation": "none"
+    }
+  ]
+}

@@ -1,0 +1,650 @@
+{
+  "video": "douyin_kid_10s.mp4",
+  "frame": [
+    1080,
+    1920
+  ],
+  "texts": [
+    {
+      "text": "六一快乐",
+      "appear": {
+        "first": 0.0,
+        "last": 10.25,
+        "n_obs": 37
+      },
+      "bbox_px": [
+        222,
+        211,
+        622,
+        252
+      ],
+      "bbox": [
+        0.2056,
+        0.1099,
+        0.5759,
+        0.1313
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "字由将军令",
+        "score": 0.2269,
+        "topk": [
+          {
+            "name": "字由将军令",
+            "score": 0.2269
+          },
+          {
+            "name": "字由将军令_font",
+            "score": 0.2269
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.2257
+          },
+          {
+            "name": "Aa跃然体",
+            "score": 0.2229
+          },
+          {
+            "name": "Aa西风手书",
+            "score": 0.2125
+          }
+        ]
+      },
+      "color": {
+        "fill": "#EDD472",
+        "gradient": true
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.1474,
+      "animation": "none"
+    },
+    {
+      "text": "Happy Children's Day",
+      "appear": {
+        "first": 0.0,
+        "last": 10.25,
+        "n_obs": 32
+      },
+      "bbox_px": [
+        352,
+        421,
+        375,
+        56
+      ],
+      "bbox": [
+        0.3259,
+        0.2193,
+        0.3472,
+        0.0292
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "CC_Moderno",
+        "score": 0.2508,
+        "topk": [
+          {
+            "name": "CC_Moderno",
+            "score": 0.2508
+          },
+          {
+            "name": "ZY_Fervent",
+            "score": 0.2298
+          },
+          {
+            "name": "ZY_Innocent",
+            "score": 0.2293
+          },
+          {
+            "name": "ZY_Vigour",
+            "score": 0.2272
+          },
+          {
+            "name": "ZY_Trend",
+            "score": 0.2265
+          }
+        ]
+      },
+      "color": {
+        "fill": "#FBDD9B",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "thin",
+      "size_rel": 0.0411,
+      "animation": "none"
+    },
+    {
+      "text": "老一快",
+      "appear": {
+        "first": 1.0,
+        "last": 1.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        211,
+        269,
+        663,
+        344
+      ],
+      "bbox": [
+        0.1954,
+        0.1401,
+        0.6139,
+        0.1792
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "JYwuxia",
+        "score": 0.335,
+        "topk": [
+          {
+            "name": "JYwuxia",
+            "score": 0.335
+          },
+          {
+            "name": "JYwuxia_font",
+            "score": 0.335
+          },
+          {
+            "name": "方正王铎行草",
+            "score": 0.3054
+          },
+          {
+            "name": "momangti",
+            "score": 0.3022
+          },
+          {
+            "name": "momangti_font",
+            "score": 0.3022
+          }
+        ]
+      },
+      "color": {
+        "fill": "#F5AF87",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.1792,
+      "animation": "none"
+    },
+    {
+      "text": "Chilf enb",
+      "appear": {
+        "first": 2.0,
+        "last": 2.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        463,
+        523,
+        286,
+        66
+      ],
+      "bbox": [
+        0.4287,
+        0.2724,
+        0.2648,
+        0.0344
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "BebasNeue-Regular",
+        "score": 0.3146,
+        "topk": [
+          {
+            "name": "BebasNeue-Regular",
+            "score": 0.3146
+          },
+          {
+            "name": "ZY_Fervent",
+            "score": 0.3143
+          },
+          {
+            "name": "Koulen_Regular",
+            "score": 0.303
+          },
+          {
+            "name": "Staatliches_Regular",
+            "score": 0.3025
+          },
+          {
+            "name": "UnicaOne-Regular",
+            "score": 0.2948
+          }
+        ]
+      },
+      "color": {
+        "fill": "#FEFFBF",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.0344,
+      "animation": "none"
+    },
+    {
+      "text": "Hopey Chilbeun's Dy",
+      "appear": {
+        "first": 3.0,
+        "last": 3.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        335,
+        503,
+        409,
+        80
+      ],
+      "bbox": [
+        0.3102,
+        0.262,
+        0.3787,
+        0.0417
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "ZY_Coconut_Regular",
+        "score": 0.5632,
+        "topk": [
+          {
+            "name": "ZY_Coconut_Regular",
+            "score": 0.5632
+          },
+          {
+            "name": "ZY_Loose",
+            "score": 0.5489
+          },
+          {
+            "name": "ZYENA Autism",
+            "score": 0.5328
+          },
+          {
+            "name": "オーバーラップ",
+            "score": 0.5256
+          },
+          {
+            "name": "Anton",
+            "score": 0.515
+          }
+        ]
+      },
+      "color": {
+        "fill": "#FEFBAC",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0417,
+      "animation": "none"
+    },
+    {
+      "text": "Hoppy Children's Doy",
+      "appear": {
+        "first": 4.0,
+        "last": 4.0,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        300,
+        487,
+        474,
+        86
+      ],
+      "bbox": [
+        0.2778,
+        0.2536,
+        0.4389,
+        0.0448
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "仓耳视频体",
+        "score": 0.4967,
+        "topk": [
+          {
+            "name": "仓耳视频体",
+            "score": 0.4967
+          },
+          {
+            "name": "Anton",
+            "score": 0.4886
+          },
+          {
+            "name": "ZY_Loose",
+            "score": 0.4699
+          },
+          {
+            "name": "オーバーラップ",
+            "score": 0.4681
+          },
+          {
+            "name": "仓耳酷黑",
+            "score": 0.4642
+          }
+        ]
+      },
+      "color": {
+        "fill": "#FEFFA4",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0448,
+      "animation": "none"
+    },
+    {
+      "text": "Hoppy Children's Day",
+      "appear": {
+        "first": 4.25,
+        "last": 4.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        322,
+        410,
+        440,
+        79
+      ],
+      "bbox": [
+        0.2981,
+        0.2135,
+        0.4074,
+        0.0411
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "ZY_Coconut_Regular",
+        "score": 0.4193,
+        "topk": [
+          {
+            "name": "ZY_Coconut_Regular",
+            "score": 0.4193
+          },
+          {
+            "name": "ZY_Loose",
+            "score": 0.4028
+          },
+          {
+            "name": "Anton",
+            "score": 0.3862
+          },
+          {
+            "name": "オーバーラップ",
+            "score": 0.3799
+          },
+          {
+            "name": "ZY_Fervent",
+            "score": 0.3781
+          }
+        ]
+      },
+      "color": {
+        "fill": "#FBB591",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.0411,
+      "animation": "none"
+    },
+    {
+      "text": "WL",
+      "appear": {
+        "first": 4.5,
+        "last": 5.0,
+        "n_obs": 3
+      },
+      "bbox_px": [
+        699,
+        693,
+        301,
+        245
+      ],
+      "bbox": [
+        0.6472,
+        0.3609,
+        0.2787,
+        0.1276
+      ],
+      "position": "center-right",
+      "font": {
+        "match": "字由逸致体 简",
+        "score": 0.4615,
+        "topk": [
+          {
+            "name": "字由逸致体 简",
+            "score": 0.4615
+          },
+          {
+            "name": "字由逸致体 简_font",
+            "score": 0.4615
+          },
+          {
+            "name": "字由虎啸拼音体",
+            "score": 0.4414
+          },
+          {
+            "name": "字由虎啸拼音体_font",
+            "score": 0.4414
+          },
+          {
+            "name": "字由逸致拼音体",
+            "score": 0.4414
+          }
+        ]
+      },
+      "color": {
+        "fill": "#F3C6BC",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": {
+          "color": "#E2948C",
+          "width_px": 2
+        },
+        "shadow": false
+      },
+      "weight": "bold",
+      "size_rel": 0.1273,
+      "animation": "none"
+    },
+    {
+      "text": "6.",
+      "appear": {
+        "first": 6.25,
+        "last": 6.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        331,
+        717,
+        207,
+        229
+      ],
+      "bbox": [
+        0.3065,
+        0.3734,
+        0.1917,
+        0.1193
+      ],
+      "position": "center-big",
+      "font": {
+        "match": "励字小怪兽简",
+        "score": 0.2169,
+        "topk": [
+          {
+            "name": "励字小怪兽简",
+            "score": 0.2169
+          },
+          {
+            "name": "字语文乐体_细体",
+            "score": 0.1871
+          },
+          {
+            "name": "佳妙体",
+            "score": 0.1844
+          },
+          {
+            "name": "梦槐体",
+            "score": 0.1813
+          },
+          {
+            "name": "书南体",
+            "score": 0.179
+          }
+        ]
+      },
+      "color": {
+        "fill": "#0F0100",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": false
+      },
+      "weight": "regular",
+      "size_rel": 0.1193,
+      "animation": "none"
+    },
+    {
+      "text": "大一快乐",
+      "appear": {
+        "first": 9.5,
+        "last": 9.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        128,
+        254,
+        823,
+        402
+      ],
+      "bbox": [
+        0.1185,
+        0.1323,
+        0.762,
+        0.2094
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "momangti",
+        "score": 0.3507,
+        "topk": [
+          {
+            "name": "momangti",
+            "score": 0.3507
+          },
+          {
+            "name": "momangti_font",
+            "score": 0.3507
+          },
+          {
+            "name": "仓耳视频体",
+            "score": 0.3454
+          },
+          {
+            "name": "字由俊然宋",
+            "score": 0.3263
+          },
+          {
+            "name": "字由俊然宋_font",
+            "score": 0.3263
+          }
+        ]
+      },
+      "color": {
+        "fill": "#EBA383",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.2094,
+      "animation": "none"
+    },
+    {
+      "text": "mw eanf ub do",
+      "appear": {
+        "first": 9.5,
+        "last": 9.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        380,
+        518,
+        372,
+        67
+      ],
+      "bbox": [
+        0.3519,
+        0.2698,
+        0.3444,
+        0.0349
+      ],
+      "position": "top-center",
+      "font": {
+        "match": "ZY_Innocent",
+        "score": 0.3155,
+        "topk": [
+          {
+            "name": "ZY_Innocent",
+            "score": 0.3155
+          },
+          {
+            "name": "BebasNeue-Regular",
+            "score": 0.3053
+          },
+          {
+            "name": "仓耳酷黑",
+            "score": 0.2931
+          },
+          {
+            "name": "WenYue-HouXianDaiTi-NC-W4-75",
+            "score": 0.2809
+          },
+          {
+            "name": "后现代体",
+            "score": 0.2809
+          }
+        ]
+      },
+      "color": {
+        "fill": "#EB9385",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "regular",
+      "size_rel": 0.0349,
+      "animation": "none"
+    }
+  ]
+}

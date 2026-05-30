@@ -1,12 +1,12 @@
 # Todo: 反解保真度增强 — #2 + #1
 
 ## Current State  ← update this constantly; it is the resume cursor
-- **Phase**: E3（#1 font 真跑）等 font pull；E1 ✅ E2 ✅
-- **Status**: in_progress — font pull(bu0qzjyi8) 1178/2660≈7GB 仍跑；E1/E2 完成并验证
+- **Phase**: E4（报告/登记）；E1 ✅ E2 ✅ E3 ✅
+- **Status**: in_progress — 三件功能全完成验证；font pull 收尾(1304 ttf+10 temp≈1326)。提 E3 后做 E4
 - **Branch**: dev-plan-2026-05-30-reverse-fidelity-enhance（基于 main=1d4b78b）
-- **Last done**: **E2 ✅** k 投票：fx `type`/narr `structure` 加 `--k`。fx k=3 Lotus 重跑(present 非硬切 8→9，全可映射)，narr k=3 全 5 样本(kid 的 structure 漂移 [chrono,chrono,hook-proof-cta]→多数 chrono 被收敛)。重跑 compose 5 稿全过校验+smoke(单射 9→9)。**发现**：单跑内 3 票多数一致(per-call 抖动小)，主漂移是跨 run/session 级(k1 baseline vs k3 多窗不同)→ within-run k 投票稳单跑、压 per-call flip，但不能全消跨会话漂移(诚实记 §结果块)
-- **Next**: 提交 E1+E2 代码 → 等 font pull 完 → build_index → font_extract ×≥3 → 重跑 compose 填 subtitles
-- **Blockers**: E3 待 font pull（~半程）
+- **Last done**: **E3 ✅** font 真跑：拉 ~14GB 字体库 → build_index(1326 款,0 坏) → font_extract ×5(Lotus31/ai2/drama12/hair20/kid11=76 字幕,真实 OCR+样式) → 重跑 compose。**subtitles 76→76 全落 add_text、5 稿整稿全过校验+smoke**。抓修两真 bug:(1)hash/低分字体名会注错字 → font-face 闸=命中剪映闭集(798)且 score≥0.6 才发(真分低=渲染器gap,font §F3 中位0.53),否则记 _unmapped 留默认 → 5/76 发(6%,诚实);(2)单帧 OCR(first==last)→ end==start icccut 拒 → MIN_SUB_DUR 0.5s 兜底
+- **Next**: E4 = spec 结果块(#2a/#2b/#1 数据+局限) + CLAUDE.md 登记 + review + 提交 + 问用户并入 main
+- **Blockers**: none
 
 ## Phases
 

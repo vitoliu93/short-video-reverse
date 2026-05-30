@@ -1,0 +1,125 @@
+{
+  "video": "douyin_ai_19s.mp4",
+  "frame": [
+    1078,
+    1920
+  ],
+  "texts": [
+    {
+      "text": "C",
+      "appear": {
+        "first": 8.25,
+        "last": 8.25,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        240,
+        949,
+        136,
+        125
+      ],
+      "bbox": [
+        0.2226,
+        0.4943,
+        0.1262,
+        0.0651
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "文雅体",
+        "score": 0.4113,
+        "topk": [
+          {
+            "name": "文雅体",
+            "score": 0.4113
+          },
+          {
+            "name": "字由茉莉体",
+            "score": 0.3713
+          },
+          {
+            "name": "字由茉莉体_font",
+            "score": 0.3713
+          },
+          {
+            "name": "仓耳趣黑",
+            "score": 0.3524
+          },
+          {
+            "name": "Lark",
+            "score": 0.3439
+          }
+        ]
+      },
+      "color": {
+        "fill": "#010101",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0651,
+      "animation": "none"
+    },
+    {
+      "text": "0",
+      "appear": {
+        "first": 11.5,
+        "last": 11.5,
+        "n_obs": 1
+      },
+      "bbox_px": [
+        247,
+        959,
+        124,
+        110
+      ],
+      "bbox": [
+        0.2291,
+        0.4995,
+        0.115,
+        0.0573
+      ],
+      "position": "center-left",
+      "font": {
+        "match": "字由茉莉体",
+        "score": 0.3044,
+        "topk": [
+          {
+            "name": "字由茉莉体",
+            "score": 0.3044
+          },
+          {
+            "name": "字由茉莉体_font",
+            "score": 0.3044
+          },
+          {
+            "name": "ZY_Bless",
+            "score": 0.2671
+          },
+          {
+            "name": "テ_ラコ_シック",
+            "score": 0.2497
+          },
+          {
+            "name": "无界黑",
+            "score": 0.2486
+          }
+        ]
+      },
+      "color": {
+        "fill": "#010101",
+        "gradient": false
+      },
+      "decoration": {
+        "stroke": null,
+        "shadow": true
+      },
+      "weight": "bold",
+      "size_rel": 0.0573,
+      "animation": "none"
+    }
+  ]
+}
