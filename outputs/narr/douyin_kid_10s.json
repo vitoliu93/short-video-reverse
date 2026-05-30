@@ -4,30 +4,36 @@
   "n_shots": 1,
   "narrative": {
     "hook_type": "direct",
-    "hook_desc_cn": "开场小女孩做出“嘘”的手势，直接吸引观众注意力",
+    "hook_desc_cn": "开场小女孩以“嘘”的手势迅速吸引观众注意力",
     "structure": "chronological",
     "acts": [
       {
-        "role": "setup",
+        "role": "hook",
         "t_start": 0.0,
-        "t_end": 5.0,
-        "summary_cn": "女孩连续变换“嘘”“V”“OK”“剪刀手”“比心”等手势，完成第一组表演序列"
+        "t_end": 1.0,
+        "summary_cn": "小女孩做出“嘘”的手势开场，吸引观众注意力"
       },
       {
-        "role": "climax",
+        "role": "setup",
+        "t_start": 1.0,
+        "t_end": 5.0,
+        "summary_cn": "女孩连续变换“V”“OK”“剪刀手”“比心”等手势，完成第一组表演序列"
+      },
+      {
+        "role": "resolution",
         "t_start": 5.0,
         "t_end": 10.0,
-        "summary_cn": "女孩重复展示“比心”“嘘”“OK”等手势，收尾表演"
+        "summary_cn": "女孩重复展示“比心”“嘘”“OK”等手势，完成收尾表演"
       },
       {
         "role": "cta",
         "t_start": 10.0,
         "t_end": 10.567,
-        "summary_cn": "女孩以双手合十姿势结束，引导观众互动"
+        "summary_cn": "小女孩以双手合十的姿势引导观众进行点赞、分享等互动"
       }
     ],
-    "theme_cn": "庆祝六一国际儿童节，通过小女孩的活泼手势表演传递节日祝福与对童年的赞美",
-    "cta": "号召观众点赞、订阅、转发、打赏",
+    "theme_cn": "庆祝六一国际儿童节，通过小女孩的俏皮手势表演传递节日祝福与对童年的赞美",
+    "cta": "引导观众点赞、订阅、转发、打赏",
     "pacing_profile": {
       "avg_shot_s": 10.567,
       "std_shot_s": 0.0,
@@ -46,33 +52,28 @@
       "start": 0.0,
       "end": 10.567,
       "dur": 10.567,
-      "summary_cn": "女孩重复展示“比心”“嘘”“OK”等手势，收尾表演"
+      "summary_cn": "女孩重复展示“比心”“嘘”“OK”等手势，完成收尾表演"
     }
   ],
   "content_tags": [
     "六一儿童节",
-    "儿童手势表演",
+    "儿童表演",
+    "手势秀",
     "节日祝福",
-    "电子相册",
-    "欢快氛围"
+    "电子相册"
   ],
   "emotion_curve": [
     {
-      "t": 0.0,
+      "t": 5.3,
       "emotion": "欢快活泼",
-      "valence": 0.8
-    },
-    {
-      "t": 10.567,
-      "emotion": "欢快活泼",
-      "valence": 0.8
+      "valence": 0.9
     }
   ],
   "key_moments": [
     {
       "t_start": 1.0,
       "t_end": 6.0,
-      "label": "女孩手势表演核心段落",
+      "label": "核心手势表演段",
       "src": "grounding"
     }
   ],
@@ -80,6 +81,12 @@
     "shots": "fx_detect(transnet+ffmpeg)",
     "pacing": "computed",
     "narrative": "doubao-seed-2.0-pro",
+    "synth_k": 3,
+    "structure_votes": [
+      "chronological",
+      "chronological",
+      "hook-proof-cta"
+    ],
     "arc_tasks": [
       "Summary",
       "Segment",
@@ -94,5 +101,5 @@
       "Grounding": true
     }
   },
-  "elapsed_seconds": 11.8
+  "elapsed_seconds": 28.7
 }

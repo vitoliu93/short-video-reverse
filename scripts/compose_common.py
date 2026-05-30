@@ -189,7 +189,11 @@ class DraftBuilder:
             jy = map_transition(tr["type"])
             if jy:
                 p["transition"] = jy
-                p["transition_duration"] = min(DEFAULT_TRANS_DUR, round(shot["dur"] * 0.8, 3))
+                # 实测窗宽 t_end−t_start(TransNetV2⊕ffmpeg 候选窗),缺失退默认;
+                # 仍 ≤ 0.8×镜头时长兜底(转场不该吃满镜头)。
+                ts, te = tr.get("t_start"), tr.get("t_end")
+                meas = round(te - ts, 3) if (ts is not None and te is not None and te > ts) else DEFAULT_TRANS_DUR
+                p["transition_duration"] = min(meas, round(shot["dur"] * 0.8, 3))
             elif tr["type"] not in ("hard-cut", "none"):
                 self._note_unmapped("transition", tr["type"], "no validated 剪映 transition", tr.get("t_center"))
         a = self._act("add_video", p)

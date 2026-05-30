@@ -288,15 +288,32 @@ def synth_prompt(arc: dict, shots: list, pacing: dict, duration: float) -> str:
 
 
 def synth_narrative(arc: dict, shots: list, pacing: dict, duration: float,
-                    creds=None, max_tokens=2000) -> dict:
-    """调 doubao 合成 → dict。解析失败返回 {"_raw": text, "_parse_error": True}。"""
+                    creds=None, max_tokens=2000, k=1) -> dict:
+    """调 doubao 合成 → dict。解析失败返回 {"_raw": text, "_parse_error": True}。
+
+    k>1：对 `structure`(run-to-run 最易漂的高层标签,spec §11)做多数投票稳住,
+    代表解析取 structure 命中多数的那次(其余字段保持自洽,不跨次拼接)。ARC 仍走缓存,
+    投票只重 doubao synth 这一调用 → +（k-1）次 doubao/每跑。
+    """
     creds = creds or fc.load_creds()
     prompt = synth_prompt(arc, shots, pacing, duration)
-    out = fc.vlm([{"type": "text", "text": prompt}], creds=creds,
-                 max_tokens=max_tokens, temperature=0.0)
-    parsed = fc.parse_json(out["text"])
-    if parsed is None:
-        return {"_raw": out["text"], "_parse_error": True, "_model": out.get("model")}
+    k = max(1, int(k))
+    runs = []
+    for _ in range(k):
+        out = fc.vlm([{"type": "text", "text": prompt}], creds=creds,
+                     max_tokens=max_tokens, temperature=0.0)
+        runs.append((fc.parse_json(out["text"]), out.get("model"), out["text"]))
+    good = [(p, m) for p, m, _ in runs if p is not None]
+    if not good:
+        first = runs[0]
+        return {"_raw": first[2], "_parse_error": True, "_model": first[1]}
+    from collections import Counter
+    structure = Counter(p.get("structure") for p, _ in good).most_common(1)[0][0]
+    parsed, model = next(((p, m) for p, m in good if p.get("structure") == structure), good[0])
+    parsed["structure"] = structure
     parsed["acts"] = normalize_acts(parsed.get("acts"), duration)  # 规整外部非确定输出
-    parsed["_model"] = out.get("model")
+    parsed["_model"] = model
+    if k > 1:
+        parsed["_k"] = k
+        parsed["_structure_votes"] = [p.get("structure") for p, _ in good]
     return parsed

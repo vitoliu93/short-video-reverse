@@ -43,7 +43,7 @@ def video_size(video):
     return int(w), int(h)
 
 
-def extract(video: Path, n_frames=8, do_effects=True, min_conf=0.0):
+def extract(video: Path, n_frames=8, do_effects=True, min_conf=0.0, k=1):
     creds = fc.load_creds()
     t0 = time.time()
     det = fd.build_windows(video)
@@ -55,7 +55,7 @@ def extract(video: Path, n_frames=8, do_effects=True, min_conf=0.0):
     transitions = []
     for i, w in enumerate(det["windows"], 1):
         try:
-            t = fdesc.describe_transition(video, w, creds, n=n_frames)
+            t = fdesc.describe_transition(video, w, creds, n=n_frames, k=k)
         except Exception as e:                       # 外部 API 偶发瞬时失败：记录但不中断整批
             print(f"[trans {i}/{len(det['windows'])}] t={w['t_center']} 失败: {e}",
                   file=sys.stderr)
@@ -112,9 +112,11 @@ def main():
     ap.add_argument("--n", type=int, default=8, help="每个转场窗口采样帧数")
     ap.add_argument("--no-effects", action="store_true")
     ap.add_argument("--min-conf", type=float, default=0.0)
+    ap.add_argument("--k", type=int, default=1,
+                    help="转场 type 多数投票次数(稳住 run-to-run 漂移),默认 1=原行为")
     args = ap.parse_args()
     extract(Path(args.video), n_frames=args.n,
-            do_effects=not args.no_effects, min_conf=args.min_conf)
+            do_effects=not args.no_effects, min_conf=args.min_conf, k=args.k)
 
 
 if __name__ == "__main__":

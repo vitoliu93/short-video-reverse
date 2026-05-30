@@ -40,7 +40,7 @@ def _shot_summary(shot, acts):
     return ""
 
 
-def extract(video: Path, tasks=None, use_cache=True, do_synth=True):
+def extract(video: Path, tasks=None, use_cache=True, do_synth=True, k=1):
     t0 = time.time()
 
     # ── 1. 确定性骨架：镜头线 + 节奏 ────────────────────────────────
@@ -60,7 +60,7 @@ def extract(video: Path, tasks=None, use_cache=True, do_synth=True):
     # ── 3. doubao 合成 → 闭集 narrative ────────────────────────────
     syn, narrative_err = {}, None
     if do_synth:
-        syn = nc.synth_narrative(arc, det["shots"], pacing, det["duration"])
+        syn = nc.synth_narrative(arc, det["shots"], pacing, det["duration"], k=k)
         if syn.get("_parse_error"):
             narrative_err = "synth JSON 解析失败（_raw 见输出）"
             print(f"[synth] ⚠ {narrative_err}", file=sys.stderr)
@@ -97,6 +97,8 @@ def extract(video: Path, tasks=None, use_cache=True, do_synth=True):
             "shots": "fx_detect(transnet+ffmpeg)",
             "pacing": "computed",
             "narrative": syn.get("_model") or ("(no-synth)" if not do_synth else "(error)"),
+            "synth_k": syn.get("_k", k),
+            "structure_votes": syn.get("_structure_votes"),  # k>1 时记录被收敛的漂移
             "arc_tasks": list(arc.keys()),
             "arc_model": "ARC-Hunyuan-Video-7B",
             "arc_cached": {t: r["cached"] for t, r in arc.items()},
@@ -124,10 +126,12 @@ def main():
                     help="逗号分隔的 ARC 任务子集")
     ap.add_argument("--no-cache", action="store_true", help="忽略 ARC 缓存(会烧额度)")
     ap.add_argument("--no-synth", action="store_true", help="跳过 doubao 合成(只出骨架+ARC)")
+    ap.add_argument("--k", type=int, default=1,
+                    help="structure 多数投票次数(稳住漂移);ARC 仍走缓存,仅重 doubao synth")
     args = ap.parse_args()
     tasks = [t.strip() for t in args.tasks.split(",") if t.strip()]
     extract(Path(args.video), tasks=tasks,
-            use_cache=not args.no_cache, do_synth=not args.no_synth)
+            use_cache=not args.no_cache, do_synth=not args.no_synth, k=args.k)
 
 
 if __name__ == "__main__":

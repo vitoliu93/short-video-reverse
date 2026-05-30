@@ -15,20 +15,27 @@
       "t_end": 1.06,
       "gap": 0.04,
       "present": true,
-      "type": "hard-cut",
-      "type_cn": "硬切",
-      "confidence": 0.98,
-      "description_cn": "前4帧是仰视带有扭曲特效的摩天大楼画面，第5帧直接跳转至俯视两辆汽车的画面，两个镜头之间没有过渡效果，直接完成切换。",
-      "description_en": "The first 4 frames are the scene of looking up at skyscrapers with distortion effects, and the 5th frame directly jumps to the scene of looking down at two cars. There is no transition effect between the two shots, and the switch is completed directly.",
-      "capcut_category": "",
+      "type": "spin",
+      "type_cn": "旋转",
+      "confidence": 0.92,
+      "description_cn": "前序仰视摩天大楼的画面以螺旋旋转的动态形式逐渐过渡，最终切换为俯视两辆汽车的全新场景，旋转过程中画面带有扭曲的过渡效果",
+      "description_en": "The previous upward-looking shot of skyscrapers transitions gradually with a spiral rotation dynamic, and finally switches to a new scene of two cars viewed from above, with a distorted transition effect during the rotation process.",
+      "capcut_category": "Camera",
       "capcut_tags": [
-        "硬切"
+        "旋转转场",
+        "螺旋翻页"
       ],
-      "visual_cues": "t=0.36s到t=0.66s的画面内容均为仰视的摩天大楼，t=0.76s画面突然变为完全不同的俯视汽车场景，前后场景无重叠无过渡，场景内容发生了突变。",
+      "visual_cues": "前四帧画面呈现仰视的摩天大楼且带有环形扭曲旋转的动态效果，第四帧到第五帧画面内容直接切换为俯视的两辆汽车，场景完全不同，且过渡过程伴随旋转扭曲的视觉特征，符合旋转转场的表现",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "spin",
+        "spin",
+        "spin"
+      ]
     },
     {
       "t_start": 1.52,
@@ -39,17 +46,23 @@
       "type": "hard-cut",
       "type_cn": "硬切",
       "confidence": 0.95,
-      "description_cn": "前序画面为俯视视角下的两辆汽车，在t=1.82s到t=1.92s之间，画面直接无过渡地切换为圆形边框内的人物仰视视角画面，两个场景内容完全不同，切换过程无渐变、擦除等过渡效果。",
-      "description_en": "The previous frames show two cars from a top-down perspective. Between t=1.82s and t=1.92s, the footage directly cuts to a low-angle shot of a woman framed by a circular border without any transition effects. The content of the two scenes is completely different, and there is no gradient, wipe or other transition effects during the switching process.",
+      "description_cn": "前一帧还是俯视视角下地面停放的两辆汽车的画面，没有任何过渡效果，直接切换到了圆形视窗下女子抬手的完全不同的场景。",
+      "description_en": "The previous frame shows a top-down view of two cars parked on the ground, and without any transition effect, it directly switches to a completely different scene of a woman raising her hands under a circular viewing window.",
       "capcut_category": "",
       "capcut_tags": [
         "硬切"
       ],
-      "visual_cues": "前4帧内容均为俯视角度的两辆汽车，第5帧开始画面内容直接变为人物仰视视角且带有圆形边框，前后场景无关联，没有过渡过程，符合硬切的特征。",
+      "visual_cues": "1.52s到1.82s的画面内容均为俯视视角的两辆汽车，场景连续；1.92s的画面直接变为圆形边框内的女子，场景、主体、视角均完全不同，且两帧之间没有叠化、擦除等过渡效果，属于直接切换。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "hard-cut",
+        "hard-cut",
+        "hard-cut"
+      ]
     },
     {
       "t_start": 2.36,
@@ -60,17 +73,23 @@
       "type": "hard-cut",
       "type_cn": "硬切",
       "confidence": 0.98,
-      "description_cn": "前序帧呈现的是女子在圆形镜面中的倒影画面，无过渡地直接切换为汽车座椅的画面，两个场景之间没有任何渐变、滑动之类的过渡效果，是瞬间完成的镜头切换。",
-      "description_en": "The previous frames show the reflection of a woman in a round mirror, and then it switches directly to the shot of a car seat without any transition. There is no gradual change, sliding or other transition effects between the two scenes, and the shot switch is completed instantly.",
+      "description_cn": "前序四帧画面是手持圆镜的女子的镜像场景，画面在第四帧到第五帧时没有任何过渡效果，直接切换为完全不相关的汽车座椅场景，两个场景的内容没有视觉关联性，切换过程无渐变、滑动等过渡表现。",
+      "description_en": "The first four frames show the mirror scene of a woman holding a round mirror. From the fourth frame to the fifth frame, the picture directly switches to a completely unrelated car seat scene without any transition effects. The content of the two scenes has no visual correlation, and there are no transition performances such as gradient or sliding during the switching process.",
       "capcut_category": "",
       "capcut_tags": [
         "硬切"
       ],
-      "visual_cues": "前4帧画面内容均为女子的镜面倒影，第5帧突然变为完全不同的汽车座椅场景，二者场景内容完全无关，且切换过程中没有出现叠化、擦除等过渡类的视觉效果，直接完成了镜头的跳转。",
+      "visual_cues": "前四帧内容均为圆镜反射的女子影像，第五帧及后续帧内容突然变为汽车座椅，前后帧的场景、主体完全不同，切换过程没有任何过渡特效，是无过渡的直接场景切换。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "hard-cut",
+        "hard-cut",
+        "hard-cut"
+      ]
     },
     {
       "t_start": 3.84,
@@ -81,18 +100,25 @@
       "type": "glitch",
       "type_cn": "故障",
       "confidence": 0.9,
-      "description_cn": "前序画面是汽车内部和外部建筑，转场时画面出现扭曲变形、色彩偏移等故障效果，切换到高楼仰拍画面，画面存在波纹状的失真表现。",
-      "description_en": "The previous frames show the car interior and exterior buildings. During the transition, the画面出现 glitch effects such as distortion and color offset, then switches to the low-angle shot of tall buildings, with wavy distortion performance in the画面.",
+      "description_cn": "初始画面为带有白色物体的建筑外景，画面出现故障式的波形扭曲、色彩偏移效果，随后画面切换为扭曲效果的现代高楼仰拍场景，转场过程伴随画面失真故障感。",
+      "description_en": "The initial frame is an exterior view of a building with white objects. The screen shows glitch-style wave distortion and color offset effects, then the scene switches to a low-angle shot of modern high-rises with distortion effects, and the transition process is accompanied by picture distortion and glitch feeling.",
       "capcut_category": "Glitch",
       "capcut_tags": [
         "故障转场",
-        "画面扭曲"
+        "信号干扰",
+        "波形扭曲"
       ],
-      "visual_cues": "画面在切换过程中出现了波纹状的扭曲变形、色彩异常的故障特征，前后场景完全不同，且转场过程伴随画面失真效果，符合故障转场的特点。",
+      "visual_cues": "画面在场景切换前后出现了非自然的波形扭曲、色彩偏移的故障效果，前后场景内容从带白色物体的建筑变为现代高楼，转场过程有明显的画面失真故障特征。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "glitch",
+        "glitch",
+        "glitch"
+      ]
     },
     {
       "t_start": 4.88,
@@ -103,17 +129,23 @@
       "type": "hard-cut",
       "type_cn": "硬切",
       "confidence": 0.99,
-      "description_cn": "前序帧均为仰拍摩天大楼之间的天空画面，后一帧直接切换为汽车轮毂的特写画面，没有过渡效果。",
-      "description_en": "The previous frames are all low-angle shots of the sky between skyscrapers, and the next frame is directly switched to a close-up shot of a car wheel without any transition effect.",
+      "description_cn": "前序帧均为仰拍的摩天大楼建筑画面，下一帧直接切换到完全无关的汽车轮毂特写，没有任何过渡效果，两个场景无视觉内容关联。",
+      "description_en": "The previous frames are all low-angle shots of skyscrapers, and the next frame directly switches to a completely unrelated close-up of a car wheel without any transition effect, and there is no visual content association between the two scenes.",
       "capcut_category": "",
       "capcut_tags": [
         "硬切"
       ],
-      "visual_cues": "t=5.18s的画面还是仰拍高楼和天空，t=5.28s的画面直接变为汽车轮毂特写，前后画面内容完全无关，没有叠化、擦除等过渡过程，属于无过渡的直接切换。",
+      "visual_cues": "第4帧还是仰拍的高楼、天空画面，第5帧直接变为汽车轮毂的特写，画面内容没有任何承接，也没有叠化、擦除等过渡过程，是直接的镜头跳转。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "hard-cut",
+        "hard-cut",
+        "hard-cut"
+      ]
     },
     {
       "t_start": 6.105,
@@ -124,19 +156,25 @@
       "type": "glitch",
       "type_cn": "故障",
       "confidence": 0.92,
-      "description_cn": "画面先展示汽车轮毂，中途出现画面撕裂、条纹噪点的故障效果，随后直接切换到汽车尾部的画面，完成转场。",
-      "description_en": "The frame first shows the car wheel, then a glitch effect with screen tearing and striped noise appears in the middle, after which the scene directly switches to the view of the car rear to complete the transition.",
+      "description_cn": "画面在展示汽车轮毂时，先出现了画面撕裂、横向故障干扰以及网格状失真的故障效果，随后直接切换到汽车尾部的画面，完成转场。",
+      "description_en": "When the video displays the car wheel, glitch effects including screen tearing, horizontal interference and grid-like distortion appear first, then the shot switches directly to the view of the car rear to complete the transition.",
       "capcut_category": "Glitch",
       "capcut_tags": [
-        "故障风",
-        "毛刺",
-        "信号干扰"
+        "故障干扰",
+        "画面撕裂",
+        "数码故障"
       ],
-      "visual_cues": "在t=6.305s的帧中，画面出现黑色撕裂条纹、网格状噪点的典型故障特效，后续帧从轮毂场景直接切换为汽车尾部场景，无其他转场过渡特征，符合故障转场的表现。",
+      "visual_cues": "第3帧画面出现了明显的画面撕裂、横向黑色干扰条和网格失真的故障艺术效果，前后帧的拍摄对象从汽车轮毂变为汽车尾部，场景发生了切换，符合故障转场的特征。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "glitch",
+        "glitch",
+        "glitch"
+      ]
     },
     {
       "t_start": 7.53,
@@ -146,19 +184,25 @@
       "present": true,
       "type": "glitch",
       "type_cn": "故障",
-      "confidence": 0.9,
-      "description_cn": "画面在展示EMEYA车型尾部后，先出现高对比度色彩偏移、画面轮廓锐化的故障艺术效果，随后故障效果消失，切换为ELETRE车型在街景中的尾部画面，最后又硬切到车轮的特写画面。",
-      "description_en": "After showing the rear of the EMEYA model, the frame first presents glitch art effects including high contrast, color shift and sharpened outlines. Then the glitch effect disappears, switching to the rear view of the ELETRE model in a street scene, and finally hard cuts to a close-up shot of the wheel.",
+      "confidence": 0.95,
+      "description_cn": "画面从正常的汽车尾部特写，先进入高对比度、色彩偏移的故障风格特效画面，之后恢复为另一台汽车的尾部画面，最后切换到汽车轮圈特写，过程中出现了色彩失真、画面锐化夸张的故障艺术效果。",
+      "description_en": "The footage changes from a normal close-up of the car's rear, first enters a glitch-style special effect screen with high contrast and color shift, then returns to the rear view of another car, and finally switches to a close-up of the car's rim, with glitch art effects of color distortion and exaggerated picture sharpening appearing during the process.",
       "capcut_category": "Glitch",
       "capcut_tags": [
-        "故障转场",
-        "信号干扰"
+        "故障艺术",
+        "赛博故障"
       ],
-      "visual_cues": "中间的几帧画面出现了色彩失真、高对比度的赛博故障风格效果，与前后正常实拍的画面风格完全不同，属于典型的故障类转场的视觉表现。",
+      "visual_cues": "第1帧是正常的汽车尾部画面，第2至第4帧画面出现高对比度黑场、色彩分离失真的故障效果，和前后正常画面风格差异明显，随后恢复正常的汽车实拍画面，最后硬切到轮圈特写，符合故障转场的特征。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "glitch",
+        "glitch",
+        "glitch"
+      ]
     },
     {
       "t_start": 8.635,
@@ -169,18 +213,24 @@
       "type": "glitch",
       "type_cn": "故障",
       "confidence": 0.92,
-      "description_cn": "转场过程中画面出现扫描线、色偏、画面撕裂的故障效果，从汽车轮毂的画面过渡到汽车尾部的画面，故障效果消失后新场景稳定显示。",
-      "description_en": "During the transition, the picture has glitch effects including scan lines, color deviation and picture tearing, transitioning from the shot of the car wheel hub to the shot of the car rear, and the new scene is displayed stably after the glitch effect disappears.",
+      "description_cn": "转场过程中画面出现信号干扰风格的故障效果，带有类似扫描线的条纹、画面色彩偏移失真，前序的车轮轮毂画面过渡为汽车尾部画面，故障效果消失后新场景稳定显示。",
+      "description_en": "During the transition, the picture presents a signal interference style glitch effect, with scanline-like stripes and color offset distortion. The previous wheel hub picture transitions to the car rear picture, and the new scene displays stably after the glitch effect disappears.",
       "capcut_category": "Glitch",
       "capcut_tags": [
         "故障",
         "信号干扰"
       ],
-      "visual_cues": "转场阶段画面出现水平扫描线、色彩偏移、画面撕裂的故障艺术特征，场景从汽车轮毂切换为汽车尾部，过渡阶段的故障效果是典型的故障转场特征。",
+      "visual_cues": "转场中间帧出现明显的扫描线条纹、画面色彩与轮廓失真的故障艺术效果，前后画面内容分别为汽车轮毂和汽车尾部，是完全不同的场景，且转场过程有典型的数字信号故障的视觉特征。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "glitch",
+        "glitch",
+        "glitch"
+      ]
     },
     {
       "t_start": 9.28,
@@ -188,21 +238,27 @@
       "t_end": 9.98,
       "gap": 0.04,
       "present": true,
-      "type": "fade-to-black",
-      "type_cn": "淡入黑场",
+      "type": "glitch",
+      "type_cn": "故障",
       "confidence": 0.92,
-      "description_cn": "画面从汽车尾部的镜头开始，逐渐变暗过渡到完全黑场，之后再从黑场逐渐变亮，切换到汽车正面的全新镜头，完成转场。",
-      "description_en": "The shot starts with the rear of the car, gradually darkens and transitions to a full black screen, then brightens from the black screen to switch to a new shot of the front of the car, completing the transition.",
-      "capcut_category": "Basic",
+      "description_cn": "首先原本的汽车尾部画面逐渐消失并过渡到黑场，随后出现色彩分离、画面撕裂的故障效果，之后切换到汽车正面的画面，完成转场。",
+      "description_en": "First, the original shot of the car's rear gradually fades into a black screen, then glitch effects including color separation and screen tearing appear, and then the scene switches to the front view of the car, completing the transition.",
+      "capcut_category": "Glitch",
       "capcut_tags": [
-        "淡入淡出",
-        "黑场过渡"
+        "故障转场",
+        "色差故障"
       ],
-      "visual_cues": "首先是汽车尾部画面逐渐变暗，中间两帧完全为黑场，之后画面从黑场逐渐变亮，出现和之前完全不同的汽车正面场景，符合淡入黑场的转场特征。",
+      "visual_cues": "帧序列先是汽车尾部画面，之后变为黑场，中间出现彩虹色散、画面撕裂的故障视觉特征，最终跳转到完全不同的汽车正面场景，符合故障转场的表现。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "glitch",
+        "glitch",
+        "glitch"
+      ]
     },
     {
       "t_start": 10.59,
@@ -213,18 +269,23 @@
       "type": "dissolve",
       "type_cn": "叠化",
       "confidence": 0.95,
-      "description_cn": "原本的汽车前脸画面逐渐变淡消失，同时抽象金属曲面的画面逐渐显现，两个场景在过渡阶段存在重叠的半透明叠加效果，平滑完成场景切换。",
-      "description_en": "The original shot of the car's front end gradually fades out, while the shot of abstract curved metal surfaces gradually fades in. The two scenes overlap with semi-transparent effect during the transition, completing the scene switch smoothly.",
+      "description_cn": "前序画面是路特斯Emeya汽车的前脸特写，在转场过程中，汽车画面逐渐透明消失，同时汽车内饰的金属材质画面逐渐显现，两个画面有短时间的重叠过渡，最终完全切换为内饰画面。",
+      "description_en": "The previous frame is a close-up of the front of the Lotus Emeya car. During the transition, the car image gradually fades out with transparency, while the image of the metallic interior of the car gradually fades in. The two images overlap for a short period of time, and finally the scene completely switches to the interior view.",
       "capcut_category": "Overlay",
       "capcut_tags": [
-        "叠化",
-        " dissolve"
+        "叠化"
       ],
-      "visual_cues": "前三个帧为汽车前脸的清晰画面，第四帧同时出现汽车画面和金属曲面画面的半透明叠加，后续帧汽车画面完全消失，仅保留金属曲面画面，符合叠化转场的画面渐变叠加特征。",
+      "visual_cues": "1. 前3帧画面均为汽车前脸，内容稳定；2. 第4帧同时出现半透明的汽车前脸和内饰画面，二者重叠；3. 后续帧中汽车前脸完全消失，仅保留内饰画面，画面内容平滑过渡。",
       "src": "transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "dissolve",
+        "dissolve",
+        "dissolve"
+      ]
     },
     {
       "t_start": 11.87,
@@ -232,21 +293,27 @@
       "t_end": 12.57,
       "gap": 0.04,
       "present": true,
-      "type": "dissolve",
-      "type_cn": "叠化",
-      "confidence": 0.95,
-      "description_cn": "初始画面是银黑金属扭曲质感的抽象画面，后续该抽象画面逐渐透明消失，同时户外路特斯汽车的场景逐渐显现，两个场景在过渡阶段存在短暂的重叠，最终完全切换为汽车场景。",
-      "description_en": "The initial frame is an abstract image with silver-black metallic twisted texture. Then this abstract image gradually fades out with transparency, while the scene of Lotus cars outdoors gradually fades in. The two scenes overlap briefly during the transition, and finally switch to the car scene completely.",
-      "capcut_category": "Overlay",
+      "type": "wipe",
+      "type_cn": "擦除",
+      "confidence": 0.92,
+      "description_cn": "初始画面是金属质感的抽象扭曲画面，该画面以类似擦除的形式逐渐被移除，最终完全露出后方的路特斯汽车场景，完成场景切换。",
+      "description_en": "The initial frame is an abstract distorted picture with metallic texture, which is gradually removed in a wipe-like manner, finally fully revealing the Lotus car scene behind and completing the scene transition.",
+      "capcut_category": "Slide",
       "capcut_tags": [
-        "叠化",
-        "溶解转场"
+        "扭曲擦除",
+        "金属转场"
       ],
-      "visual_cues": "前几帧为抽象金属质感画面，中间帧同时出现抽象画面与汽车场景的重叠内容，后续帧抽象画面完全消失，仅保留清晰的汽车场景，存在两个画面逐渐交替的过程，符合叠化转场的特征。",
+      "visual_cues": "前几帧为抽象金属扭曲画面，过程中该前景画面逐渐被擦除，后景的汽车场景逐步显现，最终完全切换为汽车场景，符合擦除转场的画面表现特征。",
       "src": "transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "wipe",
+        "wipe",
+        "wipe"
+      ]
     },
     {
       "t_start": 13.737,
@@ -254,22 +321,28 @@
       "t_end": 14.437,
       "gap": 0.04,
       "present": true,
-      "type": "fade-to-white",
-      "type_cn": "淡入白场",
-      "confidence": 0.9,
-      "description_cn": "画面首先从路特斯汽车的场景逐渐过渡到全黑的黑场，随后画面亮度逐渐升高，黄色调越来越强，最终完全变为纯黄色的白场（亮场），完成转场。",
-      "description_en": "The frame first transitions from the scene of Lotus cars to a full black field, then the brightness of the frame gradually increases, the yellow tone becomes stronger, and finally it completely turns into a pure yellow bright field, completing the transition.",
-      "capcut_category": "Basic",
+      "type": "flash",
+      "type_cn": "闪白/闪黑",
+      "confidence": 0.95,
+      "description_cn": "画面先从路特斯汽车的场景过渡到全黑场，随后快速变为亮黄色的纯色画面并持续，属于闪类转场，过程中先闪黑再闪为高亮度黄色画面。",
+      "description_en": "The footage first transitions from the Lotus car scene to a full black screen, then quickly changes to a bright yellow solid-color screen and remains. It is a flash transition, with a flash to black first and then a flash to a high-brightness yellow screen during the process.",
+      "capcut_category": "Light Effect",
       "capcut_tags": [
-        "渐隐",
-        "闪白",
-        "淡入白场"
+        "闪黑",
+        "闪白/闪黄",
+        "纯色闪"
       ],
-      "visual_cues": "首先出现全黑的黑帧，之后画面逐步被黄色覆盖，黄色的亮度不断提升，最终整体画面变为均匀的纯黄色亮场，符合淡入白场（亮场）的过渡特征。",
+      "visual_cues": "前两帧是带有路特斯标识和汽车的画面，第三帧变为纯黑色，后续帧画面逐渐过渡为纯亮黄色并保持，没有前后画面的叠加或位移类转场特征，是短时的画面亮度、内容跳变后变为纯色画面，符合闪转场的特征。",
       "src": "ffmpeg+transnet",
       "model": "doubao-seed-2.0-pro",
       "_raw_type": null,
-      "_parse_ok": true
+      "_parse_ok": true,
+      "_k": 3,
+      "_votes": [
+        "flash",
+        "flash",
+        "fade-to-white"
+      ]
     }
   ],
   "effects": [
@@ -278,15 +351,17 @@
       "t_end": 13.66,
       "present": true,
       "types": [
+        "zoom-pulse",
         "film-grain"
       ],
       "types_cn": [
+        "卡点缩放",
         "颗粒/胶片"
       ],
-      "confidence": 0.95,
-      "description_cn": "镜头在最后一帧添加了明显的胶片颗粒噪点效果，前面的帧画面相对干净，最后一帧整体布满密集的颗粒纹理，模拟胶片质感。",
-      "description_en": "The lens added an obvious film grain noise effect in the last frame. The previous frames are relatively clean, and the last frame is covered with dense grain texture as a whole, simulating the film texture.",
-      "visual_cues": "前5帧画面细节清晰、噪点少，第6帧整个画面出现密集的颗粒状噪点，覆盖所有画面元素，是典型的胶片颗粒特效表现。",
+      "confidence": 0.9,
+      "description_cn": "画面存在卡点缩放效果，前景车辆在帧序列中逐渐变大，同时最后一帧出现明显的胶片颗粒效果，整体画面充满颗粒质感。",
+      "description_en": "There is a卡点缩放 effect in the picture, the foreground vehicle gradually becomes larger in the frame sequence, and the last frame has obvious film grain effect, the whole picture is full of grain texture.",
+      "visual_cues": "对比6帧画面，前景车辆的尺寸随时间推进持续增大，存在逐步放大的缩放效果；第6帧画面整体覆盖了明显的杂色颗粒，符合胶片颗粒特效的特征。",
       "model": "doubao-seed-2.0-pro",
       "_parse_ok": true
     },
@@ -296,18 +371,16 @@
       "present": true,
       "types": [
         "rgb-split",
-        "shake",
         "light-leak"
       ],
       "types_cn": [
         "RGB错位",
-        "抖动",
         "漏光"
       ],
-      "confidence": 0.95,
-      "description_cn": "画面存在RGB颜色错位效果，整体镜头有抖动感，同时后续帧出现了漏光的高光效果，画面边缘出现异常亮部。",
-      "description_en": "The picture has RGB color split effect, the whole lens has a shaking feeling, and at the same time, the highlight effect of light leakage appears in the subsequent frames, and abnormal bright parts appear at the edge of the picture.",
-      "visual_cues": "1. 多帧画面中物体边缘存在红、绿、蓝三色分离的错位重影，符合rgb-split特征；2. 画面视角在连续帧中无规律晃动，主体位置偏移，是抖动效果的表现；3. 第5、6帧画面右侧出现异常的高亮过曝区域，属于漏光特效的特征。",
+      "confidence": 0.92,
+      "description_cn": "画面存在RGB颜色错位效果，同时后期帧出现漏光类的过亮白光特效，画面整体有轻微色彩分离的故障感，右侧区域还有亮度过曝的漏光效果。",
+      "description_en": "The footage has RGB color shift effect, and overexposed white light effect of light leak appears in the later frames. The whole picture has a slight glitch feeling of color separation, and there is also an overexposed light leak effect in the right area.",
+      "visual_cues": "1. 画面中物体边缘可观察到红绿蓝三色分离的错位痕迹，属于rgb-split特效特征；2. 最后两帧的画面右侧出现明显异常的过亮白光区域，属于light-leak特效的表现。",
       "model": "doubao-seed-2.0-pro",
       "_parse_ok": true
     },
@@ -316,17 +389,21 @@
       "t_end": 6.4,
       "present": true,
       "types": [
+        "zoom-pulse",
         "rgb-split",
-        "zoom-pulse"
+        "freeze-frame",
+        "film-grain"
       ],
       "types_cn": [
+        "卡点缩放",
         "RGB错位",
-        "卡点缩放"
+        "定格",
+        "颗粒/胶片"
       ],
-      "confidence": 0.92,
-      "description_cn": "镜头存在RGB颜色错位特效，同时还有卡点缩放特效，视觉上轮毂随帧逐步变大，后一帧还出现了画面干扰效果。",
-      "description_en": "The shot has RGB color split effect, as well as a卡点zoom pulse effect, the wheel hub gradually becomes larger frame by frame, and the last frame has picture interference effect.",
-      "visual_cues": "1. 画面边缘出现红绿蓝的色彩分离错位，符合rgb-split特征；2. 6帧里轮毂在画面中的占比逐步变大，是镜头逐步放大的zoom-pulse效果；3. 最后一帧出现画面干扰类的断层效果，和RGB错位特效同步出现。",
+      "confidence": 0.9,
+      "description_cn": "画面首先存在向前的卡点缩放效果，车轮在帧序列中逐渐变大，之后出现画面定格，同时伴随RGB颜色错位效果，整体画面带有胶片颗粒质感，最后一帧还出现了扫描线类的故障风格效果。",
+      "description_en": "The footage first has a beat-aligned zoom-in effect, the wheel gradually becomes larger in the frame sequence, then the frame freezes, accompanied by RGB color split effect, the whole picture has a film grain texture, and the last frame also has a glitch-style effect with scanning lines.",
+      "visual_cues": "1. 前5帧画面里轮毂的显示尺寸持续变大，是zoom-pulse的表现；2. 第4帧开始画面边缘出现RGB色彩分离的偏移，存在rgb-split效果；3. 轮毂辐条从第1帧到第5帧没有发生旋转位移，说明画面是定格状态，符合freeze-frame的特征；4. 全帧都存在明显的颗粒噪点，属于film-grain效果。",
       "model": "doubao-seed-2.0-pro",
       "_parse_ok": true
     },
@@ -335,22 +412,18 @@
       "t_end": 12.08,
       "present": true,
       "types": [
-        "rgb-split",
-        "film-grain",
-        "color-filter"
+        "speed-ramp"
       ],
       "types_cn": [
-        "RGB错位",
-        "颗粒/胶片",
-        "调色滤镜"
+        "变速"
       ],
-      "confidence": 0.85,
-      "description_cn": "画面整体为黑银冷色调调色，存在RGB色彩分离错位效果，同时叠加了胶片颗粒质感。",
-      "description_en": "The overall picture has a cold black-silver color grading, with RGB color separation and dislocation effect, and is superimposed with film grain texture.",
-      "visual_cues": "连续帧中画面的金属结构边缘存在轻微的RGB色彩错位，整体统一为低饱和冷黑银调色，画面表面有细碎的颗粒感噪点，属于胶片颗粒效果。",
+      "confidence": 0.9,
+      "description_cn": "镜头内的金属叶片转动速度存在明显加快的变速效果，属于变速特效。",
+      "description_en": "There is an obvious speed-up effect on the rotation speed of the metal blades in the shot, which belongs to the speed-ramp effect.",
+      "visual_cues": "在相同时间间隔的连续帧中，金属叶片的转动幅度逐帧快速增大，说明其运动速度被人为加快，符合变速（speed-ramp）的特征。",
       "model": "doubao-seed-2.0-pro",
       "_parse_ok": true
     }
   ],
-  "elapsed_seconds": 155.9
+  "elapsed_seconds": 327.9
 }

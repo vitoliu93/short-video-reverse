@@ -4,54 +4,42 @@
   "n_shots": 1,
   "narrative": {
     "hook_type": "direct",
-    "hook_desc_cn": "开场直接呈现具有动漫风格的真人男性特写，靠高颜值视觉效果吸引观众注意力",
+    "hook_desc_cn": "开场直接呈现具有动漫风格的真人男性特写，依靠高颜值视觉表现吸引观众注意力",
     "structure": "other",
     "acts": [
       {
         "role": "hook",
         "t_start": 0.0,
         "t_end": 1.0,
-        "summary_cn": "开场呈现真人与动漫形象融合的画面，带来沉静虚幻的初感，抓住观众注意力"
+        "summary_cn": "呈现沉静虚幻的视觉氛围，引出内容"
       },
       {
         "role": "setup",
         "t_start": 1.0,
         "t_end": 4.0,
-        "summary_cn": "通过画面与音乐烘托爱恨纠葛的思绪氛围"
+        "summary_cn": "传递爱恨纠葛与思绪感"
       },
       {
         "role": "setup",
         "t_start": 4.0,
         "t_end": 8.0,
-        "summary_cn": "传递回忆回溯、彼此凝视的情绪"
+        "summary_cn": "营造回忆回溯与凝视的氛围"
       },
       {
         "role": "setup",
         "t_start": 8.0,
         "t_end": 11.0,
-        "summary_cn": "营造独酌场景下的愁绪与思绪感"
-      },
-      {
-        "role": "setup",
-        "t_start": 11.0,
-        "t_end": 16.0,
-        "summary_cn": "传递宿命般等待与守候的情绪"
-      },
-      {
-        "role": "resolution",
-        "t_start": 16.0,
-        "t_end": 18.0,
-        "summary_cn": "呈现飘落意象的结局，烘托感怀氛围"
+        "summary_cn": "展现独酌的愁绪与思绪"
       },
       {
         "role": "cta",
-        "t_start": 18.0,
+        "t_start": 16.0,
         "t_end": 19.133,
-        "summary_cn": "出现点击购买字样，引导用户进行消费操作"
+        "summary_cn": "呈现飘落的结局与感怀，出现引导点击购买的文字"
       }
     ],
-    "theme_cn": "通过真人与动漫形象的视觉融合，搭配伤感音乐营造思念忧郁的氛围感，最终实现商业引流转化",
-    "cta": "引导观众点击链接购买视频中展示的同款产品",
+    "theme_cn": "通过真人与动漫形象的风格融合，搭配伤感音乐营造忧郁、思念的氛围，实现商业引流转化",
+    "cta": "点击此处购买相关产品",
     "pacing_profile": {
       "avg_shot_s": 19.133,
       "std_shot_s": 0.0,
@@ -70,20 +58,16 @@
       "start": 0.0,
       "end": 19.133,
       "dur": 19.133,
-      "summary_cn": "营造独酌场景下的愁绪与思绪感"
+      "summary_cn": "展现独酌的愁绪与思绪"
     }
   ],
   "content_tags": [
-    "视觉融合",
-    "伤感氛围",
-    "动漫男神",
-    "商业推广",
-    "同款周边"
+    "动漫风格融合、伤感氛围、视觉展示、商业推广、情绪共鸣"
   ],
   "emotion_curve": [
     {
       "t": 9.5,
-      "emotion": "忧郁",
+      "emotion": "冷峻忧郁",
       "valence": -0.6
     }
   ],
@@ -91,7 +75,7 @@
     {
       "t_start": 0.0,
       "t_end": 19.133,
-      "label": "全片静态图像搭配动态歌词与背景音乐的视觉展示",
+      "label": "真人与动漫形象融合的静态视觉+伤感音乐搭配展示",
       "src": "grounding"
     }
   ],
@@ -99,6 +83,12 @@
     "shots": "fx_detect(transnet+ffmpeg)",
     "pacing": "computed",
     "narrative": "doubao-seed-2.0-pro",
+    "synth_k": 3,
+    "structure_votes": [
+      "other",
+      "other",
+      "other"
+    ],
     "arc_tasks": [
       "Summary",
       "Segment",
@@ -113,5 +103,5 @@
       "Grounding": true
     }
   },
-  "elapsed_seconds": 12.9
+  "elapsed_seconds": 41.2
 }
