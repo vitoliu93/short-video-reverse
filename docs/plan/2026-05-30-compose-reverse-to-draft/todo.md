@@ -1,11 +1,11 @@
 # Todo: compose_ — 反解结果编排 + 映射到 KOX icccut_draft
 
 ## Current State  ← 恢复游标，常更新
-- **Phase**: C3 — eval + report
-- **Status**: todo（C0 ✅ / C1 ✅ / C2 ✅）
+- **Phase**: C3 — eval + report **[DONE ✅]** — 计划完成
+- **Status**: **ALL DONE**（C0 ✅ / C1 ✅ / C2 ✅ / C3 ✅）
 - **Branch**: worktree-dev-plan-2026-05-30-compose-reverse-to-draft
-- **Last done**: **C2 通过** — `compose_extract.py` 5 样本端到端全过整稿校验（Lotus24/drama9/hair18/ai1/kid1）。抓修真 bug：同轨时间重叠→`_alloc_lane` 分轨。spec §11
-- **Next**: C3 = 量化映射保真度（各模态信号落进/丢失/为何）+ spec §12 结果块 + known-limitations + 登记 CLAUDE.md（第6条 compose_）+ review.md
+- **Last done**: **C3 通过** — `compose_eval.py` 保真度评测：镜头 41→41(1:1) / 非硬切转场 8/8 / 特效 11/12 / bgm 1/1 / 叙事 5/5。评测钓出真 bug：转场挂载非单射(重复挂+漏挂)→`assign_transitions` argmin+消费 修根因 + smoke 回归断言。对抗审计精修映射表 5 条 + 确认 4 条 unmapped。spec §12 + CLAUDE.md 第6条 + review.md 已写。
+- **Next**: 待用户决定是否将分支并入 main（`review` 已出，工件齐）
 - **Blockers**: none
 
 ## Phases
@@ -38,11 +38,11 @@
 - **Acceptance**: 两类视频产出字段完整、整稿校验过、unmapped 段落诚实记录、单镜头相册走 add_image
 - **Verify**: 跑 compose_extract + validate_icccut_draft.py 整稿校验 → **Result**: ✅ **5/5 整稿过**（Lotus24/drama9/hair18/ai1/kid1）。抓修同轨重叠真 bug→_alloc_lane 分轨。spec §11
 
-### C3 — eval + report：映射保真度评测  [todo]
-- [ ] ≥3 真实抖音（drama/hair/+）跑 compose_extract
-- [ ] 量化保真度：各模态反解信号「落进合法 draft 参数 / 丢失 / 为何」表
-- [ ] spec §9–§12 结果块 + known-limitations
-- [ ] 登记 CLAUDE.md（第 6 条 compose_ 能力 + 运行命令）
-- [ ] review.md 复盘
-- **Acceptance**: 保真度量化、局限诚实（含 font 未跑真、fx 标签映射模糊项、media 占位）、CLAUDE.md 更新
-- **Verify**: 评测表 + spec 结果块 + CLAUDE.md diff → **Result**: pending
+### C3 — eval + report：映射保真度评测  [done ✅ 2026-05-30]
+- [x] 5 样本（Lotus + drama/hair/ai/kid 真实抖音）跑 compose_extract + compose_eval
+- [x] 量化保真度：各模态反解信号「落进合法 draft 参数 / 丢失 / 为何」表（§12.1）
+- [x] spec §12 结果块（§12.1 保真度 + §12.1a 抓修转场单射 bug + §12.2 对抗审计 + §12.3 verdict/局限）
+- [x] 登记 CLAUDE.md（第 6 条 compose_ 能力 + 运行命令 + 设计决策 + spec 指针）
+- [x] review.md 复盘
+- **Acceptance**: 保真度量化、局限诚实（含 font 未跑真、color-filter 未识别、media 占位、近似参数）、CLAUDE.md 更新 ✓
+- **Verify**: `compose_eval.py`（镜头 41→41 / 转场 8/8 / 特效 11/12 / bgm 1/1 / 叙事 5/5）+ 5 稿整稿全过 `validate_icccut_draft` + `compose_smoke.py` ✅ ALL PASS（含新增转场单射回归断言）→ **Result**: ✅ **达成**。抓修转场挂载非单射真 bug→`assign_transitions`。spec §12

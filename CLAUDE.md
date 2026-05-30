@@ -6,9 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `short-video-reverse` — research + POC code that **reverse-engineers a short video into structured JSON**. It is one sub-project of the `kox-base` monorepo (KOX, an AI clipping studio); see the parent `../CLAUDE.md` for monorepo conventions (aliases, gitee-ent / volcengine-supabase MCP, etc.).
 
-This is **not a production pipeline**. It is a set of independent "reverse" capabilities, each de-risked as a standalone POC. Output is structured JSON written to `outputs/<pipeline>/`, intended to feed KOX eval Gold Cases and `add_text` parameter recovery — not yet integrated into any end-to-end orchestration.
+This is **not a production pipeline**. It is a set of independent "reverse" capabilities, each de-risked as a standalone POC. Output is structured JSON written to `outputs/<pipeline>/`, intended to feed KOX eval Gold Cases and `add_text` parameter recovery. **`compose_` is the orchestration+mapping layer** that stitches the five reverse outputs into one unified JSON and maps it to a KOX `icccut_draft.json` (the end-to-end chain — POC, cache-driven demo).
 
-Five pipelines, each a `scripts/<pfx>_*.py` family writing to `outputs/<pfx>/`. They share one venv (see below):
+**Five reverse pipelines + one compose layer**, each a `scripts/<pfx>_*.py` family writing to `outputs/<pfx>/`. They share one venv (see below):
 
 | Pipeline | Prefix | Job | Entry → output |
 |-|-|-|-|
@@ -17,6 +17,7 @@ Five pipelines, each a `scripts/<pfx>_*.py` family writing to `outputs/<pfx>/`. 
 | **Font/style** | `font_*` | Video text region → `texts[]` JSON: ffmpeg frames → RapidOCR → closed-set font match (NCC) + 4-D style | `font_extract.py` → `outputs/font/` |
 | **Transition/FX** | `fx_*` | Video → `transitions[]`+`effects[]` JSON: TransNetV2⊕ffmpeg locate → VLM (Ark `doubao-seed-2.0-pro`) describe + closed-set tag + 剪映 category | `fx_extract.py` → `outputs/fx/` |
 | **Narrative** | `narr_*` | Video → `narrative{}` JSON: fx_detect shots+pacing (deterministic) ⊕ ARC-Hunyuan multi-task (Summary/Segment/QA/Grounding) → doubao synth into closed-set hook/structure/acts/emotion | `narr_extract.py` → `outputs/narr/` |
+| **Compose** | `compose_*` | The 5 reverse outputs → unified reverse JSON `{shots,subtitles,bgm,transitions,effects,narrative}` → **map to KOX `icccut_draft.json` add_* actions** (validated against the real icccut-agents validator). The 6th capability: reverse→draft, the chain not a 6th reverse | `compose_extract.py` → `outputs/compose/<stem>.json` + `.draft.json` |
 
 ## Running scripts — read this first
 
@@ -57,6 +58,15 @@ uv run scripts/narr_extract.py <video> --tasks Summary,Segment,QA,Grounding  # p
 uv run scripts/narr_extract.py <video> --no-synth          # skeleton+ARC only (skip doubao synth)
 # ARC calls are disk-cached to outputs/arc/<stem>_<task>.json — re-runs don't burn the ~100-call free quota.
 # --no-cache forces a re-fetch (spends quota).
+
+# Compose: NO index, NO model — pure orchestration + mapping. Cache-first (reads outputs/{fx,font,narr,bgm}/<stem>.json).
+uv run scripts/compose_extract.py <video>                  # cache-first → outputs/compose/<stem>.json + .draft.json
+uv run scripts/compose_extract.py <video> --run            # run any missing reverse pipeline first (burns VLM/ARC quota; font/bgm need built indexes)
+uv run scripts/compose_extract.py <video> --no-validate    # skip the icccut validator round-trip
+uv run scripts/compose_eval.py [stem ...]                  # fidelity report: each modality landed/lost/why (defaults to all outputs/compose)
+# Draft validation reuses the REAL icccut-agents validators (must run in their venv), e.g.:
+#   uv run --directory ../icccut-agents python <wt>/scripts/compose_smoke.py        # C1 self-test: mapping values + Lotus regression + transition-injectivity guard
+#   uv run --directory ../icccut-agents python .../validate_icccut_draft.py <draft.json> --json   # whole-draft (id-unique + same-track overlap + canvas gaps)
 ```
 
 There is no test runner, linter, or build step — verification is done by running the smoke/eval scripts against synthetic or real samples and reading the metrics they print / write.
@@ -78,7 +88,7 @@ External data lives in TOS, pulled via the `tos-cli` skill: `tos://kox-statics/b
 
 Work follows a **de-risk-first milestone** rhythm: knock out the biggest unknown first, then foundation, then full chain, then eval+report (BGM = M0→M3, Font = F0→F3, Transition/FX = X0→X3, Narrative = N0→N3). Each effort is a `dev-plan` materialized under **`docs/plan/<date>-<slug>/`** (goal / spec / preflight / todo / exploration / review).
 
-**Before touching a pipeline, read its spec** — `spec.md`'s numbered sections carry the verified milestone results, the rationale, and honest known-limitations. `docs/BGM-反解-术语与流水线.md` explains the BGM terminology/data-flow; `docs/plan/2026-05-29-font-style-recognition/spec.md` is the font record; `docs/plan/2026-05-30-transition-fx-reverse/spec.md` is the transition/FX record (§9–§12 = X0→X3 results); `docs/plan/2026-05-30-narrative-structure-reverse/spec.md` is the narrative record (§9–§11 = N0→N3 results).
+**Before touching a pipeline, read its spec** — `spec.md`'s numbered sections carry the verified milestone results, the rationale, and honest known-limitations. `docs/BGM-反解-术语与流水线.md` explains the BGM terminology/data-flow; `docs/plan/2026-05-29-font-style-recognition/spec.md` is the font record; `docs/plan/2026-05-30-transition-fx-reverse/spec.md` is the transition/FX record (§9–§12 = X0→X3 results); `docs/plan/2026-05-30-narrative-structure-reverse/spec.md` is the narrative record (§9–§11 = N0→N3 results); `docs/plan/2026-05-30-compose-reverse-to-draft/spec.md` is the compose record (§9–§12 = C0→C3 results: mapping contract, builder, full chain, fidelity).
 
 Settled design decisions (don't re-litigate without new evidence):
 - **Font = closed-set render-and-compare** (we own every TTF), similarity = **NCC, no training**. Single-frame top-1 is noisy on real抖音 video → aggregate by **video-level voting**. **DINOv2 was tried and rejected** (worse than NCC on low-res/degraded frames — spec §12).
@@ -86,6 +96,7 @@ Settled design decisions (don't re-litigate without new evidence):
 - Font weight is read from the *matched* font's clean render, not from degraded pixels; fill color is sampled from the distance-transform core, not Otsu minority ink (color-polarity fix, spec §12).
 - **Transition/FX = VLM description, not retrieval.** Localization (`fx_detect`: TransNetV2⊕ffmpeg) is **fully deterministic**; the VLM `type` label is **not** (Ark/doubao drifts run-to-run even at `temperature=0`, server-side token nondeterminism) → for a reliable `type`, take **k=3 majority vote** (spec §11–§12). Backend is pinned to **direct Ark `/api/coding` + `doubao-seed-2.0-pro`** (`VOLC_ARK_API_KEY`); the ICC-Router `agent-vision` alias was rejected — it load-balances to nondeterministic backends. Recall blind spot = low-content-change same-framing micro-cuts (spec §12).
 - **Narrative = three-layer AVI (deterministic skeleton + ARC semantics + doubao synth).** Shots/pacing come from `fx_detect` (deterministic — **never let the VLM invent timestamps**); narrative *meaning* comes from ARC-Hunyuan's hosted multi-task API (Summary/Segment/QA/Grounding); the closed-set `hook_type`/`structure`/`acts` JSON is synthesized by doubao from that evidence. **Don't put the narrative framework into the ARC prompt** — an earlier QA prompt that listed "铺垫/冲突/反转/结尾" biased ARC into parroting it and polluted the `structure` label (spec §11.2 fix: neutral prompt). doubao's high-level categorical labels (esp. `structure`) **drift run-to-run** like fx_'s `type` → use k-vote if you need a stable `structure` (not done in the POC; `hook_type`/`acts` are comparatively stable). ARC calls are **disk-cached** to `outputs/arc/` (free quota ~100). `pacing_profile` = edit rhythm (deterministic), **≠ narrative pacing** — single-shot photo-album videos get acts from ARC's *semantic* segments, not cuts (spec §11.5).
+- **Compose = orchestrate + map, validate against the REAL icccut validator (don't re-implement the schema).** The mapping contract lives in `compose_common.py`: closed-set tables (`FX_TRANS_TO_JY` 16 / `FX_EFFECT_TO_JY` 12 / `FONT_ANIM_TO_JY` 4) + converters (bbox→transform_x/y, size_rel→font_size, time in seconds). **The valid 剪映 enum set = the icccut-agents `add-*/references/*.md` subset, NOT the full pyJianYingDraft 900+ enum** — many real enum members (抖动/漏光/暗角/故障定格) are absent from that subset and must NOT be used (C0 learning). What can't be faithfully mapped (vignette/freeze-frame/color-filter/speed-ramp) is recorded as an honest `_unmapped` entry, never force-fit. **Cross-action constraints are the builder's job, not the per-action validator's**: same-track time overlap → `DraftBuilder._alloc_lane` lane allocation (C2 fix); transition↔shot must be **injective** → `assign_transitions` argmin+consume, NOT per-shot nearest-search which double-claims/drops (spec §12.1a fix). Media is always a `${media_N}` placeholder (we reverse from pixels, no source files — the draft is a structure template for eval-gold/复刻, not a finished render). The demo runs **cache-first**; `--run` re-invokes the standalone pipelines but burns VLM/ARC quota. compose_ is **read-only across repos** — it imports icccut's validator but never writes into `../icccut-agents`, and does not export 剪映工程 / cloud-render (out of scope).
 
 ## macOS gotcha
 

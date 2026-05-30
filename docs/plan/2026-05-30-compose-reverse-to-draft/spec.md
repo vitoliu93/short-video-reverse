@@ -117,3 +117,43 @@
 **设计验证**：① **缓存优先编排正确**——compose 不重算，消费 POC 产出，无冗余 detect；② **部分失败降级**——缺 fx/bgm/font 时对应段落留空 + provenance.present 记录，仍产合法 draft（ai/kid 仅 narr 也出稿）；③ **单镜头**走单条全长 add_video（add_image 不需要——源是视频非静图）；④ 整稿校验是「映射对不对」的硬判据，比自我宣称强。
 
 **诚实局限**：font 仍未在真视频跑（5 片 subs=0；字幕轨/坐标/字体映射仅 fixture 验，真 font 需建 14GB 索引——C3 记为局限）；`--run` 重跑路径已编码但 demo 走缓存（重跑 fx/narr 烧 VLM/ARC 额度、font/bgm 需未建索引）；transition_duration 用默认 0.5、font_size 近似未标定；media 全占位。
+
+---
+
+## §12 C3 结果块 — 映射保真度评测 + 对抗审计映射忠实度（✅ 实验目标达成，2026-05-30）
+
+**交付**：`scripts/compose_eval.py`（保真度评测,读 outputs/compose 逐样本+汇总）；映射表经对抗审计精修；spec 结果块 + known-limitations；CLAUDE.md 登记第 6 条能力。
+
+### 12.1 映射保真度（5 样本汇总,`compose_eval.py`）
+| 模态 | 反解信号 | 落进合法 draft | 丢失 | 说明 |
+|-|-|-|-|-|
+| 镜头 shots | 41 | **41 add_video（1:1）** | 0 | 完全保真 |
+| 转场 transitions | 35 present | 27 硬切(表为相邻直切) + **8 映射剪映转场** | 0 unmapped | **非硬切映射率 8/8 = 100%**；draft 落 信号故障×4/叠化×2/闪黑×1/闪白×1，**与反解信号严格 1:1**（见 §12.1a 抓修） |
+| 特效 effects | 12 tags | **11 add_effect** | 1 unmapped(color-filter) | **落地率 11/12 = 92%**；唯一丢失=color-filter（fx 未识别具体 LUT,诚实不映射） |
+| BGM | 1 present | 1 add_audio | 0 | Lotus 唯一带 bgm |
+| 叙事 narrative | 5 | 5 作 meta.reverse_narrative | — | 非时间线 action(口径) |
+| 字幕 subtitles | 0 | 0 add_text | — | **font 未在样本跑(builder 已 fixture 验,见 §10/§11)** |
+
+### 12.1a 抓修真 bug — 转场挂载非单射（评测暴露 → 修根因,非埋）
+C3 评测交叉核对「反解非硬切信号 vs draft 转场参数」时发现类型分布漂移：Lotus 反解 glitch×4/dissolve×2/fade-to-black×1/fade-to-white×1，旧 draft 却落 信号故障×3/闪黑×2/叠化×2/闪白×1（glitch 漏 1、fade-to-black 多 1）。根因：旧 `transition_for_shot` **逐镜头找最近转场,无消费标记** →
+- **重复挂**：`fade-to-black@9.63` 同时落在 shot9(end 9.44,Δ0.19) 和 shot10(end 9.76,Δ0.13)——0.28s 微镜头对都在容差内 → 一个信号挂两镜头(闪黑×2)。
+- **漏挂**：`glitch@7.88` 在 shot6/shot7 切点(7.60)两侧均 Δ0.28 > 旧容差 0.25 → 静默丢弃(glitch 4→3)。宽转场(glitch 窗 [t_start,t_end])的 center 本就偏离切点约半个转场时长。
+
+**修法**：换成一遍扫描的 `assign_transitions(shots, transitions)` —— 每个 present 转场认领它**唯一最近**的镜头 out 点(argmin + 消费,抢同一镜头留更近者),保证 **转场↔镜头单射**；容差 0.25→**0.35**(< DEFAULT_TRANS_DUR/2,容宽转场 center 偏移)。修后 Lotus 8 present → 8 mapped **严格 1:1**（信号故障×4/闪黑×1/叠化×2/闪白×1），5 稿仍整稿全过。`compose_smoke.py` 加「转场分配单射」回归断言锁死(present 非硬切数 == mapped 数 且分布一致)。属与 C2 `_alloc_lane`(同轨重叠)同类的跨 action 约束——单 action 校验看不见,须建器侧保证。
+
+### 12.2 对抗审计映射忠实度（2 agent,各审一表,onto 全候选集 grep 核对）
+**判读：映射表整体站得住,审计精修 5 条提升语义忠实度,4 条 unmapped 确认正确。** 改动均经 validate_action 复核在校验集内：
+| tag | 旧 | 新 | 为何（审计） |
+|-|-|-|-|
+| wipe | 向左擦除 | **渐变擦除** | wipe 无方向语义,锁死「向左」每次输出同方向=信息失真;渐变擦除方向中性 |
+| glitch | 故障 | **信号故障** | fx 原义「故障信号干扰」;信号故障更准,且与集内 波动/色块/色差故障 区分 |
+| shake | 动感模糊 | **回弹摇摆** | 动感模糊=运动拖尾;回弹摇摆=画面弹性抖动晃动,才是 shake 物理义 |
+| light-leak | 光晕 | **复古发光** | light-leak=胶片式漏光;复古发光贴近,光晕偏镜头光环 |
+| particles | 光斑飘落 | **仙尘闪闪** | 光斑飘落语义过窄(仅光点);仙尘闪闪=通用粒子漫射,更宜作 fallback |
+- **keep（集内最佳/唯一）**：dissolve→叠化 / fade-to-black→闪黑 / fade-to-white→闪白 / flash→白光快闪 / push→推近 / slide→滑动 / zoom-in→模糊放大 / zoom-out→模糊缩小 / spin→中心旋转 / blur→模糊 / whip-pan→横移模糊 / mask→圆形遮罩 / zoom-pulse→变焦推镜 / blur-pulse→模糊 / film-grain→噪点。
+- **rgb-split→RGB描边 keep 但语义有损**：描边≠色差,但校验子集 143 项内唯一含 RGB 者,无更忠实替代（代码已注明）。
+- **4 unmapped 审计确认正确**：vignette(暗角不在子集) / freeze-frame(故障定格不在子集) / color-filter(fx 未识别具体 LUT,映射任意固定风格=误导) / speed-ramp(实为 speed 参数,映射 scene effect=概念越界)。
+
+### 12.3 Verdict & 诚实局限
+**实验目标达成**：从纯像素反解 → 统一 JSON → KOX `icccut_draft`,5 样本**整稿全过 icccut 真实校验**,编辑结构维度（镜头 100% / 非硬切转场 100% / 特效 92% / BGM / 叙事）高保真落进合法 draft 参数,映射表经对抗审计精修语义忠实度,无法忠实映射的（4 类 + color-filter）**诚实落 unmapped 不硬贴**。第 6 条能力 compose_ POC 完成。
+- **诚实局限**：(1) **font 未在样本上跑**——5 片字幕维度空,add_text 全链（坐标/字体/颜色/动画/分轨）仅 fixture 验,真字幕反解需先建 14GB 字体索引（C2/§10 已 fixture de-risk,真跑留增强）；(2) **media 全占位** `${media_N}`——结构模板非成片(口径,服务 eval gold/复刻);(3) **rgb-split→RGB描边 语义有损**(子集无色差项);(4) transition_duration=默认 0.5、font_size=size_rel·H/5.2 近似,均未逐样本标定;(5) 样本仅 5、多 ≤19s,口播/带货/长片(car_135s,需 long-video 端点) compose 未跑;(6) 单镜头相册走单条全长 add_video(源是视频非静图,故不用 add_image);(7) fx type/narr structure 的 run-to-run 漂移是上游已知局限(本计划不修);(8) 未导出剪映工程/未召回真实媒体(范围外)。

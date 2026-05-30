@@ -60,8 +60,8 @@ assert tx == 0.0 and abs(ty - (-0.68)) < 1e-6, (tx, ty)
 assert cc.bbox_to_transform([0.0, 0.0, 1.0, 1.0]) == (0.0, 0.0)
 assert abs(cc.size_rel_to_font_size(0.08, 1080) - 16.6) < 0.1
 assert cc.norm_font("SourceHanSansCN-Bold") == "SourceHanSansCN_Bold"
-assert cc.map_transition("hard-cut") is None and cc.map_transition("glitch") == "故障"
-assert cc.map_effect("vignette") == (None, "scene") and cc.map_effect("shake") == ("动感模糊", "scene")
+assert cc.map_transition("hard-cut") is None and cc.map_transition("glitch") == "信号故障"
+assert cc.map_effect("vignette") == (None, "scene") and cc.map_effect("shake") == ("回弹摇摆", "scene")
 print("  bbox_to_transform / size_rel / norm_font / map_* ✓")
 
 print("\n=== 3. Lotus 端到端回归(真模块 build_draft_from_cached → 全过校验)===")
@@ -88,6 +88,18 @@ ids = [a["id"] for a in acts]
 assert len(set(ids)) == len(ids), "duplicate action ids"
 assert [a["index"] for a in acts] == list(range(1, len(acts) + 1)), "index not 1..N"
 print(f"  draft 校验: PASS {npass}/{len(acts)}; id 唯一 ✓; index 递增 ✓")
+
+print("\n=== 4. 转场分配单射(C3 回归:无重复挂 / 无漏挂)===")
+present_nc = [t for t in unified["transitions"]
+              if t.get("present") and t["type"] not in ("hard-cut", "none")]
+mapped = [a["params"]["transition"] for a in acts
+          if a["action_type"] == "add_video" and "transition" in a["params"]]
+exp = Counter(cc.map_transition(t["type"]) for t in present_nc if cc.map_transition(t["type"]))
+got = Counter(mapped)
+# Lotus 每个 present 非硬切转场都落在某镜头 out 点附近 → 应恰好 1:1(单射),
+# 旧 transition_for_shot 会让一个转场挂到两个相邻短镜头(重复)、宽转场漏挂(spec §12)。
+assert exp == got, f"转场分配非单射: 反解信号={dict(exp)} ≠ draft={dict(got)}"
+print(f"  present 非硬切={len(present_nc)} → mapped={len(mapped)} 单射 ✓; 分布={dict(got)}")
 
 # 写盘
 out = cc.ROOT / "outputs" / "compose"

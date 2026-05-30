@@ -26,17 +26,18 @@ ICC = Path("/Users/liujiaxi/codebase/icc/kox-base/icccut-agents")   # 兄弟仓(
 FX_TRANS_TO_JY: dict[str, Optional[str]] = {
     "hard-cut": None, "none": None,            # 硬切/无:不加转场(相邻镜头直接相接)
     "dissolve": "叠化", "fade-to-black": "闪黑", "fade-to-white": "闪白",
-    "flash": "白光快闪", "push": "推近", "slide": "滑动", "wipe": "向左擦除",
+    "flash": "白光快闪", "push": "推近", "slide": "滑动", "wipe": "渐变擦除",
     "zoom-in": "模糊放大", "zoom-out": "模糊缩小", "spin": "中心旋转",
-    "glitch": "故障", "blur": "模糊", "whip-pan": "横移模糊", "mask": "圆形遮罩",
+    "glitch": "信号故障", "blur": "模糊", "whip-pan": "横移模糊", "mask": "圆形遮罩",
 }
 
 # fx effects[].types(12 闭集) → (剪映名, 路由)。路由:scene→add_effect / filter→add_filter / speed→add_video.speed / None→不可映射
 FX_EFFECT_TO_JY: dict[str, tuple[Optional[str], Optional[str]]] = {
     "none": (None, None),
-    "shake": ("动感模糊", "scene"), "zoom-pulse": ("变焦推镜", "scene"),
-    "rgb-split": ("RGB描边", "scene"), "light-leak": ("光晕", "scene"),
-    "particles": ("光斑飘落", "scene"), "blur-pulse": ("模糊", "scene"),
+    "shake": ("回弹摇摆", "scene"), "zoom-pulse": ("变焦推镜", "scene"),
+    "rgb-split": ("RGB描边", "scene"),    # 注:描边≠色差,校验子集内唯一含 RGB 项,语义有损(见 spec §12)
+    "light-leak": ("复古发光", "scene"),
+    "particles": ("仙尘闪闪", "scene"), "blur-pulse": ("模糊", "scene"),
     "film-grain": ("噪点", "scene"),
     "vignette": (None, "scene"),        # 暗角 不在校验 scene 子集 → unmapped
     "freeze-frame": (None, "scene"),    # 故障定格 不在校验子集 → unmapped
@@ -57,7 +58,7 @@ TRACK = {
 }
 
 CJK_W_FACTOR = 5.2          # icccut: CJK 字宽 ≈ 5.2*font_size(px) → font_size ≈ 字高px/CJK_W_FACTOR
-TRANS_ATTACH_TOL = 0.25     # |t_center − shot.end| < 此值 → 转场挂该镜头 out 点(C0 验证)
+TRANS_ATTACH_TOL = 0.35     # |t_center − shot.end| ≤ 此值 → 转场挂该镜头 out 点。宽转场(如 glitch)的 center 可偏离切点约半个转场时长,0.25 太紧会漏挂,放宽到 0.35(< DEFAULT_TRANS_DUR/2 量级)。C3 修
 DEFAULT_TRANS_DUR = 0.5     # 默认转场时长(s);gap 是 TransNet 帧级边界非视觉时长
 
 
@@ -97,16 +98,28 @@ def size_rel_to_font_size(size_rel: Optional[float], frame_h: int) -> Optional[f
 
 
 # ===================== 转场挂载 =====================
-def transition_for_shot(shot_end: float, transitions: list[dict]) -> Optional[dict]:
-    """找挂在该镜头 out 点的转场(present 且 t_center 接近 shot_end)。"""
-    best, bestd = None, TRANS_ATTACH_TOL
+def assign_transitions(shots: list[dict], transitions: list[dict]) -> dict[int, dict]:
+    """每个 present 转场 → 唯一最近的镜头 out 点(argmin |t_center − shot.end|),一对一。
+
+    一遍扫描而非「逐镜头找最近转场」:后者无消费标记 → 一个转场会挂到多个相邻短镜头
+    (重复),离任何边界都略远的宽转场又会漏挂(C3 抓修的真 bug)。这里反过来:每个转场
+    认领它最近的那个 out 点;若两个转场抢同一镜头,留更近的。保证 转场↔镜头 单射。
+    """
+    ends = [s["end"] for s in shots]
+    claimed: dict[int, tuple[float, dict]] = {}   # shot_idx → (dist, transition)
     for t in transitions:
         if not t.get("present"):
             continue
-        d = abs(t.get("t_center", -99) - shot_end)
-        if d < bestd:
-            best, bestd = t, d
-    return best
+        tc = t.get("t_center")
+        if tc is None or not ends:
+            continue
+        i = min(range(len(ends)), key=lambda k: abs(ends[k] - tc))
+        d = abs(ends[i] - tc)
+        if d > TRANS_ATTACH_TOL:
+            continue                              # 离任何 out 点都远 → 不挂(诚实丢弃)
+        if i not in claimed or d < claimed[i][0]:
+            claimed[i] = (d, t)
+    return {i: t for i, (d, t) in claimed.items()}
 
 
 # ===================== Draft 信封 + action builders =====================
@@ -167,12 +180,11 @@ class DraftBuilder:
         return (base_name if i == 0 else f"{base_name}_{i}", base_idx + i)
 
     # --- builders ---
-    def add_video_shot(self, shot: dict, transitions: list[dict]) -> dict:
-        """一个镜头 → 一段主轨 add_video(媒体占位)。若 out 点有转场,挂 transition。"""
+    def add_video_shot(self, shot: dict, tr: Optional[dict] = None) -> dict:
+        """一个镜头 → 一段主轨 add_video(媒体占位)。tr=预先分配给该镜头 out 点的转场(或 None)。"""
         tname, tidx = TRACK["video"]
         p = {"video_url": self._media_ph(), "start": 0.0, "end": round(shot["dur"], 3),
              "target_start": round(shot["start"], 3), "track_name": tname, "track_render_index": tidx}
-        tr = transition_for_shot(shot["end"], transitions)
         if tr:
             jy = map_transition(tr["type"])
             if jy:
@@ -341,10 +353,10 @@ def build_draft_from_cached(stem: str, cached: dict[str, Optional[dict]]) -> tup
     unified = merge_reverse(stem, fx, font, narr, bgm)
     W, H = canvas_of(cached)
     b = DraftBuilder(width=W, height=H)
-    # 主轨镜头 + 转场
-    transitions = unified["transitions"]
-    for shot in unified["shots"]:
-        b.add_video_shot(shot, transitions)
+    # 主轨镜头 + 转场(先一对一分配转场到镜头 out 点,再逐镜头建 add_video)
+    assigned = assign_transitions(unified["shots"], unified["transitions"])
+    for i, shot in enumerate(unified["shots"]):
+        b.add_video_shot(shot, assigned.get(i))
     # 字幕
     for ev in unified["subtitles"]:
         b.add_text_event(ev, H)
