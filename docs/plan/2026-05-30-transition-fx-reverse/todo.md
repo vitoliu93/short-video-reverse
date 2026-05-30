@@ -1,12 +1,12 @@
 # Todo: 短视频「转场/特效」反解 (`fx_`)
 
 ## Current State  ← update this constantly; it is the resume cursor
-- **Phase**: 全部完成（X0→X3 done）；plan 收尾
+- **Phase**: 全部完成（X0→X3 done）；plan 已收尾（review + 知识入 CLAUDE.md）
 - **Status**: done
 - **Owner**: 41529b37-8723-4107-8555-72ce2a0a7c9a
 - **Branch**: dev-plan-2026-05-30-transition-fx-reverse
-- **Last done**: X3 完成——3 片全链路 + 人工核 + k-投票实证 + 调查 0-窗口 + 修 2 bug，结论写入 spec §12。实验目标达成。
-- **Next**: （超出本 plan）k-投票收进 fx_extract；收紧运动类 prompt；ARC RL 微调语料。等用户决定是否并入 main。
+- **Last done**: 收尾 clean——删 5 支 /tmp 探针；fx_ 登记进 CLAUDE.md（第4管线 + settled-decisions + 凭据/run-cmd）；写 review.md。
+- **Next**: 仅剩用户决定——是否把本分支并入 main。后续增强（k-投票收进 fx_extract / 收紧运动类 prompt / ARC RL 语料）均超出本 plan，见 spec §12。
 - **Blockers**: none
 
 ## Phases
