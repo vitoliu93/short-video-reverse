@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "video": "assets/Lotus_MY26_Combined-15s_16x9_CLEAN_Audio-250207_v016.mp4",
+    "task_type": "Summary",
+    "prompt": "Describe the video content in detail, including visual scenes, audio, and key messages.",
+    "lang": "english",
+    "is_short_video": true,
+    "saved_at": "2026-05-29T05:59:00+00:00"
+  },
+  "response": {
+    "code": 0,
+    "message": "Success",
+    "data": [
+      [
+        [
+          "Describe the video content in detail, including visual scenes, audio, and key messages.",
+          "[THINK]\nThe video opens with a dynamic, distorted fisheye lens shot of modern skyscrapers, immediately establishing a futuristic and sleek aesthetic (00:00:00 - 00:00:01). The scene then transitions to a top-down view of two white cars parked side-by-side, followed by a close-up of a woman's face reflected in a circular mirror, creating a sense of personal identity and style (00:00:01 - 00:00:02). The focus shifts to the interior, showcasing the high-quality white leather seats and the sophisticated headrest design, emphasizing comfort and luxury (00:00:02 - 00:00:04). The video then moves to the exterior, displaying the sleek lines of the car's body and a close-up of its distinctive multi-spoke wheel, highlighting its unique design (00:00:04 - 00:00:06). A close-up of the rear of the car reveals the 'EMEVA' model name and a red taillight, followed by a full front view that showcases the aggressive front grille and headlights (00:00:06 - 00:00:09). The video concludes with a rapid succession of dynamic shots, including a close-up of the car's side, a shot of the car driving on a city street, and a final shot of the car parked in front of a modern building, reinforcing its urban, high-performance identity (00:00:09 - 00:00:15).\n[/THINK]\n\n\n[ANSWER]\nThis is a fast-paced, high-energy promotional video for the new Lotus Eletre E-MEVA. The advertisement establishes a strong sense of modernity and luxury through a series of quick, stylized shots. It begins with a distorted fisheye view of skyscrapers, transitions to a top-down shot of the cars, and then focuses on the sleek, white interior, particularly the leather seats and headrests. The video then highlights the car's exterior, showcasing its distinctive multi-spoke wheels, the 'EMEVA' model name on the rear, and the aggressive front grille. Through rapid cuts and a dynamic soundtrack, the video effectively portrays the E-MEVA as a high-performance, futuristic, and stylish vehicle, positioning it as a premium choice for contemporary urban living. The core message is one of sophisticated design, performance, and a premium lifestyle.\n[/ANSWER]\n"
+        ]
+      ]
+    ]
+  }
+}

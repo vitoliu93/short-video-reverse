@@ -1,0 +1,117 @@
+{
+  "video": "douyin_ai_19s",
+  "duration": 19.167,
+  "n_shots": 1,
+  "narrative": {
+    "hook_type": "direct",
+    "hook_desc_cn": "开场直接呈现具有动漫风格的真人男性特写，靠高颜值视觉效果吸引观众注意力",
+    "structure": "other",
+    "acts": [
+      {
+        "role": "hook",
+        "t_start": 0.0,
+        "t_end": 1.0,
+        "summary_cn": "开场呈现真人与动漫形象融合的画面，带来沉静虚幻的初感，抓住观众注意力"
+      },
+      {
+        "role": "setup",
+        "t_start": 1.0,
+        "t_end": 4.0,
+        "summary_cn": "通过画面与音乐烘托爱恨纠葛的思绪氛围"
+      },
+      {
+        "role": "setup",
+        "t_start": 4.0,
+        "t_end": 8.0,
+        "summary_cn": "传递回忆回溯、彼此凝视的情绪"
+      },
+      {
+        "role": "setup",
+        "t_start": 8.0,
+        "t_end": 11.0,
+        "summary_cn": "营造独酌场景下的愁绪与思绪感"
+      },
+      {
+        "role": "setup",
+        "t_start": 11.0,
+        "t_end": 16.0,
+        "summary_cn": "传递宿命般等待与守候的情绪"
+      },
+      {
+        "role": "resolution",
+        "t_start": 16.0,
+        "t_end": 18.0,
+        "summary_cn": "呈现飘落意象的结局，烘托感怀氛围"
+      },
+      {
+        "role": "cta",
+        "t_start": 18.0,
+        "t_end": 19.133,
+        "summary_cn": "出现点击购买字样，引导用户进行消费操作"
+      }
+    ],
+    "theme_cn": "通过真人与动漫形象的视觉融合，搭配伤感音乐营造思念忧郁的氛围感，最终实现商业引流转化",
+    "cta": "引导观众点击链接购买视频中展示的同款产品",
+    "pacing_profile": {
+      "avg_shot_s": 19.133,
+      "std_shot_s": 0.0,
+      "n_cuts": 0,
+      "cuts_per_min": 0.0,
+      "label": "slow",
+      "fastest_window": [
+        0.0,
+        3.0
+      ]
+    }
+  },
+  "shots": [
+    {
+      "shot_id": 1,
+      "start": 0.0,
+      "end": 19.133,
+      "dur": 19.133,
+      "summary_cn": "营造独酌场景下的愁绪与思绪感"
+    }
+  ],
+  "content_tags": [
+    "视觉融合",
+    "伤感氛围",
+    "动漫男神",
+    "商业推广",
+    "同款周边"
+  ],
+  "emotion_curve": [
+    {
+      "t": 9.5,
+      "emotion": "忧郁",
+      "valence": -0.6
+    }
+  ],
+  "key_moments": [
+    {
+      "t_start": 0.0,
+      "t_end": 19.133,
+      "label": "全片静态图像搭配动态歌词与背景音乐的视觉展示",
+      "src": "grounding"
+    }
+  ],
+  "provenance": {
+    "shots": "fx_detect(transnet+ffmpeg)",
+    "pacing": "computed",
+    "narrative": "doubao-seed-2.0-pro",
+    "arc_tasks": [
+      "Summary",
+      "Segment",
+      "QA",
+      "Grounding"
+    ],
+    "arc_model": "ARC-Hunyuan-Video-7B",
+    "arc_cached": {
+      "Summary": true,
+      "Segment": true,
+      "QA": true,
+      "Grounding": true
+    }
+  },
+  "elapsed_seconds": 12.9
+}

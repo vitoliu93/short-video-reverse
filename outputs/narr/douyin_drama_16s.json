@@ -1,0 +1,150 @@
+{
+  "video": "douyin_drama_16s",
+  "duration": 15.733,
+  "n_shots": 6,
+  "narrative": {
+    "hook_type": "relatable-pain",
+    "hook_desc_cn": "开场打出「最近两广人的现状」标题，搭配主角久坐起身痛苦揉腰颈的画面，点明主题引发南方观众共鸣",
+    "structure": "list",
+    "acts": [
+      {
+        "role": "hook",
+        "t_start": 0.0,
+        "t_end": 3.033,
+        "summary_cn": "主角从久坐的红色塑料凳站起后揉搓后腰和脖子，表现久坐带来的酸痛感"
+      },
+      {
+        "role": "setup",
+        "t_start": 3.033,
+        "t_end": 6.7,
+        "summary_cn": "展示两个生活片段：主人公在街上行走时因炎热用手扇风，表情疲惫烦躁，反映湿热体感"
+      },
+      {
+        "role": "escalation",
+        "t_start": 6.7,
+        "t_end": 11.833,
+        "summary_cn": "主角上厕所时不停擦汗、洗脸，夸张表现湿热天气下频繁排汗的状态"
+      },
+      {
+        "role": "climax",
+        "t_start": 11.833,
+        "t_end": 12.867,
+        "summary_cn": "呈现拉开窗帘的场景，搭配夸张爆炸特效，体现面对户外酷热/强紫外线的崩溃感"
+      },
+      {
+        "role": "cta",
+        "t_start": 12.867,
+        "t_end": 15.7,
+        "summary_cn": "展示「虚构演绎，仅供娱乐」声明，搭配引导关注的按钮引导观众互动"
+      }
+    ],
+    "theme_cn": "以夸张短剧形式调侃两广地区夏季湿热天气给居民带来的各类不适，引发当地观众共鸣，向其他地区观众科普南方气候特点",
+    "cta": "提示内容为虚构演绎仅供娱乐，引导观众关注",
+    "pacing_profile": {
+      "avg_shot_s": 2.589,
+      "std_shot_s": 1.331,
+      "n_cuts": 5,
+      "cuts_per_min": 19.07,
+      "label": "medium",
+      "fastest_window": [
+        2.0,
+        5.0
+      ]
+    }
+  },
+  "shots": [
+    {
+      "shot_id": 1,
+      "start": 0.0,
+      "end": 3.033,
+      "dur": 3.033,
+      "summary_cn": "主角从久坐的红色塑料凳站起后揉搓后腰和脖子，表现久坐带来的酸痛感"
+    },
+    {
+      "shot_id": 2,
+      "start": 3.067,
+      "end": 4.467,
+      "dur": 1.4,
+      "summary_cn": "展示两个生活片段：主人公在街上行走时因炎热用手扇风，表情疲惫烦躁，反映湿热体感"
+    },
+    {
+      "shot_id": 3,
+      "start": 4.5,
+      "end": 6.7,
+      "dur": 2.2,
+      "summary_cn": "展示两个生活片段：主人公在街上行走时因炎热用手扇风，表情疲惫烦躁，反映湿热体感"
+    },
+    {
+      "shot_id": 4,
+      "start": 6.733,
+      "end": 11.833,
+      "dur": 5.1,
+      "summary_cn": "主角上厕所时不停擦汗、洗脸，夸张表现湿热天气下频繁排汗的状态"
+    },
+    {
+      "shot_id": 5,
+      "start": 11.867,
+      "end": 12.867,
+      "dur": 1.0,
+      "summary_cn": "呈现拉开窗帘的场景，搭配夸张爆炸特效，体现面对户外酷热/强紫外线的崩溃感"
+    },
+    {
+      "shot_id": 6,
+      "start": 12.9,
+      "end": 15.7,
+      "dur": 2.8,
+      "summary_cn": "展示「虚构演绎，仅供娱乐」声明，搭配引导关注的按钮引导观众互动"
+    }
+  ],
+  "content_tags": [
+    "南方湿热天气",
+    "两广日常",
+    "搞笑演绎",
+    "生活共鸣",
+    "夏季吐槽"
+  ],
+  "emotion_curve": [
+    {
+      "t": 1.5,
+      "emotion": "无奈",
+      "valence": -0.3
+    },
+    {
+      "t": 9.0,
+      "emotion": "烦躁",
+      "valence": -0.5
+    },
+    {
+      "t": 14.0,
+      "emotion": "戏谑",
+      "valence": 0.2
+    }
+  ],
+  "key_moments": [
+    {
+      "t_start": 12.0,
+      "t_end": 15.0,
+      "label": "拉开窗帘搭配爆炸特效体现面对酷热的崩溃",
+      "src": "grounding"
+    }
+  ],
+  "provenance": {
+    "shots": "fx_detect(transnet+ffmpeg)",
+    "pacing": "computed",
+    "narrative": "doubao-seed-2.0-pro",
+    "arc_tasks": [
+      "Summary",
+      "Segment",
+      "QA",
+      "Grounding"
+    ],
+    "arc_model": "ARC-Hunyuan-Video-7B",
+    "arc_cached": {
+      "Summary": true,
+      "Segment": true,
+      "QA": true,
+      "Grounding": true
+    }
+  },
+  "elapsed_seconds": 13.8
+}

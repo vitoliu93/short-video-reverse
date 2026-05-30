@@ -1,0 +1,197 @@
+{
+  "video": "Lotus_MY26_Combined-15s_16x9_CLEAN_Audio-250207_v016",
+  "duration": 15.0,
+  "n_shots": 15,
+  "narrative": {
+    "hook_type": "visual-shock",
+    "hook_desc_cn": "以扭曲鱼眼镜头仰拍摩天大楼开场，快速切换到白色跑车，靠强烈视觉反差和快节奏剪辑抓取注意力",
+    "structure": "parallel-escalation",
+    "acts": [
+      {
+        "role": "hook",
+        "t_start": 0.0,
+        "t_end": 0.68,
+        "summary_cn": "鱼眼视角拍摄摩天大楼，带来强烈视觉冲击完成开场抓流"
+      },
+      {
+        "role": "setup",
+        "t_start": 0.68,
+        "t_end": 8.2,
+        "summary_cn": "通过俯拍汽车、人物特写、城市建筑、车辆内饰等快速剪辑镜头，营造神秘现代的科技感氛围"
+      },
+      {
+        "role": "escalation",
+        "t_start": 8.2,
+        "t_end": 11.0,
+        "summary_cn": "集中展示车尾标识、前脸造型、轮毂等车辆设计细节，突出运动感与精致工艺"
+      },
+      {
+        "role": "resolution",
+        "t_start": 11.0,
+        "t_end": 14.96,
+        "summary_cn": "以格栅特写、车辆并排停放画面收尾，呈现产品高端定位与设计美学，完成品牌信息传递"
+      }
+    ],
+    "theme_cn": "路特斯新款Eletre E-MEVA车型宣传，展现车辆的科技感、运动性能与豪华定位",
+    "cta": null,
+    "pacing_profile": {
+      "avg_shot_s": 0.96,
+      "std_shot_s": 0.393,
+      "n_cuts": 14,
+      "cuts_per_min": 56.0,
+      "label": "fast",
+      "fastest_window": [
+        6.5,
+        9.5
+      ]
+    }
+  },
+  "shots": [
+    {
+      "shot_id": 1,
+      "start": 0.0,
+      "end": 0.68,
+      "dur": 0.68,
+      "summary_cn": "鱼眼视角拍摄摩天大楼，带来强烈视觉冲击完成开场抓流"
+    },
+    {
+      "shot_id": 2,
+      "start": 0.72,
+      "end": 1.84,
+      "dur": 1.12,
+      "summary_cn": "通过俯拍汽车、人物特写、城市建筑、车辆内饰等快速剪辑镜头，营造神秘现代的科技感氛围"
+    },
+    {
+      "shot_id": 3,
+      "start": 1.88,
+      "end": 2.68,
+      "dur": 0.8,
+      "summary_cn": "通过俯拍汽车、人物特写、城市建筑、车辆内饰等快速剪辑镜头，营造神秘现代的科技感氛围"
+    },
+    {
+      "shot_id": 4,
+      "start": 2.72,
+      "end": 4.16,
+      "dur": 1.44,
+      "summary_cn": "通过俯拍汽车、人物特写、城市建筑、车辆内饰等快速剪辑镜头，营造神秘现代的科技感氛围"
+    },
+    {
+      "shot_id": 5,
+      "start": 4.2,
+      "end": 5.2,
+      "dur": 1.0,
+      "summary_cn": "通过俯拍汽车、人物特写、城市建筑、车辆内饰等快速剪辑镜头，营造神秘现代的科技感氛围"
+    },
+    {
+      "shot_id": 6,
+      "start": 5.24,
+      "end": 6.56,
+      "dur": 1.32,
+      "summary_cn": "通过俯拍汽车、人物特写、城市建筑、车辆内饰等快速剪辑镜头，营造神秘现代的科技感氛围"
+    },
+    {
+      "shot_id": 7,
+      "start": 6.6,
+      "end": 7.6,
+      "dur": 1.0,
+      "summary_cn": "通过俯拍汽车、人物特写、城市建筑、车辆内饰等快速剪辑镜头，营造神秘现代的科技感氛围"
+    },
+    {
+      "shot_id": 8,
+      "start": 7.64,
+      "end": 8.16,
+      "dur": 0.52,
+      "summary_cn": "通过俯拍汽车、人物特写、城市建筑、车辆内饰等快速剪辑镜头，营造神秘现代的科技感氛围"
+    },
+    {
+      "shot_id": 9,
+      "start": 8.2,
+      "end": 8.88,
+      "dur": 0.68,
+      "summary_cn": "集中展示车尾标识、前脸造型、轮毂等车辆设计细节，突出运动感与精致工艺"
+    },
+    {
+      "shot_id": 10,
+      "start": 8.92,
+      "end": 9.44,
+      "dur": 0.52,
+      "summary_cn": "集中展示车尾标识、前脸造型、轮毂等车辆设计细节，突出运动感与精致工艺"
+    },
+    {
+      "shot_id": 11,
+      "start": 9.48,
+      "end": 9.76,
+      "dur": 0.28,
+      "summary_cn": "集中展示车尾标识、前脸造型、轮毂等车辆设计细节，突出运动感与精致工艺"
+    },
+    {
+      "shot_id": 12,
+      "start": 9.8,
+      "end": 10.92,
+      "dur": 1.12,
+      "summary_cn": "集中展示车尾标识、前脸造型、轮毂等车辆设计细节，突出运动感与精致工艺"
+    },
+    {
+      "shot_id": 13,
+      "start": 10.96,
+      "end": 12.2,
+      "dur": 1.24,
+      "summary_cn": "以格栅特写、车辆并排停放画面收尾，呈现产品高端定位与设计美学，完成品牌信息传递"
+    },
+    {
+      "shot_id": 14,
+      "start": 12.24,
+      "end": 14.08,
+      "dur": 1.84,
+      "summary_cn": "以格栅特写、车辆并排停放画面收尾，呈现产品高端定位与设计美学，完成品牌信息传递"
+    },
+    {
+      "shot_id": 15,
+      "start": 14.12,
+      "end": 14.96,
+      "dur": 0.84,
+      "summary_cn": "以格栅特写、车辆并排停放画面收尾，呈现产品高端定位与设计美学，完成品牌信息传递"
+    }
+  ],
+  "content_tags": [
+    "汽车宣传",
+    "豪华车型",
+    "科技感",
+    "运动性能",
+    "视觉美学"
+  ],
+  "emotion_curve": [
+    {
+      "t": 7.5,
+      "emotion": "炫酷",
+      "valence": 0.7
+    }
+  ],
+  "key_moments": [
+    {
+      "t_start": 9.0,
+      "t_end": 11.0,
+      "label": "车型细节展示",
+      "src": "grounding"
+    }
+  ],
+  "provenance": {
+    "shots": "fx_detect(transnet+ffmpeg)",
+    "pacing": "computed",
+    "narrative": "doubao-seed-2.0-pro",
+    "arc_tasks": [
+      "Summary",
+      "Segment",
+      "QA",
+      "Grounding"
+    ],
+    "arc_model": "ARC-Hunyuan-Video-7B",
+    "arc_cached": {
+      "Summary": true,
+      "Segment": true,
+      "QA": true,
+      "Grounding": true
+    }
+  },
+  "elapsed_seconds": 12.8
+}
