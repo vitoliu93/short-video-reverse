@@ -115,3 +115,28 @@ docs/plan/2026-05-30-transition-fx-reverse/   ← 本计划
 **设计决策（由 X0 得出）**：(1) fx_common 的 VLM 客户端必须解析 SSE 流并分离 thinking/text；(2) thinking 块保留，作为 visual_cues 的来源/审计；(3) **后端路由不可复现是 X1 头号任务**（§8）。
 
 **诚实局限**：仅在 1 条非抖音素材的 1 个 cut 上验证；标签精确度、渐变转场召回、抖音风格代表性均未测——这正是 X1–X3 的事。
+
+---
+
+## §10 X1 结果块 — foundation（✅ 通过，2026-05-30）
+
+**目的**：把 de-risk 变成可复现地基——锁后端、定位器、契约层。
+
+**1. 后端可复现性解决。** `agent-vision` 路由不固定（X0 落到 kimi-k2.6 / doubao-seed-2.0-code）。改走**直连 Ark `https://ark.cn-beijing.volces.com/api/coding` + model=`doubao-seed-2.0-pro` + `VOLC_ARK_API_KEY`**（凭据已在 icccut-agents/.env，原是注释掉的蓝图）。实测：确定性返回 `doubao-seed-2.0-pro` 且**支持图片视觉**。Ark `/api/coding` 仅放行 coding-plan 模型——`doubao-1.5-vision-pro` / `doubao-vision-pro-32k` 均 404 UnsupportedModel。协议 = Anthropic Messages SSE；**Ark 不声明 charset → 必须强制 UTF-8**，否则中文 mojibake（已在 `fx_common.vlm` 里 `r.encoding="utf-8"` 修）。
+
+**2. TransNetV2 定位器。** `transnetv2-pytorch` 1.0.5（权重内置 30MB，不依赖 transformers、无冲突）。本机基准（Lotus 15s）：
+
+| device | load | infer | 15s 占比 | 镜头 | 结论 |
+|-|-|-|-|-|-|
+| **CPU** | 1.86s | **1.78s** | 0.12× | 15 | ✓ 一致 |
+| mps | 0.06s | 2.23s | 0.15× | 9 | ✗ 更慢 + 数值不一致漏边界 |
+
+→ **用 CPU**（180s 抖音片外推 ~21s，离线可接受）。`fx_detect.py`：TransNetV2(镜头边界) ⊕ ffmpeg scene(硬切)，近邻 0.3s 合并、按 gap 自适应窗宽。Lotus：15 镜头→**12 候选窗口/3.38s**，其中 2 个 transnet-only(10.94/12.22s) 是 ffmpeg 漏掉的——正是引入 TransNetV2 的价值。
+
+**3. 契约层冒烟通过。** `fx_common.py`(VLM 客户端 + taxonomy + 剪映映射 + 采样) + `fx_describe.py`(stage)。Lotus 4.19 窗口跑 pro：JSON 解析 OK、中文无 mojibake、model 正确记录。
+
+**⚠️ 关键发现（→ known-limitation）：转场 type 标签 model-dependent 且本身有歧义。** 同一个 4.19 转场，doubao-seed-2.0-**code**(X0) 判 `glitch`(扭曲撕裂)，doubao-seed-2.0-**pro**(X1) 判 `wipe`(白色竖条左→右擦除, conf 0.92)。人工看帧：确为「车内铬面 → 高楼」一次带视觉效果的切换，但低分辨率下 wipe/glitch/distortion 难铁定区分。**定位 + "此处有带效果的转场" 跨模型稳健；精确 type 是软的。** 应对：(a) 输出永远记录实际 `model`；(b) X3 固定用确定性的 pro，主指标 = 「转场是否检出 + type 家族是否合理」，精确 tag 命中为辅；(c) tag 命中口径在 X3 标定。
+
+**设计决策**：schema 以 `fx_describe` 实际产出为准（比 §4 草案多 `type_cn`/`_parse_ok`/`_raw_type` 审计字段）；type 不在闭集时落 `"unknown"` 并保留 `_raw_type`。
+
+**诚实局限**：仍只在 Lotus(非抖音)上验证；聚合去重、特效遍、真实抖音召回/准确率属 X2/X3。

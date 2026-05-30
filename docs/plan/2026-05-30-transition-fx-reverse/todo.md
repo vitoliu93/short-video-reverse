@@ -1,13 +1,13 @@
 # Todo: 短视频「转场/特效」反解 (`fx_`)
 
 ## Current State  ← update this constantly; it is the resume cursor
-- **Phase**: X1 — foundation（锁模型 + schema/taxonomy + TransNetV2 + fx_common/fx_detect）
+- **Phase**: X2 — full chain（fx_extract 全链路 + 聚合去重 + 特效遍）
 - **Status**: todo
 - **Owner**: 41529b37-8723-4107-8555-72ce2a0a7c9a
 - **Branch**: dev-plan-2026-05-30-transition-fx-reverse
-- **Last done**: X0 de-risk 通过（探针验证 agent-vision 收图 + 产出结构化转场 JSON，见 spec §9）；计划文档落地
-- **Next**: 查 icccut-agents 模型别名/路由，尝试锁定 doubao-seed-2.0-pro（preflight 头号 [!]）
-- **Blockers**: none（X3 评测素材待用户提供，不阻塞 X1/X2）
+- **Last done**: X1 完成——后端锁定(Ark/doubao-seed-2.0-pro)、TransNetV2(CPU)、fx_detect、fx_common、fx_describe 全部落地并冒烟通过(spec §10)。发现 type 标签 model-dependent。
+- **Next**: 写 fx_extract.py（遍历候选窗口→describe→视频级聚合→写 outputs/fx/Lotus_*.json），加特效遍，跑 Lotus 验证
+- **Blockers**: none（X3 抖音素材待用户提供，不阻塞 X2；外部 Ark 调用偶发分类器瞬时拒绝，重试即可）
 
 ## Phases
 
@@ -17,14 +17,14 @@
 - **Acceptance**: VLM 能从几帧产出有用的结构化转场描述 + 端点协议摸清
 - **Verify**: `/tmp/probe_doubao_vision.py` 两测均 HTTP 200 + 合理输出  → **Result**: ✅ 通过（spec §9）
 
-### X1 — foundation  [todo]
-- [ ] 解决后端可复现：查 icccut-agents 模型别名/路由，锁定 doubao-seed-2.0-pro（或确立「记录实际 model + 分层」的退路）
-- [ ] `fx_common.py`：SSE 流式 VLM 客户端（分离 thinking/text）+ 闭集 taxonomy + 剪映类目映射 + 帧采样/窗口工具 + .env 解析
-- [ ] 定稿 §4 输出 schema
-- [ ] `uv add transnetv2-pytorch`（或同等），实测本机 CPU/mps 在 15s 片上的墙钟
-- [ ] `fx_detect.py`：TransNetV2 + ffmpeg scene → 候选窗口（并集去重）
-- **Acceptance**: TransNetV2 在 Lotus 上跑通并打印墙钟；fx_detect 输出的候选窗口与 ffmpeg cut 大体吻合且能多召回渐变处；fx_common 的 VLM 客户端能稳定取到答案
-- **Verify**: `uv run scripts/fx_detect.py assets/Lotus_*.mp4` 打印窗口列表 + 墙钟  → **Result**: pending
+### X1 — foundation  [done]
+- [x] 解决后端可复现：锁定 **Ark 直连 `https://ark.cn-beijing.volces.com/api/coding` + model=`doubao-seed-2.0-pro` + `VOLC_ARK_API_KEY`**；实测确定性返回该 model 且支持图片视觉。Ark `/api/coding` 仅放行 coding-plan 模型，doubao-1.5-vision-pro/vision-pro-32k 均 404。
+- [x] `uv add transnetv2-pytorch`（1.0.5，权重内置）；CPU 1.78s/15s（mps 更慢且漏边界）→ 用 CPU
+- [x] `fx_detect.py`：TransNetV2 + ffmpeg scene → 候选窗口（并集去重）；Lotus 15镜头→12窗口/3.38s，含 2 个 transnet-only(渐变召回)
+- [x] `fx_common.py`：Ark SSE 流式 VLM 客户端（UTF-8 强制解码，分离 thinking/text）+ 闭集 taxonomy + 剪映类目映射 + 帧采样/窗口工具 + .env 解析
+- [x] `fx_describe.py` + schema 定稿（以实际产出为准，含审计字段）
+- **Acceptance**: TransNetV2 跑通+墙钟✓；fx_detect 候选窗口与 ffmpeg cut 吻合且多召回渐变✓；fx_common 的 VLM 客户端能稳定取到答案✓
+- **Verify**: `fx_detect`→12窗口/3.38s；`fx_describe` 4.19窗口→ pro 返回 wipe/conf0.92/中文正常/JSON解析OK  → **Result**: ✅ 全部通过（发现 type 标签 model-dependent，记入 spec §10）
 
 ### X2 — full chain  [todo]
 - [ ] `fx_describe.py`：单窗口 N 帧 → VLM → 结构化转场描述

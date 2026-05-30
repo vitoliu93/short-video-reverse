@@ -24,6 +24,7 @@ dependencies = [
     "fonttools",
     "scikit-image",
     "rapidocr-onnxruntime",
+    "transnetv2-pytorch>=1.0.5",
 ]
 
 # This repo is a collection of scripts, not an installable package.

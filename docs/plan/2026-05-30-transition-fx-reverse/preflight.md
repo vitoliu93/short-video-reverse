@@ -6,8 +6,8 @@ Checks derived from spec. Run before execution. [ ] = unverified, [x] = verified
 - [x] VLM 端点可达且收 base64 图、返回 SSE — X0 探针 HTTP 200（见 spec §9）
 - [x] 凭据存在 — `icccut-agents/.env(.test)` 含 `ANTHROPIC_BASE_URL=http://115.190.62.224:8001` + `ANTHROPIC_API_KEY`(len 35)；脚本直接解析 .env，密钥不入日志
 - [x] 测试素材在位 — `assets/Lotus_MY26_Combined-15s_16x9_CLEAN_Audio-250207_v016.mp4` (1080p/25fps/15s)
-- [!] **VLM 后端可复现** — `agent-vision` 路由不固定，X0 实测落到 `kimi-k2.6` / `doubao-seed-2.0-code`，**非** `doubao-seed-2.0-pro`。X1 必须解决（见 Findings）
-- [ ] **TransNetV2 可装可跑** — `uv add transnetv2-pytorch` 后在 15s 片上跑通并实测 CPU/mps 墙钟（X1）
+- [x] **VLM 后端可复现** — 已解决：改走直连 Ark `/api/coding` + `model=doubao-seed-2.0-pro`，实测 `model_seen=doubao-seed-2.0-pro`（确定性）且支持图片视觉（见 Findings）
+- [x] **TransNetV2 可装可跑** — `uv add transnetv2-pytorch`(1.0.5, 权重内置 30MB)；Lotus 15s：CPU load 1.86s + infer 1.78s(0.12×实时)，mps 反而更慢且漏边界 → **用 CPU**
 - [ ] 真实抖音竖屏爆款素材 — 用户在 X3 提供，放 `assets/`
 
 ## Findings
