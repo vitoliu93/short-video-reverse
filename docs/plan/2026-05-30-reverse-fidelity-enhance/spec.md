@@ -34,3 +34,38 @@
 - **14GB 拉取耗时/中断** — tosutil 支持续传（-f 覆盖、可重跑补齐）；盘 351GB 充足。
 - **k 投票额度** — fx k=3 × windows × 样本数；只对有软转场的样本（主要 Lotus）有意义，硬切样本投 type 无效益 → fx k 投票优先 Lotus；narr structure 投票便宜(每样本+2 doubao)可全跑。
 - **worktree 路径坑** — fx_common/narr 的 ROOT.parent 在 worktree 下偏移；靠 env 导入凭据绕过，已验 load_creds OK。
+
+---
+
+## Results（E1/E2/E3，✅ 2026-05-30）
+
+### E1 — #2a 真转场时长 ✅
+`compose_common.add_video_shot` 改读 `t_end−t_start`(仍 ≤0.8×镜头时长兜底)。Lotus 转场不再全 0.5，落 **0.7/0.7/0.7/0.544/0.224**(0.224=微镜头 0.8×0.28 钳制)实测值。5 稿整稿全过校验 + smoke。
+
+### E2 — #2b k 投票稳漂移标签 ✅（代码通用，附诚实发现）
+- **代码**：`fx_describe.describe_transition(k)` 投 type/present；`narr_common.synth_narrative(k)` 投 structure。`fx_extract --k`/`narr_extract --k` 透传。帧/ARC 不重采，仅 VLM/doubao 调 k 次。`_votes`/`provenance.structure_votes` 可追溯。
+- **重跑**：fx k=3 Lotus(present 非硬切 8→9，全可映射)；narr k=3 全 5 样本，**kid 的 structure 漂移 `[chrono,chrono,hook-proof-cta]`→多数 chrono 被收敛**。5 稿全过校验 + smoke 单射 9→9。
+- **诚实发现(重要)**：单跑内 3 票 **多数一致**(per-call temp=0 抖动小，11/12 窗 3/3)；**主漂移是跨 run/session 级**——k=1 baseline vs k=3 同窗标签变(t=9.63 fade-to-black→glitch / t=12.22 dissolve→wipe / t=14.09 fade-to-white→flash)。⇒ within-run k 投票**稳单跑结果、压偶发 per-call flip**，但**不能全消跨会话漂移**。要真正跨天可复现需把 k 投票分散到多 session 或接 GT，超出 POC。
+
+### E3 — #1 font 真跑 ✅（抓修两真 bug）
+- 拉 ~14GB 字体库 → `font_build_index` **1326 款(0 坏，919 全常用字覆盖)** → `font_extract` ×5。
+- **76 条真实 OCR 字幕**(Lotus31/ai2/drama12/hair20/kid11)带位置/颜色/字号/描边/阴影/动画 → 重跑 compose **76→76 全落 add_text，5 稿整稿全过校验** + smoke。
+- **抓修 bug①——字体名注入**：font.match 多为真实字体名(库混 hash 名 + 真名)，但真实抖音 NCC 分本就低(渲染器 gap，剪映≠Pillow；font §F3 中位 0.53)，低分匹配大概率错。→ font-face 闸 = **命中剪映 Font_type 闭集(`compose_valid_fonts.txt` 798)且 score≥0.6** 才发，否则记 `_unmapped` 留默认字面。结果 **5/76(6%)发 font-face**——诚实低，宁缺勿错(Gold Case 要对)。
+- **抓修 bug②——零时长字幕**：单帧 OCR `first==last`→ add_text `end==start`，icccut 拒(end>start)。→ `MIN_SUB_DUR=0.5s` 兜底(也是可读下限)。
+
+### 最终保真度（5 样本，`compose_eval`，k=3 稳定后）
+| 模态 | 落进合法 draft | 备注 |
+|-|-|-|
+| 镜头 | 41→41 add_video(1:1) | 完全保真 |
+| 转场 | 非硬切 9/9 映射 | k=3 Lotus:信号故障×5/中心旋转/叠化/渐变擦除/白光快闪;**transition_duration 实测窗宽** |
+| 特效 | 10/12 add_effect | k=3 fx 重采,effects 未投票(本轮只投 type)→ 2 unmapped(色调/未识别 LUT) |
+| BGM | 1/1 add_audio | — |
+| **字幕** | **76→76 add_text**(全过校验) | **font-face 5/76 发**、71 留默认(诚实);文本/位置/颜色/字号/描边/阴影/动画全保真 |
+| 叙事 | 5/5 作 meta | structure 经 k=3 投票 |
+
+### 诚实局限
+1. **font-face 命中率仅 6%** — 真实视频 NCC 分低(渲染器 gap)被 0.6 闸挡;提升需视频级投票置信度(非单帧分)、或 hash→剪映名解析(读 TTF name 表 + 模糊匹配枚举)。非 font-face 的 7 个字段全保真,字幕重建已很完整。
+2. **k 投票不消跨会话漂移**(见 E2 发现);effects 未投票仍漂(10/12 本轮)。
+3. **OCR 噪声**:水印/花字被误读成乱码字幕('FOH'PUS' 等),compose 不二次判文字质量(font OCR 的已知局限),只保证 add_text 合法。
+4. **transition_duration=检测窗宽**,非 VLM 校准的视觉融合时长。
+5. media 仍 `${media_N}` 占位;样本仅 5、≤19s。
